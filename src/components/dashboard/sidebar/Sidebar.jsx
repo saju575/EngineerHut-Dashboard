@@ -79,7 +79,7 @@ const Sidebar = () => {
         }`}
       >
         <BsArrowLeftShort
-          className={`bg-white text-dark-purple text-3xl rounded-full absolute -right-3 top-9 border border-dark-purple cursor-pointer ${
+          className={`bg-white text-slate-500 text-3xl rounded-full absolute -right-3 top-9 border border-slate-500 cursor-pointer ${
             !open && "rotate-180"
           }`}
           onClick={() => setOpen(!open)}
@@ -102,8 +102,8 @@ const Sidebar = () => {
             return (
               <Fragment key={index}>
                 {/* show main menu */}
-                <Link to={menu.link}>
-                  <li className="text-slate-700 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md mt-2">
+                <Link to={menu.link} className="hover:bg-[#dff9fb]">
+                  <li className="text-slate-700 text-sm flex items-center gap-x-4 cursor-pointer p-2  rounded-md mt-2 hover:bg-[#dff9fb]">
                     <span className="text-2xl block float-left">
                       {menu?.icon}
                     </span>
@@ -149,8 +149,8 @@ const Sidebar = () => {
           {menuState.map((menu, index) => {
             return (
               <Fragment key={index}>
-                <Link to={menu.link}>
-                  <li className="text-slate-700 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md mt-2">
+                <Link to={menu.link} className="hover:bg-[#dff9fb]">
+                  <li className="text-slate-700 text-sm flex items-center gap-x-4 cursor-pointer p-2  rounded-md mt-2 hover:bg-[#dff9fb]">
                     <span className="text-2xl block float-left">
                       {menu?.icon}
                     </span>
@@ -162,8 +162,11 @@ const Sidebar = () => {
         </ul>
       </div>
 
-      <div>
+      {/* layout part */}
+      <div className="flex-1 bg-[#dff9fb]">
         <Navbar />
+
+        {/* here all the component will display */}
         <Outlet />
       </div>
     </div>
