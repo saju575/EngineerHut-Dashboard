@@ -5,6 +5,7 @@ import { FaBagShopping, FaBoxesStacked, FaHeart } from "react-icons/fa6";
 import { MdOutlineDashboard } from "react-icons/md";
 import { Link, Outlet } from "react-router-dom";
 import Navbar from "../navbar/Navbar";
+import styles from "./Sidebar.module.css";
 
 // menu items
 const menus = [
@@ -74,8 +75,8 @@ const Sidebar = () => {
     <div className="flex">
       {/* For big screens */}
       <div
-        className={`hidden md:block bg-white shadow h-screen p-5 pt-0 relative duration-300 ${
-          open ? "lg:w-67 xl:w-72" : "w-20"
+        className={`hidden md:block bg-white  h-screen p-5 pt-0 relative duration-300 ${
+          open ? "w-72" : "w-20"
         }`}
       >
         <BsArrowLeftShort
@@ -163,9 +164,19 @@ const Sidebar = () => {
       </div>
 
       {/* layout part */}
-      <div className="flex-1 bg-[#dff9fb]">
+      <div
+        className={`hidden md:block ${
+          open ? styles.width1 : styles.width2
+        } bg-[#dff9fb] `}
+      >
+        {/* <div className=" bg-[#dff9fb]"> */}
         <Navbar />
-
+        {/* here all the component will display */}
+        <Outlet />
+      </div>
+      <div className={`block md:hidden ${styles.width3} bg-[#dff9fb] `}>
+        {/* <div className=" bg-[#dff9fb]"> */}
+        <Navbar />
         {/* here all the component will display */}
         <Outlet />
       </div>
