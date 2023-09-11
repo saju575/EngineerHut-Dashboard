@@ -1,4 +1,9 @@
-import img1 from "../../../../assets/img/avater.png";
+import person1 from "../../../../assets/img/avater.png";
+import img1 from "../../../../assets/img/products/4.png";
+import img2 from "../../../../assets/img/products/5.png";
+import img3 from "../../../../assets/img/products/6.png";
+import person2 from "../../../../assets/img/user/1.jpg";
+import person3 from "../../../../assets/img/user/2.jpg";
 import RecentOrderRow from "./RecentOrderRow";
 
 // dummy data
@@ -8,11 +13,11 @@ const orders = [
     orderId: "1a",
     customer: {
       name: "John Doe",
-      img: img1, // Placeholder image
+      img: person1, // Placeholder image
     },
     product: {
       name: "Product A",
-      img: "product1.jpg", // Placeholder image
+      img: img1, // Placeholder image
     },
     price: 49.99,
     vendor: "Vendor X",
@@ -23,11 +28,11 @@ const orders = [
     orderId: "2b",
     customer: {
       name: "Alice Smith",
-      img: "customer2.jpg", // Placeholder image
+      img: person2, // Placeholder image
     },
     product: {
       name: "Product B",
-      img: "product2.jpg", // Placeholder image
+      img: img2, // Placeholder image
     },
     price: 29.99,
     vendor: "Vendor Y",
@@ -38,11 +43,11 @@ const orders = [
     orderId: "3c",
     customer: {
       name: "Bob Johnson",
-      img: "customer3.jpg", // Placeholder image
+      img: person3, // Placeholder image
     },
     product: {
       name: "Product C",
-      img: "product3.jpg", // Placeholder image
+      img: img3, // Placeholder image
     },
     price: 99.99,
     vendor: "Vendor Z",
@@ -54,11 +59,13 @@ const orders = [
 const RecentOrder = () => {
   return (
     // <!-- component -->
-    <div>
-      <p className="text-lg text-slate-700 font-semibold">Recents orders</p>
+    <div className="pt-8">
+      <p className="capitalize md:text-lg text-slate-700 font-semibold">
+        Recents orders
+      </p>
       <div className="overflow-x-auto element-with-scrollbar">
         <div className="min-w-screen  flex items-center justify-center bg-gray-100 font-sans ">
-          <div className="w-full lg:w-5/6">
+          <div className="w-full">
             <div className="bg-white shadow-md rounded my-6">
               <table className="min-w-max w-full table-auto">
                 <thead>

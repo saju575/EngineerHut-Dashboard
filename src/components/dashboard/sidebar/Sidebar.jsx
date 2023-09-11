@@ -145,14 +145,14 @@ const Sidebar = () => {
       </div>
 
       {/* for mobile devices */}
-      <div className="block md:hidden bg-white shadow h-screen p-4 pt-0 relative duration-300 w-16">
+      <div className="block md:hidden bg-white  h-screen p-2 pt-0 relative duration-300 w-10">
         <ul className="pt-8">
           {menuState.map((menu, index) => {
             return (
               <Fragment key={index}>
                 <Link to={menu.link} className="hover:bg-[#dff9fb]">
-                  <li className="text-slate-700 text-sm flex items-center gap-x-4 cursor-pointer p-2  rounded-md mt-2 hover:bg-[#dff9fb]">
-                    <span className="text-2xl block float-left">
+                  <li className="text-slate-700 text-sm flex items-center gap-x-4 cursor-pointer p-2  rounded-md mt-2 hover:bg-[#dff9fb] justify-center">
+                    <span className="text-xl block float-left">
                       {menu?.icon}
                     </span>
                   </li>
