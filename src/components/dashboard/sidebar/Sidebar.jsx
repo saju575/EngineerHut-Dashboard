@@ -34,7 +34,7 @@ const menus = [
       { title: "Upload Product", link: "/upload-product" },
     ],
   },
-  { title: "Wishlist", link: "/", icon: <FaHeart /> },
+  { title: "Wishlist", link: "/wishlist", icon: <FaHeart /> },
   {
     title: "Orders",
     icon: <FaBagShopping />,
@@ -79,8 +79,12 @@ const Sidebar = () => {
           }`}
       >
         <BsArrowLeftShort
-          className={`bg-white text-slate-500 text-3xl rounded-full absolute -right-3 top-9 border border-slate-500 cursor-pointer ${!open && "rotate-180"
-            }`}
+
+
+          className={`bg-white text-slate-500 z-[1] text-3xl rounded-full absolute -right-3 top-9 border border-slate-500 cursor-pointer ${
+            !open && "rotate-180"
+          }`}
+
           onClick={() => setOpen(!open)}
         />
 

@@ -1,9 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../layout/Main";
+
+import Wishlist from "../pages/dashboard/wishlist/Wishlist";
+
 import DashBoard from "../pages/dashboard/dashboard/DashBoard";
 import Products from "../pages/dashboard/products/Products";
 import ProductsDetails from "../pages/dashboard/products/ProductsDetails";
 import UploadProduct from "../pages/dashboard/products/UploadProduct";
+
 
 export const router = createBrowserRouter([
   {
@@ -14,6 +18,7 @@ export const router = createBrowserRouter([
           path: "/",
           element: <DashBoard />,
       },
+
       {
           path: "/products",
           element: <Products />,
@@ -26,6 +31,12 @@ export const router = createBrowserRouter([
           path: "/upload-product",
           element: <UploadProduct />,
       },
-  ],
+
+       {
+         path: "/wishlist",
+         element: <Wishlist />,
+      }
+    ],
+
   },
 ]);

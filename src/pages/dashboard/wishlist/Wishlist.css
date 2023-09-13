@@ -1,0 +1,248 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap");
+
+.product-wrapper {
+  background-color: #ffffff;
+}
+
+.product-title {
+  font-family: "Montserrat";
+  font-size: 26px;
+}
+
+.products-links {
+  font-family: "Montserrat";
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.products-links span {
+  color: #5e76fe;
+}
+
+/* Product Left Area Start */
+
+.product-inner--left h3 {
+  font-family: "Montserrat";
+}
+
+.product-categories {
+  background-color: #ffffff;
+}
+
+.categories-inner--links {
+  font-family: "Montserrat";
+  color: #333333b7;
+  cursor: pointer;
+}
+
+.price-ranges {
+  background: #ffffff;
+}
+
+.price-ranges h3 {
+  font-family: "Montserrat";
+}
+
+.price-ranges h5 {
+  font-family: "Montserrat";
+}
+
+.MuiSlider-root {
+  color: #333 !important;
+}
+
+.product-brands {
+  background: #ffffff;
+}
+
+.product-brands--links {
+  font-family: "Montserrat";
+  color: #333333b7;
+  cursor: pointer;
+}
+
+.product-size {
+  background: #ffffff;
+}
+
+.product-size--inner p {
+  font-family: "Montserrat";
+  color: #333;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+}
+
+.product-size p {
+  font-family: "Montserrat";
+}
+
+/* Product Left Area End */
+
+/* Product Right Area Start */
+.product-search input {
+  width: 350px;
+  outline: none;
+  font-family: "Montserrat";
+}
+
+.product-search {
+  display: flex;
+  align-items: center;
+  width: 350px;
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  cursor: pointer;
+  color: #5e76fe;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+}
+
+.showingResult {
+  color: #797979;
+  font-family: "Montserrat";
+  letter-spacing: 0.4px;
+}
+
+.product-tabs {
+  width: 350px;
+  background: #ffffff;
+  position: relative;
+}
+
+.product-tabs ul li a {
+  color: #333333;
+  font-family: "Montserrat";
+}
+
+.product-tabs ul li a:hover {
+  text-decoration: underline;
+  color: #5e76fe;
+}
+
+.border-right1 {
+  height: 20px;
+  left: 136px;
+  top: 50%;
+  width: 1px;
+  background: #505050b9;
+  position: absolute;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+}
+
+.border-right2 {
+  height: 20px;
+  right: 116px;
+  top: 50%;
+  width: 1px;
+  background: #505050b9;
+  position: absolute;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+}
+
+.product-tabs--btn a {
+  background-color: #6075fe;
+  font-family: "Montserrat";
+  color: #ffffff;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+}
+
+.product-card img {
+  height: 300px;
+  width: 370px;
+}
+
+.product-card--image {
+  position: relative;
+}
+
+.product-card--inner {
+  background: #ffffff;
+}
+
+.product-img--icons {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+}
+
+.product-img--icons p {
+  cursor: pointer;
+  font-size: 15px;
+  background: #ffffff;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -ms-transition: 0.4s;
+  -o-transition: 0.4s;
+}
+
+.product-img--icons p:hover {
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+}
+
+.product-card--inner h3 {
+  font-family: "Montserrat";
+  color: #444444;
+}
+
+.product-card--inner h4 {
+  color: #444444;
+  font-family: "Montserrat";
+}
+
+.product-card--inner h4 span {
+  text-decoration: line-through;
+  color: #44444485;
+}
+
+.product-card--rating i {
+  color: #f3d154;
+}
+
+.product-card--rating p {
+  font-family: "Montserrat";
+}
+
+.product-card--rating a {
+  font-family: "Montserrat";
+}
+
+.pagination ul li button {
+  background: #ffffff !important;
+}
+/* Product Right Area End */
