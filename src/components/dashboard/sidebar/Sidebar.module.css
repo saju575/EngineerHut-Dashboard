@@ -1,10 +1,12 @@
 .width1 {
-  width: calc(100% - 18rem);
-}
-.width2 {
-  width: calc(100% - 5rem);
+    width: calc(100% - 18rem);
 }
 
-.width3 {
-  width: calc(100% - 2.5rem);
+.width2 {
+    width: calc(100% - 5rem);
 }
+  
+.width3 {
+    width: calc(100% - 2.5rem);
+}
+
