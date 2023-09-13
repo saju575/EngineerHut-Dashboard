@@ -5,6 +5,7 @@ import { FaBagShopping, FaBoxesStacked, FaHeart } from "react-icons/fa6";
 import { MdOutlineDashboard } from "react-icons/md";
 import { Link, Outlet } from "react-router-dom";
 import Navbar from "../navbar/Navbar";
+import styles from "./Sidebar.module.css";
 
 // menu items
 const menus = [
@@ -33,7 +34,7 @@ const menus = [
       { title: "Upload Product", link: "#" },
     ],
   },
-  { title: "Wishlist", link: "/", icon: <FaHeart /> },
+  { title: "Wishlist", link: "/wishlist", icon: <FaHeart /> },
   {
     title: "Orders",
     icon: <FaBagShopping />,
@@ -74,12 +75,12 @@ const Sidebar = () => {
     <div className="flex">
       {/* For big screens */}
       <div
-        className={`hidden md:block bg-white shadow h-screen p-5 pt-0 relative duration-300 ${
-          open ? "lg:w-67 xl:w-72" : "w-20"
+        className={`hidden md:block bg-white  h-screen p-5 pt-0 relative duration-300 ${
+          open ? "w-72" : "w-20"
         }`}
       >
         <BsArrowLeftShort
-          className={`bg-white text-slate-500 text-3xl rounded-full absolute -right-3 top-9 border border-slate-500 cursor-pointer ${
+          className={`bg-white text-slate-500 z-[1] text-3xl rounded-full absolute -right-3 top-9 border border-slate-500 cursor-pointer ${
             !open && "rotate-180"
           }`}
           onClick={() => setOpen(!open)}
@@ -144,14 +145,14 @@ const Sidebar = () => {
       </div>
 
       {/* for mobile devices */}
-      <div className="block md:hidden bg-white shadow h-screen p-4 pt-0 relative duration-300 w-16">
+      <div className="block md:hidden bg-white  h-screen p-2 pt-0 relative duration-300 w-10">
         <ul className="pt-8">
           {menuState.map((menu, index) => {
             return (
               <Fragment key={index}>
                 <Link to={menu.link} className="hover:bg-[#dff9fb]">
-                  <li className="text-slate-700 text-sm flex items-center gap-x-4 cursor-pointer p-2  rounded-md mt-2 hover:bg-[#dff9fb]">
-                    <span className="text-2xl block float-left">
+                  <li className="text-slate-700 text-sm flex items-center gap-x-4 cursor-pointer p-2  rounded-md mt-2 hover:bg-[#dff9fb] justify-center">
+                    <span className="text-xl block float-left">
                       {menu?.icon}
                     </span>
                   </li>
@@ -163,9 +164,19 @@ const Sidebar = () => {
       </div>
 
       {/* layout part */}
-      <div className="flex-1 bg-[#dff9fb]">
+      <div
+        className={`hidden md:block ${
+          open ? styles.width1 : styles.width2
+        } bg-[#dff9fb] `}
+      >
+        {/* <div className=" bg-[#dff9fb]"> */}
         <Navbar />
-
+        {/* here all the component will display */}
+        <Outlet />
+      </div>
+      <div className={`block md:hidden ${styles.width3} bg-[#dff9fb] `}>
+        {/* <div className=" bg-[#dff9fb]"> */}
+        <Navbar />
         {/* here all the component will display */}
         <Outlet />
       </div>
