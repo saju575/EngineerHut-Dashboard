@@ -8,8 +8,8 @@ const SingleCustomer = () => {
     return (
         <>
             <div className="customer-wrapper">
-                <h1 className='product-title'>Customers</h1>
-                <p className='products-links'>Home / <span>Customer List</span></p>
+                <h1 className='customer-title'>Customers</h1>
+                <p className='customer-links'>Home / <span>Customer List</span></p>
                 <div className="customer-inner">
                     <div className="customer-innerLeft">
                         <img className='avatar' src={jon} alt="avatar" />
