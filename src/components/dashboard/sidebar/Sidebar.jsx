@@ -13,13 +13,13 @@ const menus = [
 
   {
     title: "Customers",
-    link: "#",
+    link: "/customers",
     icon: <AiFillGift />,
     subMenu: true,
     subMenuOpen: false,
     submenuItems: [
-      { title: "Customer List", link: "#" },
-      { title: "Customers", link: "#" },
+      { title: "Customer List", link: "/customers" },
+      { title: "Customers", link: "/customer" },
     ],
   },
   {

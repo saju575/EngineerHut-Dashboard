@@ -1,5 +1,6 @@
 .width1 {
     width: calc(100% - 18rem);
+
 }
 
 .width2 {
@@ -9,4 +10,5 @@
 .width3 {
     width: calc(100% - 2.5rem);
 }
+
 
