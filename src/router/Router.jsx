@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../layout/Main";
-import CustomerList from "../components/Customer/CustomerList/CustomerList";
-import SingleCustomer from "../components/Customer/SingleCustomer/SingleCustomer"
+import CustomerList from "../pages/dashboard/Customer/CustomerList/CustomerList";
+import SingleCustomer from "../pages/dashboard/Customer/SingleCustomer/SingleCustomer"
 
 
 export const router = createBrowserRouter([

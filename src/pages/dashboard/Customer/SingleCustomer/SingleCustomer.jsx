@@ -1,7 +1,7 @@
 import React from 'react'
 import "./SingleCustomer.css"
 
-import jon from "../../../assets/img/snow.jpeg";
+import jon from "../../../../assets/img/snow.jpeg";
 
 const SingleCustomer = () => {
 
