@@ -29,7 +29,7 @@ const CustomerList = () => {
     return (
         <>
             <h1>Customers</h1>
-            <p className='products-links'>Home / <span>Customers</span></p>
+            <p className='customer-links'>Home / <span>Customers</span></p>
             <div className="customers">
                 
                 <div style={{ height: 400, width: 'auto' }}>
