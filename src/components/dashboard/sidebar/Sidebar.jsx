@@ -13,13 +13,13 @@ const menus = [
 
   {
     title: "Customers",
-    link: "#",
+    link: "/customers",
     icon: <AiFillGift />,
     subMenu: true,
     subMenuOpen: false,
     submenuItems: [
-      { title: "Customer List", link: "#" },
-      { title: "Customers", link: "#" },
+      { title: "Customer List", link: "/customers" },
+      { title: "Customers", link: "/customer" },
     ],
   },
   {
@@ -75,8 +75,11 @@ const Sidebar = () => {
     <div className="flex">
       {/* For big screens */}
       <div
+
+
         className={`hidden md:block bg-white  h-screen p-5 pt-0 relative duration-300 ${open ? "w-72" : "w-20"
           }`}
+
       >
         <BsArrowLeftShort
 
@@ -164,8 +167,10 @@ const Sidebar = () => {
 
       {/* layout part */}
       <div
+
         className={`hidden md:block ${open ? styles.width1 : styles.width2
           } bg-[#FFFFFF] `}
+
       >
         {/* <div className=" bg-[#dff9fb]"> */}
         <Navbar />
