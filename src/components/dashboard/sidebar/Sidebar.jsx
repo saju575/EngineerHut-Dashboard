@@ -25,7 +25,7 @@ const menus = [
   {
     title: "Products",
     icon: <FaBoxesStacked />,
-    link: "#",
+    link: "/products",
     subMenu: true,
     subMenuOpen: false,
     submenuItems: [
@@ -75,24 +75,23 @@ const Sidebar = () => {
     <div className="flex">
       {/* For big screens */}
       <div
-        className={`hidden md:block bg-white  h-screen p-5 pt-0 relative duration-300 ${open ? "w-72" : "w-20"
-          }`}
+        className={`hidden md:block bg-white  h-screen p-5 pt-0 relative duration-300 ${
+          open ? "w-72" : "w-20"
+        }`}
       >
         <BsArrowLeftShort
-
-
           className={`bg-white text-slate-500 z-[1] text-3xl rounded-full absolute -right-3 top-9 border border-slate-500 cursor-pointer ${
             !open && "rotate-180"
           }`}
-
           onClick={() => setOpen(!open)}
         />
 
         {/* for logo section */}
         <div className="inline-flex">
           <h2
-            className={`${!open && "scale-0"
-              } text-slate-900 origin-left font-bold text-2xl`}
+            className={`${
+              !open && "scale-0"
+            } text-slate-900 origin-left font-bold text-2xl`}
           >
             EnginnerHut
           </h2>
@@ -110,15 +109,17 @@ const Sidebar = () => {
                       {menu?.icon}
                     </span>
                     <span
-                      className={`text-base font-medium flex-1 duration-200 ${!open && "hidden"
-                        }`}
+                      className={`text-base font-medium flex-1 duration-200 ${
+                        !open && "hidden"
+                      }`}
                     >
                       {menu.title}
                     </span>
                     {menu.subMenu && (
                       <BsChevronDown
-                        className={`${menu.subMenuOpen && open && "rotate-180"
-                          } duration-200 `}
+                        className={`${
+                          menu.subMenuOpen && open && "rotate-180"
+                        } duration-200 `}
                         onClick={() => toggleSubMenu(menu.title)}
                       />
                     )}
@@ -164,8 +165,9 @@ const Sidebar = () => {
 
       {/* layout part */}
       <div
-        className={`hidden md:block ${open ? styles.width1 : styles.width2
-          } bg-[#FFFFFF] `}
+        className={`hidden md:block ${
+          open ? styles.width1 : styles.width2
+        } bg-[#FFFFFF] `}
       >
         {/* <div className=" bg-[#dff9fb]"> */}
         <Navbar />
