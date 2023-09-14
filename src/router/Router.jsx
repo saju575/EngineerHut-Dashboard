@@ -4,11 +4,20 @@ import CustomerList from "../pages/dashboard/Customer/CustomerList/CustomerList"
 import SingleCustomer from "../pages/dashboard/Customer/SingleCustomer/SingleCustomer"
 
 
+import Wishlist from "../pages/dashboard/wishlist/Wishlist";
+
+import DashBoard from "../pages/dashboard/dashboard/DashBoard";
+import Products from "../pages/dashboard/products/Products";
+import ProductsDetails from "../pages/dashboard/products/ProductsDetails";
+import UploadProduct from "../pages/dashboard/products/UploadProduct";
+
+
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
     children: [
+
     {
       path: "/customers",
       element: <CustomerList />,
@@ -19,6 +28,30 @@ export const router = createBrowserRouter([
       element: <SingleCustomer />,
       children: [],
     },
-  ],
+
+      {
+          path: "/",
+          element: <DashBoard />,
+      },
+
+      {
+          path: "/products",
+          element: <Products />,
+      },
+      {
+          path: "/products-details",
+          element: <ProductsDetails />,
+      },
+      {
+          path: "/upload-product",
+          element: <UploadProduct />,
+      },
+
+       {
+         path: "/wishlist",
+         element: <Wishlist />,
+      }
+    ],
+
   },
 ]);
