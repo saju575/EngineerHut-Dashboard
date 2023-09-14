@@ -11,16 +11,16 @@ import { MdFavorite } from "react-icons/md";
 const Wishlist = () => {
   return (
     <React.Fragment>
-      <div className="product-wrapper h-full bg-white relative pl-4 sm:pl-8 pt-8 pb-10 sm:pb-12">
-        <h3 className="font-semibold text-lg sm:text-xl product-title">
+      <div className="product-wrap h-full bg-white relative pl-4 sm:pl-8 pt-8 pb-10 sm:pb-12">
+        <h3 className="font-semibold text-lg sm:text-xl product-titles">
           Products
         </h3>
-        <p className="products-links text-sm sm:text-base">
+        <p className="product-link text-sm sm:text-base">
           Home / <span>Shop</span>
         </p>
-        <div className="product-card flex flex-col sm:flex-row mt-7">
-          <div className="product-card--inner p-4 sm:p-5 mr-0 sm:mr-10 mb-4 sm:mb-0 flex-grow sm:flex-grow-0">
-            <div className="product-card--image relative group">
+        <div className="product-cardss flex flex-col sm:flex-row flex-wrap mt-7">
+          <div className="product-cardss--inside p-4 sm:p-5 mr-0 sm:mr-10 mb-4 sm:mb-0 flex-grow sm:flex-grow-0">
+            <div className="product-cardss--image relative group">
               <picture>
                 <img
                   src="src/assets/61XXwuccR1L._AC_UL600_SR600,600_.jpg"
@@ -28,7 +28,7 @@ const Wishlist = () => {
                   className="w-full"
                 />
               </picture>
-              <div className="product-img--icons absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="product-imgs--ikons absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <p className="my-4 p-4">
                   <MdFavorite color="red" />
                 </p>
@@ -40,14 +40,14 @@ const Wishlist = () => {
                 </p>
               </div>
             </div>
-            <h3 className="font-medium text-base sm:text-lg my-2 sm:my-4">
+            <h3 className="font-med text-base sm:text-lg my-2 sm:my-4">
               Polka Dots Women Dress
             </h3>
-            <h4 className="font-medium text-base sm:text-lg">
+            <h4 className="font-med text-base sm:text-lg">
               {" "}
               <span className="pr-2">$155</span> $135{" "}
             </h4>
-            <div className="flex product-card--rating mt-2 items-center">
+            <div className="flex product-cardss--rating mt-2 items-center">
               <i className="pr-1">
                 {" "}
                 <GiRoundStar />{" "}
@@ -68,14 +68,14 @@ const Wishlist = () => {
                 {" "}
                 <GiRoundStar />{" "}
               </i>
-              <p className="pl-2 font-medium">(33)</p>
-              <a href="#" className="p-3 font-medium ml-4 border">
+              <p className="pl-2 font-med">(33)</p>
+              <a href="#" className="p-3 font-med ml-4 border">
                 Add To Cart
               </a>
             </div>
           </div>
-          <div className="product-card--inner p-4 sm:p-5 mr-0 sm:mr-10 mb-4 sm:mb-0 flex-grow sm:flex-grow-0">
-            <div className="product-card--image relative group">
+          <div className="product-cardss--inside p-4 sm:p-5 mr-0 sm:mr-10 mb-4 sm:mb-0 flex-grow sm:flex-grow-0">
+            <div className="product-cardss--image relative group">
               <picture>
                 <img
                   src="src/assets/sky-blue-checkered-double-breasted-suit.webp"
@@ -83,7 +83,7 @@ const Wishlist = () => {
                   className="w-full"
                 />
               </picture>
-              <div className="product-img--icons absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="product-imgs--ikons absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <p className="my-4 p-4">
                   <MdFavorite color="red" />
                 </p>
@@ -95,11 +95,11 @@ const Wishlist = () => {
                 </p>
               </div>
             </div>
-            <h3 className="font-medium text-base sm:text-lg my-2 sm:my-4">
+            <h3 className="font-med text-base sm:text-lg my-2 sm:my-4">
               Double Breasted Suit
             </h3>
-            <h4 className="font-medium text-base sm:text-lg">$160</h4>
-            <div className="flex product-card--rating mt-2 items-center">
+            <h4 className="font-med text-base sm:text-lg">$160</h4>
+            <div className="flex product-cardss--rating mt-2 items-center">
               <i className="pr-1">
                 {" "}
                 <GiRoundStar />{" "}
@@ -120,14 +120,14 @@ const Wishlist = () => {
                 {" "}
                 <GiRoundStar />{" "}
               </i>
-              <p className="pl-2 font-medium">(33)</p>
-              <a href="#" className="p-3 font-medium ml-4 border">
+              <p className="pl-2 font-med">(33)</p>
+              <a href="#" className="p-3 font-med ml-4 border">
                 Add To Cart
               </a>
             </div>
           </div>
-          <div className="product-card--inner p-4 sm:p-5 mr-0 sm:mr-10 mb-4 sm:mb-0 flex-grow sm:flex-grow-0">
-            <div className="product-card--image relative group">
+          <div className="product-cardss--inside p-4 sm:p-5 mr-0 sm:mr-10 mb-4 sm:mb-0 flex-grow sm:flex-grow-0">
+            <div className="product-cardss--image relative group">
               <picture>
                 <img
                   src="src/assets/81YQV4V7qHL.jpg"
@@ -135,7 +135,7 @@ const Wishlist = () => {
                   className="w-full"
                 />
               </picture>
-              <div className="product-img--icons absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="product-imgs--ikons absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <p className="my-4 p-4">
                   <MdFavorite color="red" />
                 </p>
@@ -147,14 +147,14 @@ const Wishlist = () => {
                 </p>
               </div>
             </div>
-            <h3 className="font-medium text-base sm:text-lg my-2 sm:my-4">
+            <h3 className="font-med text-base sm:text-lg my-2 sm:my-4">
               Sweater For Women
             </h3>
-            <h4 className="font-medium text-base sm:text-lg">
+            <h4 className="font-med text-base sm:text-lg">
               {" "}
               <span className="pr-2">$130</span> $120{" "}
             </h4>
-            <div className="flex product-card--rating mt-2 items-center">
+            <div className="flex product-cardss--rating mt-2 items-center">
               <i className="pr-1">
                 {" "}
                 <GiRoundStar />{" "}
@@ -175,14 +175,14 @@ const Wishlist = () => {
                 {" "}
                 <GiRoundStar />{" "}
               </i>
-              <p className="pl-2 font-medium">(35)</p>
-              <a href="#" className="p-3 font-medium ml-4 border">
+              <p className="pl-2 font-med">(35)</p>
+              <a href="#" className="p-3 font-med ml-4 border">
                 Add To Cart
               </a>
             </div>
           </div>
-          <div className="product-card--inner p-4 sm:p-5 mr-0 sm:mr-10 mb-4 sm:mb-0 flex-grow sm:flex-grow-0">
-            <div className="product-card--image relative group">
+          <div className="product-cardss--inside p-4 sm:p-5 mr-0 sm:mr-10 mb-4 sm:mb-0 flex-grow sm:flex-grow-0">
+            <div className="product-cardss--image relative group">
               <picture>
                 <img
                   src="src/assets/61HoEkgNkAL._AC_UY580_.jpg"
@@ -190,7 +190,7 @@ const Wishlist = () => {
                   className="w-full"
                 />
               </picture>
-              <div className="product-img--icons absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="product-imgs--ikons absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <p className="my-4 p-4">
                   <MdFavorite color="red" />
                 </p>
@@ -202,11 +202,11 @@ const Wishlist = () => {
                 </p>
               </div>
             </div>
-            <h3 className="font-medium text-base sm:text-lg my-2 sm:my-4">
+            <h3 className="font-med text-base sm:text-lg my-2 sm:my-4">
               Luxury T-Shirt For Men
             </h3>
-            <h4 className="font-medium text-base sm:text-lg">$180</h4>
-            <div className="flex product-card--rating mt-2 items-center">
+            <h4 className="font-med text-base sm:text-lg">$180</h4>
+            <div className="flex product-cardss--rating mt-2 items-center">
               <i className="pr-1">
                 {" "}
                 <GiRoundStar />{" "}
@@ -227,14 +227,14 @@ const Wishlist = () => {
                 {" "}
                 <GiRoundStar />{" "}
               </i>
-              <p className="pl-2 font-medium">(25)</p>
-              <a href="#" className="p-3 font-medium ml-4 border">
+              <p className="pl-2 font-med">(25)</p>
+              <a href="#" className="p-3 font-med ml-4 border">
                 Add To Cart
               </a>
             </div>
           </div>
-          <div className="product-card--inner p-4 sm:p-5 mr-0 sm:mr-10 mb-4 sm:mb-0 flex-grow sm:flex-grow-0">
-            <div className="product-card--image relative group">
+          <div className="product-cardss--inside p-4 sm:p-5 mr-0 sm:mr-10 mb-4 sm:mb-0 flex-grow sm:flex-grow-0">
+            <div className="product-cardss--image relative group">
               <picture>
                 <img
                   src="src/assets/images.jpeg"
@@ -242,7 +242,7 @@ const Wishlist = () => {
                   className="w-full"
                 />
               </picture>
-              <div className="product-img--icons absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="product-imgs--ikons absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <p className="my-4 p-4">
                   <MdFavorite color="red" />
                 </p>
@@ -254,11 +254,11 @@ const Wishlist = () => {
                 </p>
               </div>
             </div>
-            <h3 className="font-medium text-base sm:text-lg my-2 sm:my-4">
+            <h3 className="font-med text-base sm:text-lg my-2 sm:my-4">
               Convert for Men
             </h3>
-            <h4 className="font-medium text-base sm:text-lg">$200</h4>
-            <div className="flex product-card--rating mt-2 items-center">
+            <h4 className="font-med text-base sm:text-lg">$200</h4>
+            <div className="flex product-cardss--rating mt-2 items-center">
               <i className="pr-1">
                 {" "}
                 <GiRoundStar />{" "}
@@ -279,8 +279,8 @@ const Wishlist = () => {
                 {" "}
                 <GiRoundStar />{" "}
               </i>
-              <p className="pl-2 font-medium">(10)</p>
-              <a href="#" className="p-3 font-medium ml-4 border">
+              <p className="pl-2 font-med">(10)</p>
+              <a href="#" className="p-3 font-med ml-4 border">
                 Add To Cart
               </a>
             </div>
@@ -289,9 +289,9 @@ const Wishlist = () => {
         <br />
         <br />
         <br />
-        <div className="product-card flex flex-col sm:flex-row mt-7">
-          <div className="product-card--inner p-4 sm:p-5 mr-0 sm:mr-10 mb-4 sm:mb-0 flex-grow sm:flex-grow-0">
-            <div className="product-card--image relative group">
+        {/* <div className="product-cardss flex flex-col sm:flex-row mt-7">
+          <div className="product-cardss--inside p-4 sm:p-5 mr-0 sm:mr-10 mb-4 sm:mb-0 flex-grow sm:flex-grow-0">
+            <div className="product-cardss--image relative group">
               <picture>
                 <img
                   src="src/assets/61XXwuccR1L._AC_UL600_SR600,600_.jpg"
@@ -299,7 +299,7 @@ const Wishlist = () => {
                   className="w-full"
                 />
               </picture>
-              <div className="product-img--icons absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="product-imgs--ikons absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <p className="my-4 p-4">
                   <MdFavorite color="red" />
                 </p>
@@ -311,14 +311,14 @@ const Wishlist = () => {
                 </p>
               </div>
             </div>
-            <h3 className="font-medium text-base sm:text-lg my-2 sm:my-4">
+            <h3 className="font-med text-base sm:text-lg my-2 sm:my-4">
               Polka Dots Women Dress
             </h3>
-            <h4 className="font-medium text-base sm:text-lg">
+            <h4 className="font-med text-base sm:text-lg">
               {" "}
               <span className="pr-2">$155</span> $135{" "}
             </h4>
-            <div className="flex product-card--rating mt-2 items-center">
+            <div className="flex product-cardss--rating mt-2 items-center">
               <i className="pr-1">
                 {" "}
                 <GiRoundStar />{" "}
@@ -339,14 +339,14 @@ const Wishlist = () => {
                 {" "}
                 <GiRoundStar />{" "}
               </i>
-              <p className="pl-2 font-medium">(33)</p>
-              <a href="#" className="p-3 font-medium ml-4 border">
+              <p className="pl-2 font-med">(33)</p>
+              <a href="#" className="p-3 font-med ml-4 border">
                 Add To Cart
               </a>
             </div>
           </div>
-          <div className="product-card--inner p-4 sm:p-5 mr-0 sm:mr-10 mb-4 sm:mb-0 flex-grow sm:flex-grow-0">
-            <div className="product-card--image relative group">
+          <div className="product-cardss--inside p-4 sm:p-5 mr-0 sm:mr-10 mb-4 sm:mb-0 flex-grow sm:flex-grow-0">
+            <div className="product-cardss--image relative group">
               <picture>
                 <img
                   src="src/assets/sky-blue-checkered-double-breasted-suit.webp"
@@ -354,7 +354,7 @@ const Wishlist = () => {
                   className="w-full"
                 />
               </picture>
-              <div className="product-img--icons absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="product-imgs--ikons absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <p className="my-4 p-4">
                   <MdFavorite color="red" />
                 </p>
@@ -366,11 +366,11 @@ const Wishlist = () => {
                 </p>
               </div>
             </div>
-            <h3 className="font-medium text-base sm:text-lg my-2 sm:my-4">
+            <h3 className="font-med text-base sm:text-lg my-2 sm:my-4">
               Double Breasted Suit
             </h3>
-            <h4 className="font-medium text-base sm:text-lg">$160</h4>
-            <div className="flex product-card--rating mt-2 items-center">
+            <h4 className="font-med text-base sm:text-lg">$160</h4>
+            <div className="flex product-cardss--rating mt-2 items-center">
               <i className="pr-1">
                 {" "}
                 <GiRoundStar />{" "}
@@ -391,14 +391,14 @@ const Wishlist = () => {
                 {" "}
                 <GiRoundStar />{" "}
               </i>
-              <p className="pl-2 font-medium">(33)</p>
-              <a href="#" className="p-3 font-medium ml-4 border">
+              <p className="pl-2 font-med">(33)</p>
+              <a href="#" className="p-3 font-med ml-4 border">
                 Add To Cart
               </a>
             </div>
           </div>
-          <div className="product-card--inner p-4 sm:p-5 mr-0 sm:mr-10 mb-4 sm:mb-0 flex-grow sm:flex-grow-0">
-            <div className="product-card--image relative group">
+          <div className="product-cardss--inside p-4 sm:p-5 mr-0 sm:mr-10 mb-4 sm:mb-0 flex-grow sm:flex-grow-0">
+            <div className="product-cardss--image relative group">
               <picture>
                 <img
                   src="src/assets/81YQV4V7qHL.jpg"
@@ -406,7 +406,7 @@ const Wishlist = () => {
                   className="w-full"
                 />
               </picture>
-              <div className="product-img--icons absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="product-imgs--ikons absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <p className="my-4 p-4">
                   <MdFavorite color="red" />
                 </p>
@@ -418,14 +418,14 @@ const Wishlist = () => {
                 </p>
               </div>
             </div>
-            <h3 className="font-medium text-base sm:text-lg my-2 sm:my-4">
+            <h3 className="font-med text-base sm:text-lg my-2 sm:my-4">
               Sweater For Women
             </h3>
-            <h4 className="font-medium text-base sm:text-lg">
+            <h4 className="font-med text-base sm:text-lg">
               {" "}
               <span className="pr-2">$130</span> $120{" "}
             </h4>
-            <div className="flex product-card--rating mt-2 items-center">
+            <div className="flex product-cardss--rating mt-2 items-center">
               <i className="pr-1">
                 {" "}
                 <GiRoundStar />{" "}
@@ -446,14 +446,14 @@ const Wishlist = () => {
                 {" "}
                 <GiRoundStar />{" "}
               </i>
-              <p className="pl-2 font-medium">(35)</p>
-              <a href="#" className="p-3 font-medium ml-4 border">
+              <p className="pl-2 font-med">(35)</p>
+              <a href="#" className="p-3 font-med ml-4 border">
                 Add To Cart
               </a>
             </div>
           </div>
-          <div className="product-card--inner p-4 sm:p-5 mr-0 sm:mr-10 mb-4 sm:mb-0 flex-grow sm:flex-grow-0">
-            <div className="product-card--image relative group">
+          <div className="product-cardss--inside p-4 sm:p-5 mr-0 sm:mr-10 mb-4 sm:mb-0 flex-grow sm:flex-grow-0">
+            <div className="product-cardss--image relative group">
               <picture>
                 <img
                   src="src/assets/61HoEkgNkAL._AC_UY580_.jpg"
@@ -461,7 +461,7 @@ const Wishlist = () => {
                   className="w-full"
                 />
               </picture>
-              <div className="product-img--icons absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="product-imgs--ikons absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <p className="my-4 p-4">
                   <MdFavorite color="red" />
                 </p>
@@ -473,11 +473,11 @@ const Wishlist = () => {
                 </p>
               </div>
             </div>
-            <h3 className="font-medium text-base sm:text-lg my-2 sm:my-4">
+            <h3 className="font-med text-base sm:text-lg my-2 sm:my-4">
               Luxury T-Shirt For Men
             </h3>
-            <h4 className="font-medium text-base sm:text-lg">$180</h4>
-            <div className="flex product-card--rating mt-2 items-center">
+            <h4 className="font-med text-base sm:text-lg">$180</h4>
+            <div className="flex product-cardss--rating mt-2 items-center">
               <i className="pr-1">
                 {" "}
                 <GiRoundStar />{" "}
@@ -498,14 +498,14 @@ const Wishlist = () => {
                 {" "}
                 <GiRoundStar />{" "}
               </i>
-              <p className="pl-2 font-medium">(25)</p>
-              <a href="#" className="p-3 font-medium ml-4 border">
+              <p className="pl-2 font-med">(25)</p>
+              <a href="#" className="p-3 font-med ml-4 border">
                 Add To Cart
               </a>
             </div>
           </div>
-          <div className="product-card--inner p-4 sm:p-5 mr-0 sm:mr-10 mb-4 sm:mb-0 flex-grow sm:flex-grow-0">
-            <div className="product-card--image relative group">
+          <div className="product-cardss--inside p-4 sm:p-5 mr-0 sm:mr-10 mb-4 sm:mb-0 flex-grow sm:flex-grow-0">
+            <div className="product-cardss--image relative group">
               <picture>
                 <img
                   src="src/assets/images.jpeg"
@@ -513,7 +513,7 @@ const Wishlist = () => {
                   className="w-full"
                 />
               </picture>
-              <div className="product-img--icons absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="product-imgs--ikons absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <p className="my-4 p-4">
                   <MdFavorite color="red" />
                 </p>
@@ -525,11 +525,11 @@ const Wishlist = () => {
                 </p>
               </div>
             </div>
-            <h3 className="font-medium text-base sm:text-lg my-2 sm:my-4">
+            <h3 className="font-med text-base sm:text-lg my-2 sm:my-4">
               Convert for Men
             </h3>
-            <h4 className="font-medium text-base sm:text-lg">$200</h4>
-            <div className="flex product-card--rating mt-2 items-center">
+            <h4 className="font-med text-base sm:text-lg">$200</h4>
+            <div className="flex product-cardss--rating mt-2 items-center">
               <i className="pr-1">
                 {" "}
                 <GiRoundStar />{" "}
@@ -550,13 +550,13 @@ const Wishlist = () => {
                 {" "}
                 <GiRoundStar />{" "}
               </i>
-              <p className="pl-2 font-medium">(10)</p>
-              <a href="#" className="p-3 font-medium ml-4 border">
+              <p className="pl-2 font-med">(10)</p>
+              <a href="#" className="p-3 font-med ml-4 border">
                 Add To Cart
               </a>
             </div>
           </div>
-        </div>
+        </div> */}
         <br />
         <br />
         <Pagination
