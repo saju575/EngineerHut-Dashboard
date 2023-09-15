@@ -26,11 +26,14 @@ const CustomerList = () => {
   ];
 
   return (
-    <>
-      <h1>Customers</h1>
-      <p className="customer-links">
-        Home / <span>Customers</span>
-      </p>
+    <div className="bg-[#f5f7fa] min-h-screen">
+      <div className="pl-6 pt-3">
+        <h1 className="font-semibold text-xl">Customers</h1>
+        <p className="customer-links">
+          Home / <span>Customers</span>
+        </p>
+      </div>
+
       <div className="customers">
         <div style={{ height: 400, width: "auto" }}>
           <DataGrid
@@ -46,7 +49,7 @@ const CustomerList = () => {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

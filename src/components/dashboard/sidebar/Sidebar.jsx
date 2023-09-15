@@ -38,12 +38,12 @@ const menus = [
   {
     title: "Orders",
     icon: <FaBagShopping />,
-    link: "#",
+    link: "/orders",
     subMenu: true,
     subMenuOpen: false,
     submenuItems: [
-      { title: "Order List", link: "#" },
-      { title: "Order Details", link: "#" },
+      { title: "Order List", link: "/orders" },
+      { title: "Order Details", link: "/orderDetails" },
     ],
   },
 ];
@@ -174,7 +174,7 @@ const Sidebar = () => {
         {/* here all the component will display */}
         <Outlet />
       </div>
-      <div className={`block md:hidden ${styles.width3} bg-[#dff9fb] `}>
+      <div className={`block md:hidden ${styles.width3}  `}>
         {/* <div className=" bg-[#dff9fb]"> */}
         <Navbar />
         {/* here all the component will display */}

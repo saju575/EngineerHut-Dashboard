@@ -3,7 +3,7 @@
 .customer-wrapper {
   background: #f5f7fa;
   font-family: "Montserrat";
-  padding: 0;
+
   padding: 20px;
 }
 
@@ -30,29 +30,14 @@
   width: 150px;
 }
 
-.customer-inner {
-  background: #ffffff;
-  padding: 10px !important;
-  box-shadow: 0px 0px 5px 0px rgba(168, 168, 168, 0.438);
-  border-radius: 4px;
-  display: flex;
-}
-
 .customer-innerLeft {
-  margin: 0 30px;
-  /* width: 25%; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 4px;
   margin-bottom: 40px;
-}
-
-.customer-innerLeft {
   background-color: #f9f9f9;
-  padding: 40px 20px;
-  margin-top: 40px;
 }
 
 .innerLeftTxt {
@@ -65,12 +50,12 @@
   margin-top: 20px;
 }
 
- .text-muted {
+.text-muted {
   color: #696969cb;
 }
 
 .bg-muted {
-    background: #F6F7F9;
+  background: #f6f7f9;
 }
 
 .text-blue {
@@ -79,7 +64,7 @@
 }
 
 .padding {
-    padding: 10px;
+  padding: 10px;
 }
 
 .innerLeftTxt .button {
@@ -104,124 +89,54 @@
   margin: 5px 0;
 }
 
-.customer-innerRight {
-  width: 75%;
-  margin-top: 40px;
-}
-
-.customer-rightTitle {
-    align-items: center;
-}
-
-.customer-rightTitle h3 {
-    font-size: 25px;
-    padding: 10px 40px;
-    font-weight: 600;
-    color: #232323;
-}
-
-.customer-innerRight p {
-    font-size: 17px;
-    padding: 10px 28px;
-}
-
-.customer-innerRight table {
-    width: 100%;
-}
-
-.orders-head{
-    display: flex;
-    justify-content: space-between;
-    display: flex;
+.orders-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .all-order-btn {
-    width: 100%;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    background-color: #EBF0FF;
-    color: #5e76fe;
-    font-weight: 600;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  background-color: #ebf0ff;
+  color: #5e76fe;
+  font-weight: 600;
 }
 
 .account-details {
-    max-width: 400px;
-    margin-top: 40px;
-    border-radius: 6px;
+  max-width: 400px;
+  margin-top: 40px;
+  border-radius: 6px;
 }
 
 .account-dHead {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  justify-content: space-between;
 }
 
 .account-dHead h6 {
-    padding: 20px;
+  padding: 20px;
 }
 
 .account-dHead p {
-    padding: 0;
+  padding: 0;
 }
 
 .account-details hr {
-    margin: 0 10px !important;
+  margin: 0 10px !important;
 }
 
 .account-dContent .flexx {
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .scroll-y {
-    background: #E2E7F1;
-}
-
-
-
-
-@media (min-width: 768px) and (max-width: 1025px) {
-
-
-    .customer-innerLeft {
-        width: auto !important;
-        display: block;
-    }
-}
-
-
-
-/* scroll bar responsive */
-
-@media (min-width: 768px) and (max-width: 1200px) {
-    .scroll-y {
-        overflow-y: auto;
-        max-width: 400px;
-    }
-}
-
-@media (min-width: 550px) and (max-width: 768px) {
-    .scroll-y {
-        overflow-y: auto;
-        max-width: 420px;
-    }
-}
-
-@media (min-width: 320px) and (max-width: 550px) {
-    .scroll-y {
-        overflow-y: auto;
-        max-width: 220px;
-    }
-}
-
-@media screen and (max-width: 375px){
-  .customer-wrapper{
-    width: auto;
-    height: auto;
-  }
-  
+  background: #e2e7f1;
 }
