@@ -1,0 +1,44 @@
+Here are the instructions for maintaining and improving the codebase following the guidelines you provided:
+
+
+
+1. **To Run the Project:**
+    - To run this project, use the "yarn dev" command. Make sure that you have nodemon installed globally.
+
+2. **Package Installation:**
+    - When installing packages, use yarn exclusively to avoid potential conflicts. Mixing package managers (e.g., yarn and npm) can lead to dependency issues that are difficult to resolve.
+
+3. **GitHub Repository:**
+    - When pushing your code to GitHub or creating pull requests, refrain from uploading the `yarn.lock` file or `package-lock.json` file. This helps prevent conflicts and ensures a smoother merging process for contributors.
+
+4. **Folder and File Structure Instructions:**
+    - Maintain the folder and file structure as defined in the instruction file or project documentation. Ensure consistency across the entire codebase.
+
+5. **Code Comments:**
+    - Add comments to explain the logic and purpose of functions, blocks of code, and any complex algorithms. Make sure the comments are clear and understandable to anyone reading the code.
+
+6. **Clean and Readable Code:**
+    - Write clean and readable code. Follow coding standards and conventions appropriate for the programming language being used. Use meaningful variable and function names.
+
+7. **Error Handling:**
+    - Implement error handling using try-catch blocks where appropriate. Handle exceptions gracefully to prevent application crashes and provide meaningful error messages.
+
+8. **Response Handling:**
+    - For successful responses, use the `successResponse` function. Ensure that it provides clear and consistent success messages. For errors, utilize the `errorResponse` function, making sure to include informative error messages and appropriate HTTP status codes.
+
+9. **MVC Pattern:**
+    - Organize the codebase following the Model-View-Controller (MVC) pattern. Maintain separation of concerns by placing models, views, and controllers in their respective directories or packages.
+
+10. **HTTP-Errors Package:**
+    - When creating custom errors, use the `http-errors` package or a similar library to generate standardized error objects. This helps in handling and responding to errors consistently throughout the application.
+
+11. **Environment Variables:**
+    - For all environment variables, follow a two-step process:
+        a. Create a variable for each environment variable in the `secret.js` file, and store sensitive or configuration-specific data securely.
+        b. In the code, use these variables from `secret.js` rather than hardcoding values directly. This ensures better security and maintainability.
+
+12. **Database Connection:**
+
+    -  For database connection, simply add the connection URL in your .env file with the variable named "MONGODB_URL." Additionally, specify the server port by adding a variable named "SERVER_PORT" in the .env file.
+
+Remember to regularly review and update the codebase to ensure it remains clean, maintainable, and in accordance with these instructions.

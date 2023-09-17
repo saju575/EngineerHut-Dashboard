@@ -1,0 +1,25 @@
+1.Fist you have to create a folder for specific task.Inside the folder you have to create the file.
+
+2.Naming Conventions for file
+
+File Names: files should start with a lowercase letter, use camelCase, and end with a .controller.js suffix. For example: user.controller.js etc.File can contain multiple  function. 
+
+3.U have use try catch block for every cases to handle error.
+
+For example here is a simple code.
+
+exports.getQuestionAndAnswer = async (req, res, next) => {
+  try {
+
+    // Retrieve all documents from
+     the QuestionAns collection
+     
+    const questions = await QuestionAns.find(); 
+
+    successResponse(res, {
+      payload: questions,
+    });
+  } catch (error) {
+    next(error);
+  }
+};

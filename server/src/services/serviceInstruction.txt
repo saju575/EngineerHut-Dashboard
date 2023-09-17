@@ -1,0 +1,5 @@
+1.Naming Conventions
+
+File Names: service files should start with a lowercase letter, use camelCase, and end with a .service.js suffix. For example: jwt.service.js etc.
+
+2. all type of micro service function should be here.Example: A function that find item from server or a mail service that is user to send mail.

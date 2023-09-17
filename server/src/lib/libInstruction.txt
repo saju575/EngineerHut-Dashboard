@@ -1,0 +1,5 @@
+1.Naming Conventions
+
+File Names: lib files should start with a lowercase letter, use camelCase, and end with a .lib.js suffix. For example: sum.lib.js etc.Remember a lib file can contain multiple function.
+
+2.The function that will solve any repetative problem and can be used to anywhere it required.
