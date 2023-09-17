@@ -27,9 +27,4 @@ yarn.lock
 *.sln
 *.sw?
 
-
-
-./server/node_modules
-./client/node_modules
-./client/.gitignore
-./server/.gitignore
+./server

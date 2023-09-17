@@ -1,0 +1,6 @@
+1.Naming Conventions
+
+File Names: validation files should start with a lowercase letter, use camelCase, and end with a .validation.js suffix. For example: product.validation.js, user.validation.js.
+
+2. In this specific validation file there will be validation logic function code for all type of body content request or parameter. We will use Joi validation.
+

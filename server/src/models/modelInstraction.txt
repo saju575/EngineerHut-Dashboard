@@ -1,0 +1,26 @@
+1.Naming Conventions
+
+File Names: Model schema files should start with a lowercase letter, use camelCase, and end with a .model.js suffix. For example: product.model.js, user.model.js.
+
+
+2.Schema Definition
+Schema Structure: Define your schema using the mongoose.Schema class. Ensure it aligns with your application's business logic.
+javascript
+
+Example:
+const mongoose = require('mongoose');
+
+const userSchema = new mongoose.Schema({
+  // ... fields
+});
+
+Model Name: Use PascalCase for the model name, and it should be singular. For example, if the schema represents users, the model name should be User.
+javascript
+
+Example:
+const User = mongoose.model('User', userSchema);
+
+
+3.Use error validation and error messages for every fields in the schema
+
+4.After creating the schema export the model. Example: module.exports = User;

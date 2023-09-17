@@ -114,5 +114,3 @@ const SingleCustomer = () => {
         </>
     )
 }
-
-export default SingleCustomer
