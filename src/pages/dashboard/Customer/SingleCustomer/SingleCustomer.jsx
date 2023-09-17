@@ -25,14 +25,14 @@ const SingleCustomer = () => {
                             <p>Subscribed</p>
                         </div>
                     </div>
-                    <div className="customer-innerRight">
+                    <div className="customer-innerRight ">
                         <div className="customer-rightTitle">
                             <div className="scroll-y">
                                 <div className='orders-head'>
                                     <h3>Orders</h3>
                                     <p className='text-muted'>Total spent $73802210 on 7 days</p>
                                 </div>
-                                <table>
+                                <table >
                                     <tbody>
                                         <tr className='bg-muted'>
                                             <td className='text-blue padding'>#5d4f5fs56 </td>
