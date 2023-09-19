@@ -1,7 +1,10 @@
 const express = require("express");
 const { uploadMultiple } = require("../middlewares/multer.middleware");
 const { uploadImage } = require("../middlewares/uploadImage.middleware");
-const { productCreate } = require("../controllers/product/product.controller");
+const {
+  productCreate,
+  removeProduct,
+} = require("../controllers/product/product.controller");
 const {
   validateCreateProductRequestBody,
 } = require("../validators/product.validator");
@@ -11,12 +14,11 @@ const {
 */
 const productRouter = express.Router();
 
-// here all product related methor will implement using productRouter example GET,POST etc.
+// here all product related method will implement using productRouter example GET,POST etc.
 
 /* 
     create a new product router POST method
 */
-
 productRouter.post(
   "/product",
   uploadMultiple,
@@ -24,6 +26,11 @@ productRouter.post(
   uploadImage,
   productCreate
 );
+
+/* 
+    delete product using DELETE method
+*/
+productRouter.delete("/product/:id", removeProduct);
 
 /* 
     exporting the product router

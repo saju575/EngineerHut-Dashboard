@@ -1,6 +1,9 @@
-const uuid = require("uuid"); // Import the uuid library
 const { successResponse } = require("../response/response.controller");
 const Product = require("../../models/product.model");
+const { findWithId } = require("../../services/findItem.service");
+const {
+  imageDeleteFromFirebase,
+} = require("../../services/imgDeleteFromFirebase.service");
 
 exports.productCreate = async (req, res, next) => {
   try {
@@ -75,6 +78,33 @@ exports.productCreate = async (req, res, next) => {
       message: "New Product uploaded successfully",
       payload: savedProduct,
     });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.removeProduct = async (req, res, next) => {
+  try {
+    // get the id
+    const productId = req.params.id;
+
+    // find the product
+    const product = await findWithId(Product, productId);
+
+    if (!product) {
+      throw new Error("Product  not found");
+    }
+
+    //delete the product image from the firebase store
+    for (const image of product.images) {
+      await imageDeleteFromFirebase(image.url);
+    }
+
+    //delete the product
+
+    await Product.findByIdAndDelete({ _id: productId });
+    //return response
+    return successResponse(res, { message: "Product deleted successfully" });
   } catch (error) {
     next(error);
   }
