@@ -3,6 +3,9 @@ const { uploadMultiple } = require("../middlewares/multer.middleware");
 const { uploadImage } = require("../middlewares/uploadImage.middleware");
 const { productCreate } = require("../controllers/product/product.controller");
 const {
+  productUpdate,
+} = require("../controllers/product/productUpdate.controller");
+const {
   validateCreateProductRequestBody,
 } = require("../validators/product.validator");
 
@@ -25,6 +28,10 @@ productRouter.post(
   productCreate
 );
 
+/* 
+    update product using PUT method
+*/
+productRouter.put("/product/:id", productUpdate);
 /* 
     exporting the product router
 */
