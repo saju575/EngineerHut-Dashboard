@@ -60,10 +60,6 @@ const productSchema = new mongoose.Schema(
     },
     images: [
       {
-        public_id: {
-          type: String,
-          required: true,
-        },
         url: {
           type: String,
           required: true,
@@ -102,7 +98,6 @@ const productSchema = new mongoose.Schema(
       default: 0,
       min: 0, // Minimum rating value
       max: 5, // Maximum rating value
-      required: [true, "Rating must be between 0 and 5"],
     },
     sku: {
       type: String,
@@ -112,4 +107,6 @@ const productSchema = new mongoose.Schema(
   { timestamps: true, versionKey: false }
 );
 
-module.exports = mongoose.model("Product", productSchema);
+const Product = mongoose.model("Product", productSchema);
+
+module.exports = Product;
