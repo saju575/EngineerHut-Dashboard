@@ -1,68 +1,52 @@
+const Product = require("../../models/product.model");
 const {
   successResponse,
   errorResponse,
 } = require("../response/response.controller");
-const Product = require("../../models/product.model");
+const { updateImages } = require("../../services/imgUploadToFirebase.service");
 
-exports.updateProduct = async (req, res, next) => {
+exports.productUpdate = async (req, res, next) => {
   try {
-    const { productId } = req.params; // Get the product ID from the route parameters
+    const productId = req.params.id;
+    const { updatedData, updatedImages } = req.body;
 
-    // Find the product by ID
-    const existingProduct = await Product.findById(productId);
+    // Update the product details in the database (e.g., name, description, price, etc.)
+    const updatedProduct = await Product.findByIdAndUpdate(
+      productId,
+      updatedData,
+      { new: true }
+    );
 
-    if (!existingProduct) {
-      return errorResponse(res, {
-        statusCode: 404,
-        message: "Product not found",
-      });
+    // If you have updated images, upload them to Firebase and get the updated image URLs.
+    let updatedImageUrls = [];
+
+    if (updatedImages && updatedImages.length > 0) {
+      updatedImageUrls = await updateImages(updatedImages);
     }
 
-    // Update product details
-    const {
-      name,
-      description,
-      price,
-      shippingFee,
-      taxRate,
-      category,
-      stock,
-      size,
-      sku,
-      color,
-      rating,
-      weight,
-      brand,
-    } = req.body;
-
-    // Update product properties
-    existingProduct.name = name || existingProduct.name;
-    existingProduct.description = description || existingProduct.description;
-    existingProduct.price = price || existingProduct.price;
-    existingProduct.shippingFee = shippingFee || existingProduct.shippingFee;
-    existingProduct.taxRate = taxRate || existingProduct.taxRate;
-    existingProduct.category = category || existingProduct.category;
-    existingProduct.stock = stock || existingProduct.stock;
-    existingProduct.size = size || existingProduct.size;
-    existingProduct.sku = sku || existingProduct.sku;
-    existingProduct.color = color || existingProduct.color;
-    existingProduct.rating = rating || existingProduct.rating;
-    existingProduct.weight = weight || existingProduct.weight;
-    existingProduct.brand = brand || existingProduct.brand;
-
-    // Update product images if provided
-    if (req.imageUrls && req.imageUrls.length > 0) {
-      existingProduct.images = req.imageUrls;
+    // Update the product's image URLs with the new ones if needed.
+    if (updatedImageUrls.length > 0) {
+      // Here, you can specify which image you want to update by index.
+      // For example, to update the first image among multiple images:
+      // updatedProduct.images[0] = updatedImageUrls[0].url;
+      // To update the second image:
+      // updatedProduct.images[1] = updatedImageUrls[1].url;
+      // and so on...
+      // If you want to update all images together, you can replace the entire "images" array:
+      updatedProduct.images = updatedImageUrls.map((image) => image.url);
     }
 
-    // Save the updated product to the database
-    const updatedProduct = await existingProduct.save();
+    // Save the updated product details in the database.
+    const savedProduct = await updatedProduct.save();
 
     return successResponse(res, {
       message: "Product updated successfully",
-      payload: updatedProduct,
+      payload: savedProduct,
     });
   } catch (error) {
-    next(error);
+    return errorResponse(res, {
+      statusCode: 500,
+      message: "Failed to update product.",
+    });
   }
 };
