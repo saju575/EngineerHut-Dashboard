@@ -26,6 +26,8 @@ exports.productCreate = async (req, res, next) => {
       name,
       description,
       price,
+      mainPrice,
+      discountPrice,
       shippingFee,
       taxRate,
       category,
@@ -43,6 +45,7 @@ exports.productCreate = async (req, res, next) => {
       name,
       description,
       price,
+      mainPrice,
       shippingFee,
       taxRate,
       category,
@@ -64,6 +67,9 @@ exports.productCreate = async (req, res, next) => {
     }
     if (weight !== undefined) {
       productData.weight = weight;
+    }
+    if (discountPrice !== undefined) {
+      productData.discountPrice = discountPrice;
     }
 
     // Create a new product instance using the productData

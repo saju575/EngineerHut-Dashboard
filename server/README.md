@@ -18,6 +18,7 @@ The API expects a JSON request body with the following required fields:
 - `name` (String): The name of the product.
 - `description` (String): A description of the product.
 - `price` (Number): The price of the product.
+- `mainPrice` (Number): The main price of the product.
 - `shippingFee` (Number): The shipping fee for the product.
 - `taxRate` (Number): The tax rate for the product.
 - `category` (String): The category of the product.
@@ -31,6 +32,7 @@ Optional fields:
 - `color` (String): The color of the product.
 - `weight` (Number): The weight of the product.
 - `brand` (String): The brand of the product.
+- `discountPrice` (String): The discount price of the product.
 
 This will be in form of form data.
 
