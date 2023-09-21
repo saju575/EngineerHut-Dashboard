@@ -18,6 +18,13 @@ const productValidationSchema = Joi.object({
     "any.required": "Please Enter product Price",
     "number.max": "Price cannot exceed 8 characters",
   }),
+  mainPrice: Joi.number().required().max(99999999).messages({
+    "any.required": "Please Enter product main Price",
+    "number.max": "Price cannot exceed 8 characters",
+  }),
+  discountPrice: Joi.number().max(99999999).messages({
+    "number.max": "Price cannot exceed 99,999,999",
+  }),
   shippingFee: Joi.number().required().max(99999999).messages({
     "any.required": "Please Enter Shipping Fee",
     "number.max": "Shipping fee cannot exceed 8 characters",
