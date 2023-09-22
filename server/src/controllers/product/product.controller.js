@@ -115,3 +115,78 @@ exports.removeProduct = async (req, res, next) => {
     next(error);
   }
 };
+
+/* 
+   controller to get products with global search and filtering options
+*/
+
+exports.getProductsController = async (req, res, next) => {
+  try {
+    const filters = {};
+    const searchQuery = req.query.search;
+    const page = parseInt(req.query.page) || 1; // Get the page number or default to 1
+    const perPage = parseInt(req.query.perPage) || 10; // Get the number of items per page or default to 10
+
+    // Calculate the skip value based on the page and perPage
+    const skip = (page - 1) * perPage;
+
+    // Apply filters based on query parameters
+    if (req.query.minPrice) {
+      filters.price = { $gte: parseFloat(req.query.minPrice) };
+    }
+    if (req.query.maxPrice) {
+      filters.price = {
+        ...filters.price,
+        $lte: parseFloat(req.query.maxPrice),
+      };
+    }
+    if (req.query.category) {
+      filters.category = req.query.category;
+    }
+    if (req.query.brand) {
+      filters.brand = req.query.brand;
+    }
+    if (req.query.size) {
+      filters.size = req.query.size;
+    }
+
+    // You can add more filters based on your schema fields
+
+    let productsQuery;
+
+    if (searchQuery) {
+      productsQuery = Product.find({
+        $or: [
+          { name: { $regex: searchQuery, $options: "i" } }, // Case-insensitive search in name
+          { description: { $regex: searchQuery, $options: "i" } }, // Case-insensitive search in description
+          { sku: { $regex: searchQuery, $options: "i" } },
+        ],
+        ...filters,
+      });
+    } else {
+      productsQuery = Product.find(filters);
+    }
+
+    // Clone the query for totalCount
+    const totalCountQuery = productsQuery.clone();
+
+    // Apply pagination using the skip and limit methods
+    const totalCount = await totalCountQuery.countDocuments();
+
+    // const totalCount = await productsQuery.countDocuments();
+    const products = await productsQuery.skip(skip).limit(perPage);
+
+    // return the success response
+    return successResponse(res, {
+      payload: {
+        total: totalCount,
+        perPage,
+        currentPage: page,
+        totalPages: Math.ceil(totalCount / perPage),
+        data: products,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};

@@ -4,12 +4,14 @@ const { uploadImage } = require("../middlewares/uploadImage.middleware");
 const {
   productCreate,
   removeProduct,
+  getProductsController,
 } = require("../controllers/product/product.controller");
 const {
   productUpdate,
 } = require("../controllers/product/productUpdate.controller");
 const {
   validateCreateProductRequestBody,
+  validateGetProductsQueryBody,
 } = require("../validators/product.validator");
 
 /* 
@@ -31,9 +33,14 @@ productRouter.post(
 );
 
 /* 
-    delete product using DELETE method
+  delete product using DELETE method
 */
 productRouter.delete("/product/:id", removeProduct);
+
+/* 
+  get products router with global search and filtering options
+*/
+productRouter.get("/all", validateGetProductsQueryBody, getProductsController);
 
 /* 
     exporting the product router
