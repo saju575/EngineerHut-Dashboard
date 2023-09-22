@@ -5,6 +5,7 @@ const {
   productCreate,
   removeProduct,
   getProductsController,
+  getSingleProduct,
 } = require("../controllers/product/product.controller");
 const {
   validateCreateProductRequestBody,
@@ -38,6 +39,11 @@ productRouter.delete("/product/:id", removeProduct);
   get products router with global search and filtering options
 */
 productRouter.get("/all", validateGetProductsQueryBody, getProductsController);
+
+/* 
+   Route to get a single product by ID
+*/
+productRouter.get("/:id", getSingleProduct);
 
 /* 
     exporting the product router

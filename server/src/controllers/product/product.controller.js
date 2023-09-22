@@ -190,3 +190,23 @@ exports.getProductsController = async (req, res, next) => {
     next(error);
   }
 };
+
+/* 
+  controller to get one product
+*/
+exports.getSingleProduct = async (req, res, next) => {
+  try {
+    const productId = req.params.id;
+
+    const product = await findWithId(Product, productId);
+
+    if (!product) {
+      throw new Error("Product not found");
+    }
+
+    // return product
+    return successResponse(res, { message: "Product found", payload: product });
+  } catch (error) {
+    next(error);
+  }
+};
