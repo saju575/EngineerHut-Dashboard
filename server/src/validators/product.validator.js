@@ -77,3 +77,40 @@ exports.validateCreateProductRequestBody = (req, res, next) => {
     next(error);
   }
 };
+
+/* 
+  Define a validation schema for the query parameters to get products
+*/
+const productQuerySchema = Joi.object({
+  search: Joi.string(),
+  page: Joi.number().integer().min(1),
+  perPage: Joi.number().integer().min(1),
+  minPrice: Joi.number().min(0),
+  maxPrice: Joi.number().min(0),
+  category: Joi.string(),
+  brand: Joi.string(),
+  size: Joi.string(),
+});
+
+/* 
+  Middleware function for this get all products quere validation
+*/
+
+exports.validateGetProductsQueryBody = (req, res, next) => {
+  try {
+    //validate product Query Validation Schema
+    const { error } = productQuerySchema.validate(req.query, {
+      abortEarly: false,
+    });
+
+    if (error) {
+      return errorResponse(res, {
+        statusCode: 422,
+        message: error.details[0].message,
+      });
+    }
+    next();
+  } catch (error) {
+    next(error);
+  }
+};
