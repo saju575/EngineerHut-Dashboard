@@ -43,3 +43,28 @@ This will be in form of form data.
 ## Request Format
 
 The API expects a valid mongoodb id as a parametar that is present in the database.
+
+3.GET request endpoint for Products
+
+- /api/v1/products/all
+
+### Description
+
+This endpoint allows you to retrieve a list of all products.
+
+### Query Parameters
+
+- `search` (optional, string): Perform a global search by name, description, or SKU.
+- `page` (optional, integer, default: 1): Specify the page number for pagination.
+- `perPage` (optional, integer, default: 10): Specify the number of items per page.
+- `minPrice` (optional, number): Filter products by a minimum price.
+- `maxPrice` (optional, number): Filter products by a maximum price.
+- `category` (optional, string): Filter products by category.
+- `brand` (optional, string): Filter products by brand.
+- `size` (optional, string): Filter products by size.
+
+### Example
+
+```http
+GET http://localhost:5000/api/v1/products/all?search=example&minPrice=10&maxPrice=50&page=2&perPage=20
+```
