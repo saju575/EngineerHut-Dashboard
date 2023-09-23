@@ -1,18 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
+import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
 
 import "../../../stylesheets/Products.css";
 import "../../../stylesheets/Responsive.css";
 
-import { MdKeyboardArrowRight } from "react-icons/md";
 import { GoSearch } from "react-icons/go";
-import { GiRoundStar } from "react-icons/gi";
-import { AiOutlineHeart } from "react-icons/ai";
-import { HiArrowsExpand } from "react-icons/hi";
-import { PiArrowCounterClockwiseFill } from "react-icons/pi";
+import { MdKeyboardArrowRight } from "react-icons/md";
 
 import Box from "@mui/material/Box";
-import Slider from "@mui/material/Slider";
 import Pagination from "@mui/material/Pagination";
+import Slider from "@mui/material/Slider";
+import { fetchProducts } from "../../../lib/getProducts";
+import ProductCard from "./ProductCard";
 
 function valuetext(value) {
   return `${value}°C`;
@@ -25,6 +25,45 @@ function Products() {
     setValue(newValue);
   };
 
+  /* 
+    search input state
+  */
+  const [search, setSearch] = useState("");
+
+  /* 
+    fetch products 
+  */
+  const {
+    data: products,
+    isLoading: isProductsLoadding,
+    isError: isProductError,
+    error: productError,
+  } = useQuery({
+    queryFn: () =>
+      fetchProducts({
+        search,
+      }),
+    queryKey: ["products", { search }],
+  });
+
+  /* 
+    products rendering
+  */
+  let productsContent;
+
+  if (isProductsLoadding) {
+    productsContent = <p>Loading...</p>;
+  } else if (!isProductsLoadding && isProductError) {
+    productsContent = <p>{productError.message}</p>;
+  } else if (!isProductsLoadding && products.payload.data.length === 0) {
+    productsContent = <p>No product found</p>;
+  } else if (!isProductsLoadding && products.payload.data.length > 0) {
+    productsContent = products.payload.data?.map((product) => (
+      <ProductCard key={product._id} product={product} />
+    ));
+  }
+
+  // console.log(products);
   return (
     <React.Fragment>
       <div id="product-dashboard" className="product-wrapper p-8">
@@ -187,22 +226,31 @@ function Products() {
               </p>
             </div>
           </div>
+
           <div className="product-inner--right w-9/12">
             <div className="flex items-center product-inner--rightRes">
+              {/* 
+                search bar for products
+              */}
               <div className="product-search">
                 <input
                   className="p-4 font-medium"
                   type="text"
                   placeholder="Search"
+                  onChange={(e) => setSearch(e.target.value)}
+                  value={search}
                 />
+
                 <div className="search-icon">
                   <GoSearch />
                 </div>
               </div>
+
               <h3 className="showingResult pl-4 font-medium">
                 Showing 1-8 of 60 results
               </h3>
             </div>
+
             <div className="flex items-center product-tabsResponsive mb-10">
               <div className="product-tabs mt-5 p-5">
                 <ul className="flex justify-around font-semibold">
@@ -219,476 +267,30 @@ function Products() {
                   </li>
                 </ul>
               </div>
+
+              {/* 
+                Go to upload product page
+              */}
               <div className="product-tabs--btn mt-5 ml-5">
-                <a href="/upload-product" className="p-5 px-12 font-semibold">
+                <Link to="/upload-product" className="p-5 px-12 font-semibold">
                   Upload Product
-                </a>
+                </Link>
               </div>
             </div>
+
+            {/* 
+              show all products
+            */}
             <div className="flex flex-wrap product-cardMain">
-              <div className="product-card--inner p-5">
-                <div className="product-card--image">
-                  <picture>
-                    <img src="/src/assets/figma-img2.jpeg" alt="product" />
-                  </picture>
-                  <div className="product-img--icons ">
-                    <p className="my-4 p-4">
-                      <AiOutlineHeart />
-                    </p>
-                    <a href="/products-details">
-                      <p className="my-4 p-4">
-                        <HiArrowsExpand />
-                      </p>
-                    </a>
-                    <p className="my-4 p-4">
-                      <PiArrowCounterClockwiseFill />
-                    </p>
-                  </div>
-                </div>
-                <h3 className="font-medium my-4">Polka Dots Women Dress</h3>
-                <h4 className="font-medium">
-                  {" "}
-                  <span className="pr-2">$155</span> $135{" "}
-                </h4>
-                <div className="flex flex-wrap product-card--rating mt-2 items-center">
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i>
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <p className="pl-2 pr-3 font-medium">(33)</p>
-                  <a href="#" className="p-3 font-medium border">
-                    Add To Card
-                  </a>
-                </div>
-              </div>
-              <div className="product-card--inner p-5">
-                <div className="product-card--image">
-                  <picture>
-                    <img src="/src/assets/figma-img5.jpeg" alt="product" />
-                  </picture>
-                  <div className="product-img--icons ">
-                    <p className="my-4 p-4">
-                      <AiOutlineHeart />
-                    </p>
-                    <a href="/products-details">
-                      <p className="my-4 p-4">
-                        <HiArrowsExpand />
-                      </p>
-                    </a>
-                    <p className="my-4 p-4">
-                      <PiArrowCounterClockwiseFill />
-                    </p>
-                  </div>
-                </div>
-                <h3 className="font-medium my-4">Polka Dots Women Dress</h3>
-                <h4 className="font-medium">
-                  {" "}
-                  <span className="pr-2">$155</span> $135{" "}
-                </h4>
-                <div className="flex flex-wrap product-card--rating mt-2 items-center">
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i>
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <p className="pl-2 pr-3 font-medium">(33)</p>
-                  <a href="#" className="p-3 font-medium border">
-                    Add To Card
-                  </a>
-                </div>
-              </div>
-              <div className="product-card--inner p-5">
-                <div className="product-card--image">
-                  <picture>
-                    <img src="/src/assets/figma-img3.jpeg" alt="product" />
-                  </picture>
-                  <div className="product-img--icons ">
-                    <p className="my-4 p-4">
-                      <AiOutlineHeart />
-                    </p>
-                    <a href="/products-details">
-                      <p className="my-4 p-4">
-                        <HiArrowsExpand />
-                      </p>
-                    </a>
-                    <p className="my-4 p-4">
-                      <PiArrowCounterClockwiseFill />
-                    </p>
-                  </div>
-                </div>
-                <h3 className="font-medium my-4">Polka Dots Women Dress</h3>
-                <h4 className="font-medium">
-                  {" "}
-                  <span className="pr-2">$155</span> $135{" "}
-                </h4>
-                <div className="flex flex-wrap product-card--rating mt-2 items-center">
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i>
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <p className="pl-2 pr-3 font-medium">(33)</p>
-                  <a href="#" className="p-3 font-medium border">
-                    Add To Card
-                  </a>
-                </div>
-              </div>
-              <div className="product-card--inner p-5">
-                <div className="product-card--image">
-                  <picture>
-                    <img src="/src/assets/fimga-img4.jpeg" alt="product" />
-                  </picture>
-                  <div className="product-img--icons ">
-                    <p className="my-4 p-4">
-                      <AiOutlineHeart />
-                    </p>
-                    <a href="/products-details">
-                      <p className="my-4 p-4">
-                        <HiArrowsExpand />
-                      </p>
-                    </a>
-                    <p className="my-4 p-4">
-                      <PiArrowCounterClockwiseFill />
-                    </p>
-                  </div>
-                </div>
-                <h3 className="font-medium my-4">Polka Dots Women Dress</h3>
-                <h4 className="font-medium">
-                  {" "}
-                  <span className="pr-2">$155</span> $135{" "}
-                </h4>
-                <div className="flex flex-wrap product-card--rating mt-2 items-center">
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i>
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <p className="pl-2 pr-3 font-medium">(33)</p>
-                  <a href="#" className="p-3 font-medium border">
-                    Add To Card
-                  </a>
-                </div>
-              </div>
-              <div className="product-card--inner p-5">
-                <div className="product-card--image">
-                  <picture>
-                    <img src="/src/assets/figma-img5.jpeg" alt="product" />
-                  </picture>
-                  <div className="product-img--icons ">
-                    <p className="my-4 p-4">
-                      <AiOutlineHeart />
-                    </p>
-                    <a href="/products-details">
-                      <p className="my-4 p-4">
-                        <HiArrowsExpand />
-                      </p>
-                    </a>
-                    <p className="my-4 p-4">
-                      <PiArrowCounterClockwiseFill />
-                    </p>
-                  </div>
-                </div>
-                <h3 className="font-medium my-4">Polka Dots Women Dress</h3>
-                <h4 className="font-medium">
-                  {" "}
-                  <span className="pr-2">$155</span> $135{" "}
-                </h4>
-                <div className="flex flex-wrap product-card--rating mt-2 items-center">
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i>
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <p className="pl-2 pr-3 font-medium">(33)</p>
-                  <a href="#" className="p-3 font-medium border">
-                    Add To Card
-                  </a>
-                </div>
-              </div>
-              <div className="product-card--inner p-5">
-                <div className="product-card--image">
-                  <picture>
-                    <img src="/src/assets/figma-img.jpeg" alt="product" />
-                  </picture>
-                  <div className="product-img--icons ">
-                    <p className="my-4 p-4">
-                      <AiOutlineHeart />
-                    </p>
-                    <a href="/products-details">
-                      <p className="my-4 p-4">
-                        <HiArrowsExpand />
-                      </p>
-                    </a>
-                    <p className="my-4 p-4">
-                      <PiArrowCounterClockwiseFill />
-                    </p>
-                  </div>
-                </div>
-                <h3 className="font-medium my-4">Polka Dots Women Dress</h3>
-                <h4 className="font-medium">
-                  {" "}
-                  <span className="pr-2">$155</span> $135{" "}
-                </h4>
-                <div className="flex flex-wrap product-card--rating mt-2 items-center">
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i>
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <p className="pl-2 pr-3 font-medium">(33)</p>
-                  <a href="#" className="p-3 font-medium border">
-                    Add To Card
-                  </a>
-                </div>
-              </div>
-              <div className="product-card--inner p-5">
-                <div className="product-card--image">
-                  <picture>
-                    <img src="/src/assets/figma-img3.jpeg" alt="product" />
-                  </picture>
-                  <div className="product-img--icons ">
-                    <p className="my-4 p-4">
-                      <AiOutlineHeart />
-                    </p>
-                    <a href="/products-details">
-                      <p className="my-4 p-4">
-                        <HiArrowsExpand />
-                      </p>
-                    </a>
-                    <p className="my-4 p-4">
-                      <PiArrowCounterClockwiseFill />
-                    </p>
-                  </div>
-                </div>
-                <h3 className="font-medium my-4">Polka Dots Women Dress</h3>
-                <h4 className="font-medium">
-                  {" "}
-                  <span className="pr-2">$155</span> $135{" "}
-                </h4>
-                <div className="flex flex-wrap product-card--rating mt-2 items-center">
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i>
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <p className="pl-2 pr-3 font-medium">(33)</p>
-                  <a href="#" className="p-3 font-medium border">
-                    Add To Card
-                  </a>
-                </div>
-              </div>
-              <div className="product-card--inner p-5">
-                <div className="product-card--image">
-                  <picture>
-                    <img src="/src/assets/fimga-img4.jpeg" alt="product" />
-                  </picture>
-                  <div className="product-img--icons ">
-                    <p className="my-4 p-4">
-                      <AiOutlineHeart />
-                    </p>
-                    <a href="/products-details">
-                      <p className="my-4 p-4">
-                        <HiArrowsExpand />
-                      </p>
-                    </a>
-                    <p className="my-4 p-4">
-                      <PiArrowCounterClockwiseFill />
-                    </p>
-                  </div>
-                </div>
-                <h3 className="font-medium my-4">Polka Dots Women Dress</h3>
-                <h4 className="font-medium">
-                  {" "}
-                  <span className="pr-2">$155</span> $135{" "}
-                </h4>
-                <div className="flex flex-wrap product-card--rating mt-2 items-center">
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i>
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <p className="pl-2 pr-3 font-medium">(33)</p>
-                  <a href="#" className="p-3 font-medium border">
-                    Add To Card
-                  </a>
-                </div>
-              </div>
-              <div className="product-card--inner p-5">
-                <div className="product-card--image">
-                  <picture>
-                    <img src="/src/assets/figma-img2.jpeg" alt="product" />
-                  </picture>
-                  <div className="product-img--icons ">
-                    <p className="my-4 p-4">
-                      <AiOutlineHeart />
-                    </p>
-                    <a href="/products-details">
-                      <p className="my-4 p-4">
-                        <HiArrowsExpand />
-                      </p>
-                    </a>
-                    <p className="my-4 p-4">
-                      <PiArrowCounterClockwiseFill />
-                    </p>
-                  </div>
-                </div>
-                <h3 className="font-medium my-4">Polka Dots Women Dress</h3>
-                <h4 className="font-medium">
-                  {" "}
-                  <span className="pr-2">$155</span> $135{" "}
-                </h4>
-                <div className="flex flex-wrap product-card--rating mt-2 items-center">
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i className="pr-1">
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <i>
-                    {" "}
-                    <GiRoundStar />{" "}
-                  </i>
-                  <p className="pl-2 pr-3 font-medium">(33)</p>
-                  <a href="#" className="p-3 font-medium border">
-                    Add To Card
-                  </a>
-                </div>
-              </div>
+              {productsContent}
             </div>
+
+            {/* 
+              pagination UI
+            */}
             <Pagination
               className="flex justify-end mr-4 pagination"
-              count={10}
+              count={products?.payload?.totalPages}
               variant="outlined"
               shape="rounded"
             />
