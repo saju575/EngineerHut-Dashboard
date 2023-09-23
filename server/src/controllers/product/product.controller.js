@@ -190,3 +190,46 @@ exports.getProductsController = async (req, res, next) => {
     next(error);
   }
 };
+
+/* 
+  controller to get one product
+*/
+exports.getSingleProduct = async (req, res, next) => {
+  try {
+    const productId = req.params.id;
+
+    const product = await findWithId(Product, productId);
+
+    if (!product) {
+      throw new Error("Product not found");
+    }
+
+    // return product
+    return successResponse(res, { message: "Product found", payload: product });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/* 
+  controllers to get the count of available products for each category
+*/
+exports.getCategoryCount = async (req, res, next) => {
+  try {
+    // Aggregate query to group products by category and count them
+    const categoryCounts = await Product.aggregate([
+      { $group: { _id: "$category", count: { $sum: 1 } } },
+    ]);
+
+    // Format the result as an object with category names as keys
+    const categoryCountMap = {};
+    categoryCounts.forEach((category) => {
+      categoryCountMap[category._id] = category.count;
+    });
+
+    // return the result
+    return successResponse(res, { payload: categoryCountMap });
+  } catch (error) {
+    next(error);
+  }
+};
