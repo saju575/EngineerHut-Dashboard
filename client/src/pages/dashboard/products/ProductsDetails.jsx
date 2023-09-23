@@ -83,6 +83,7 @@ const ProductsDetails = () => {
       category,
       brand,
       images,
+      size,
     } = product.payload;
 
     productContent = (
@@ -182,6 +183,9 @@ const ProductsDetails = () => {
             <h2 className="pl-8 pb-2 font-semibold">
               Category: <span className="pl-10 capitalize">{category}</span>
             </h2>
+            <h2 className="pl-8 pb-2 font-semibold">
+              Size: <span className="pl-10 uppercase">{size}</span>
+            </h2>
 
             {brand && (
               <h2 className="pl-8 pb-2 font-semibold">
@@ -219,10 +223,12 @@ const ProductsDetails = () => {
   return (
     <React.Fragment>
       <div id="product-details-dashboard" className="proDetails-wrapper p-8">
-        <h3 className="font-semibold product-title">Products Details</h3>
-        <p className="products-links pb-10">
+        <h3 className="font-semibold product-title text-2xl pb-10">
+          Products Details
+        </h3>
+        {/* <p className="products-links pb-10">
           Home / <span>Product Details</span>
-        </p>
+        </p> */}
 
         {/* 
         product information

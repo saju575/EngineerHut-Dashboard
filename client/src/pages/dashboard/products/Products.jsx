@@ -11,18 +11,19 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import Box from "@mui/material/Box";
 import Pagination from "@mui/material/Pagination";
 import Slider from "@mui/material/Slider";
+import { fetchProductsBrand } from "../../../lib/getProductBrand";
 import { fetchProducts } from "../../../lib/getProducts";
+import { fetchProductsCategories } from "../../../lib/getProductsCategory";
 import ProductCard from "./ProductCard";
 
-function valuetext(value) {
-  return `${value}°C`;
-}
-
 function Products() {
-  const [value, setValue] = React.useState([20, 37]);
+  /* 
+    price range state
+  */
+  const [priceValueRange, setPriceValueRange] = useState([0, 1000]);
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    setPriceValueRange(newValue);
   };
 
   /* 
@@ -30,6 +31,25 @@ function Products() {
   */
   const [search, setSearch] = useState("");
 
+  /* 
+    category search state
+  */
+  const [category, setCategory] = useState("");
+
+  /* 
+    brand search state
+  */
+  const [brand, setBrand] = useState("");
+
+  /* 
+    page change state
+  */
+  const [page, setPage] = useState(1);
+
+  /* 
+    size state
+  */
+  const [size, setSize] = useState("");
   /* 
     fetch products 
   */
@@ -42,8 +62,44 @@ function Products() {
     queryFn: () =>
       fetchProducts({
         search,
+        category,
+        brand,
+        minPrice: priceValueRange[0],
+        maxPrice: priceValueRange[1],
+        page,
+        size,
       }),
-    queryKey: ["products", { search }],
+    queryKey: [
+      "products",
+      { search, category, brand, priceValueRange, page, size },
+    ],
+    staleTime: Infinity,
+  });
+
+  /* 
+    fetchProducts categories
+  */
+  const {
+    data: categories,
+    isLoading: isCategoriesLoadding,
+    isError: isCategoriesError,
+    error: categoriesError,
+  } = useQuery({
+    queryFn: fetchProductsCategories,
+    queryKey: ["categories"],
+  });
+
+  /* 
+    fetchProducts brand
+  */
+  const {
+    data: brands,
+    isLoading: isbrandsLoadding,
+    isError: isbrandsError,
+    error: brandsError,
+  } = useQuery({
+    queryFn: fetchProductsBrand,
+    queryKey: ["brands"],
   });
 
   /* 
@@ -63,167 +119,194 @@ function Products() {
     ));
   }
 
-  // console.log(products);
+  /* 
+    categories render
+  */
+  let categoriesContent;
+
+  if (isCategoriesLoadding) {
+    categoriesContent = <p>Loading...</p>;
+  } else if (!isCategoriesLoadding && isCategoriesError) {
+    categoriesContent = <p>{categoriesError.message}</p>;
+  } else if (!isCategoriesLoadding && categories.payload.length === 0) {
+    categoriesContent = <p>No category found</p>;
+  } else if (!isCategoriesLoadding && categories.payload.length > 0) {
+    categoriesContent = categories.payload.map((ct, _) => (
+      <div
+        key={_}
+        className="categories-inner--links flex justify-between pt-2 font-medium"
+        onClick={() => {
+          setCategory(ct.category);
+        }}
+      >
+        <div className="flex items-center categories-inner--linksRes">
+          <i className={`pr-1 ${category === ct.category && "text-blue-600"}`}>
+            <MdKeyboardArrowRight />
+          </i>
+          <p
+            className={`capitalize ${
+              category === ct.category && "text-blue-600"
+            }`}
+          >
+            {ct.category}
+          </p>
+        </div>
+        <h4 className={`${category === ct.category && "text-blue-600"}`}>
+          {ct.count}
+        </h4>
+      </div>
+    ));
+  }
+
+  /* 
+    brand rendering
+  */
+  let brandContent;
+
+  if (isbrandsLoadding) {
+    brandContent = <p>Loading...</p>;
+  } else if (!isbrandsLoadding && isbrandsError) {
+    brandContent = <p>{brandsError.message}</p>;
+  } else if (!isbrandsLoadding && brands.payload.length === 0) {
+    brandContent = <p>No product found</p>;
+  } else if (!isbrandsLoadding && brands.payload.length > 0) {
+    brandContent = brands?.payload?.map((b, _) => (
+      <div
+        className="product-brands--links items-center flex pt-2 font-medium"
+        key={_}
+        onClick={() => setBrand(b.brand)}
+      >
+        <i className="pr-1">
+          <MdKeyboardArrowRight />
+        </i>
+        <p className={`capitalize ${brand === b.brand && "text-blue-600"}`}>
+          {b.brand}
+        </p>
+      </div>
+    ));
+  }
+
   return (
     <React.Fragment>
       <div id="product-dashboard" className="product-wrapper p-8">
         <h3 className="font-semibold product-title">Products</h3>
-        <p className="products-links">
+        {/* <p className="products-links">
           Home / <span>Shop</span>
-        </p>
+        </p> */}
         <div className="product-inner mx-auto mt-6 flex">
           <div className="product-inner--left w-3/12 pr-4">
+            {/* 
+              product category section
+            */}
             <div className="product-categories pl-4 pr-10 py-5">
               <h3 className="text-lg font-semibold mb-4">
                 Products Categories
               </h3>
               <hr />
               <div className="product-categories--inner">
-                <div className="categories-inner--links flex justify-between pt-2 font-medium">
+                <div
+                  className="categories-inner--links flex justify-between pt-2 font-medium"
+                  onClick={() => {
+                    setCategory("");
+                  }}
+                >
                   <div className="flex items-center categories-inner--linksRes">
-                    <i className="pr-1">
+                    <i className={`pr-1 ${category === "" && "text-blue-600"}`}>
                       <MdKeyboardArrowRight />
                     </i>
-                    <p>Womens Bag</p>
+                    <p
+                      className={`capitalize ${
+                        category === "" && "text-blue-600"
+                      }`}
+                    >
+                      All
+                    </p>
                   </div>
-                  <h4>15</h4>
+                  {/* <h4>{ct.count}</h4> */}
                 </div>
-                <div className="categories-inner--links flex justify-between pt-2 font-medium">
-                  <div className="flex items-center categories-inner--linksRes">
-                    <i className="pr-1">
-                      <MdKeyboardArrowRight />
-                    </i>
-                    <p>Mens Accessories</p>
-                  </div>
-                  <h4>20</h4>
-                </div>
-                <div className="categories-inner--links flex justify-between pt-2 font-medium">
-                  <div className="flex items-center categories-inner--linksRes">
-                    <i className="pr-1">
-                      <MdKeyboardArrowRight />
-                    </i>
-                    <p>School Bag</p>
-                  </div>
-                  <h4>33</h4>
-                </div>
-                <div className="categories-inner--links flex justify-between pt-2 font-medium">
-                  <div className="flex items-center categories-inner--linksRes">
-                    <i className="pr-1">
-                      <MdKeyboardArrowRight />
-                    </i>
-                    <p>Boots</p>
-                  </div>
-                  <h4>40</h4>
-                </div>
-                <div className="categories-inner--links flex justify-between pt-2 font-medium">
-                  <div className="flex items-center categories-inner--linksRes">
-                    <i className="pr-1">
-                      <MdKeyboardArrowRight />
-                    </i>
-                    <p>Boys Dress</p>
-                  </div>
-                  <h4>44</h4>
-                </div>
-                <div className="categories-inner--links flex justify-between pt-2 font-medium">
-                  <div className="flex items-center categories-inner--linksRes">
-                    <i className="pr-1">
-                      <MdKeyboardArrowRight />
-                    </i>
-                    <p>Womens Fashion</p>
-                  </div>
-                  <h4>50</h4>
-                </div>
-                <div className="categories-inner--links flex justify-between pt-2 font-medium">
-                  <div className="flex items-center categories-inner--linksRes">
-                    <i className="pr-1">
-                      <MdKeyboardArrowRight />
-                    </i>
-                    <p>Faship Accessories</p>
-                  </div>
-                  <h4>33</h4>
-                </div>
-                <div className="categories-inner--links flex justify-between pt-2 font-medium">
-                  <div className="flex items-center categories-inner--linksRes">
-                    <i className="pr-1">
-                      <MdKeyboardArrowRight />
-                    </i>
-                    <p>Leather Bag</p>
-                  </div>
-                  <h4>31</h4>
-                </div>
-                <div className="categories-inner--links flex justify-between pt-2 font-medium">
-                  <div className="flex items-center categories-inner--linksRes">
-                    <i className="pr-1">
-                      <MdKeyboardArrowRight />
-                    </i>
-                    <p>Makeup Corner</p>
-                  </div>
-                  <h4>25</h4>
-                </div>
+
+                {categoriesContent}
               </div>
             </div>
+
+            {/* 
+              price range slider
+            */}
             <div className="price-ranges my-5 pl-4 pr-10 py-5">
               <h3 className="font-semibold mb-4 ">Price Ranges</h3>
               <hr />
               <h5 className="mt-4 mb-2">
-                Range: <span className="font-semibold">$0 - $10000</span>
+                Range:{" "}
+                <span className="font-semibold">
+                  ${priceValueRange[0]} - ${priceValueRange[1]}
+                </span>
               </h5>
-              <Box sx={{ width: 300 }}>
+
+              <Box>
                 <Slider
-                  getAriaLabel={() => "Temperature range"}
-                  value={value}
-                  onChange={handleChange}
+                  size="small"
+                  value={priceValueRange}
+                  // onChange={handleChange}
+                  onChangeCommitted={handleChange}
                   valueLabelDisplay="auto"
-                  getAriaValueText={valuetext}
+                  min={0}
+                  max={1000}
+                  step={15}
+                  marks
                 />
               </Box>
             </div>
+
+            {/* 
+              Product Brand section
+            */}
             <div className="product-brands pl-4 pr-10 py-5 mb-5">
               <h3 className="font-semibold mb-4">Product Brands</h3>
               <hr />
-              <div className="product-brands--links items-center flex pt-2 font-medium">
+
+              <div
+                className="product-brands--links items-center flex pt-2 font-medium"
+                onClick={() => setBrand("")}
+              >
                 <i className="pr-1">
                   <MdKeyboardArrowRight />
                 </i>
-                <p>Nike</p>
+                <p className={`capitalize ${brand === "" && "text-blue-600"}`}>
+                  All
+                </p>
               </div>
-              <div className="product-brands--links items-center flex pt-2 font-medium">
-                <i className="pr-1">
-                  <MdKeyboardArrowRight />
-                </i>
-                <p>Zara</p>
-              </div>
-              <div className="product-brands--links items-center flex pt-2 font-medium">
-                <i className="pr-1">
-                  <MdKeyboardArrowRight />
-                </i>
-                <p>Denum</p>
-              </div>
-              <div className="product-brands--links items-center flex pt-2 font-medium">
-                <i className="pr-1">
-                  <MdKeyboardArrowRight />
-                </i>
-                <p>Madame</p>
-              </div>
-              <div className="product-brands--links items-center flex pt-2 font-medium">
-                <i className="pr-1">
-                  <MdKeyboardArrowRight />
-                </i>
-                <p>Aarong</p>
-              </div>
+
+              {brandContent}
             </div>
+
+            {/* 
+              product size section
+            */}
             <div className="product-size pl-4 pr-10 py-5">
               <h3 className="font-semibold mb-4">Size</h3>
               <hr />
-              <div className="product-size--inner  flex mt-3">
-                <p className="border my-1 mr-2 h-10 w-10">XL</p>
-                <p className="border my-1 mr-2 h-10 w-10">X</p>
-                <p className="border my-1 mr-2 h-10 w-10">L</p>
-                <p className="border my-1 mr-2 h-10 w-10">M</p>
+              <div className="product-size--inner  flex flex-wrap mt-3">
+                <p
+                  className={`border my-1 mr-2 h-10 w-10 uppercase ${
+                    size === "" && "text-blue-600"
+                  }`}
+                  onClick={() => setSize("")}
+                >
+                  all
+                </p>
+
+                {["MM", "XL", "MX", "SM", "2XL", "3XL", "L"].map((s, _) => (
+                  <p
+                    key={_}
+                    className={`border my-1 mr-2 h-10 w-10 uppercase ${
+                      size === s && "text-blue-600"
+                    }`}
+                    onClick={() => setSize(s)}
+                  >
+                    {s}
+                  </p>
+                ))}
               </div>
-              <p className="border my-1 mr-2 p-3 h-10 items-center w-24 justify-center flex-block">
-                Slim Fit
-              </p>
             </div>
           </div>
 
@@ -247,10 +330,14 @@ function Products() {
               </div>
 
               <h3 className="showingResult pl-4 font-medium">
-                Showing 1-8 of 60 results
+                Showing {products?.payload?.start} - {products?.payload?.end} of{" "}
+                {products?.payload?.total} results
               </h3>
             </div>
 
+            {/* 
+                Tabs section
+              */}
             <div className="flex items-center product-tabsResponsive mb-10">
               <div className="product-tabs mt-5 p-5">
                 <ul className="flex justify-around font-semibold">
@@ -287,12 +374,15 @@ function Products() {
 
             {/* 
               pagination UI
+              
             */}
+
             <Pagination
               className="flex justify-end mr-4 pagination"
               count={products?.payload?.totalPages}
               variant="outlined"
               shape="rounded"
+              onChange={(_, val) => setPage(val)}
             />
           </div>
         </div>

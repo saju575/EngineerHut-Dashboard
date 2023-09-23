@@ -3,11 +3,11 @@ import { BsStar } from "react-icons/bs";
 import { GiRoundStar } from "react-icons/gi";
 import { HiArrowsExpand } from "react-icons/hi";
 import { PiArrowCounterClockwiseFill } from "react-icons/pi";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
   //destructure the product information
-  const { _id, name, price, stock, images, discountPrice, rating } = product;
+  const { _id, name, price, images, discountPrice, rating } = product;
 
   const navigate = useNavigate();
 
@@ -28,11 +28,11 @@ const ProductCard = ({ product }) => {
           <p className="my-4 p-4">
             <AiOutlineHeart />
           </p>
-          <a href="/products-details">
+          <Link to={`/products/${_id}`}>
             <p className="my-4 p-4">
               <HiArrowsExpand />
             </p>
-          </a>
+          </Link>
           <p className="my-4 p-4">
             <PiArrowCounterClockwiseFill />
           </p>
@@ -48,7 +48,7 @@ const ProductCard = ({ product }) => {
 
       <h4 className="font-medium">
         {" "}
-        {discountPrice !== 0 && <span className="pr-2">${discountPrice}</span>}
+        {discountPrice !== 0 && <span className="pr-2">${discountPrice}</span>}$
         {price}
       </h4>
 
@@ -74,7 +74,7 @@ const ProductCard = ({ product }) => {
           }
         })}
 
-        <p className="pl-2 pr-3 font-medium">({stock})</p>
+        {/* <p className="pl-2 pr-3 font-medium">({stock})</p> */}
         {/* <a href="#" className="p-3 font-medium border">
           Add To Card
         </a> */}

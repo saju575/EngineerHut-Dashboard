@@ -22,16 +22,16 @@ The API expects a JSON request body with the following required fields:
 - `shippingFee` (Number): The shipping fee for the product.
 - `taxRate` (Number): The tax rate for the product.
 - `category` (String): The category of the product.
+- `brand` (String): The brand of the product.
 - `stock` (Number): The stock quantity of the product.
 - `image` (imagefile): Only accept 'jpg','jpeg','png','gif'. 1 to 10.
 - `sku` (String): The SKU (Stock Keeping Unit) of the product.
+- `size` (String): The size of the product.
 
 Optional fields:
 
-- `size` (String): The size of the product.
 - `color` (String): The color of the product.
 - `weight` (Number): The weight of the product.
-- `brand` (String): The brand of the product.
 - `discountPrice` (String): The discount price of the product.
 
 This will be in form of form data.

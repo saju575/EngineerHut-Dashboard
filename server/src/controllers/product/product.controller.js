@@ -183,6 +183,8 @@ exports.getProductsController = async (req, res, next) => {
         perPage,
         currentPage: page,
         totalPages: Math.ceil(totalCount / perPage),
+        start: skip + 1,
+        end: perPage > totalCount ? totalCount : perPage,
         data: products,
       },
     });
@@ -221,14 +223,37 @@ exports.getCategoryCount = async (req, res, next) => {
       { $group: { _id: "$category", count: { $sum: 1 } } },
     ]);
 
-    // Format the result as an object with category names as keys
-    const categoryCountMap = {};
-    categoryCounts.forEach((category) => {
-      categoryCountMap[category._id] = category.count;
-    });
+    // Format the result as an array of objects
+    const categoryCountArray = categoryCounts.map((category) => ({
+      category: category._id,
+      count: category.count,
+    }));
+
+    // Return the result as an array
+    return successResponse(res, { payload: categoryCountArray });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/* 
+  controllers to get the count of available products for each brand
+*/
+exports.getBrandCount = async (req, res, next) => {
+  try {
+    // Aggregate query to group products by category and count them
+    const brandCounts = await Product.aggregate([
+      { $group: { _id: "$brand", count: { $sum: 1 } } },
+    ]);
+
+    // Format the result as an array of objects
+    const brandCountMap = brandCounts.map((brand) => ({
+      brand: brand._id,
+      count: brand.count,
+    }));
 
     // return the result
-    return successResponse(res, { payload: categoryCountMap });
+    return successResponse(res, { payload: brandCountMap });
   } catch (error) {
     next(error);
   }

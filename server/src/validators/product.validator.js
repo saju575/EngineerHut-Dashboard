@@ -36,7 +36,9 @@ const productValidationSchema = Joi.object({
   category: Joi.string().required().messages({
     "any.required": "Please Enter Product Category",
   }),
-  brand: Joi.string(),
+  brand: Joi.string().required().messages({
+    "any.required": "Please Enter Product Brand",
+  }),
   stock: Joi.number().required().max(9999).default(1).messages({
     "any.required": "Please Enter product Stock",
     "number.max": "Stock cannot exceed 4 characters",
