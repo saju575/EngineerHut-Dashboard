@@ -5,6 +5,8 @@ const {
   productCreate,
   removeProduct,
   getProductsController,
+  getSingleProduct,
+  getCategoryCount,
 } = require("../controllers/product/product.controller");
 const {
   validateCreateProductRequestBody,
@@ -38,6 +40,16 @@ productRouter.delete("/product/:id", removeProduct);
   get products router with global search and filtering options
 */
 productRouter.get("/all", validateGetProductsQueryBody, getProductsController);
+
+/* 
+   Route to get a single product by ID
+*/
+productRouter.get("/:id", getSingleProduct);
+
+/* 
+  Route to get the count of available products for each category
+*/
+productRouter.get("/category/count", getCategoryCount);
 
 /* 
     exporting the product router

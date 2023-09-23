@@ -68,3 +68,13 @@ This endpoint allows you to retrieve a list of all products.
 ```http
 GET http://localhost:5000/api/v1/products/all?search=example&minPrice=10&maxPrice=50&page=2&perPage=20
 ```
+
+4. GET request end point for one product
+
+- /api/v1/products/:id
+
+5. Get category for all products
+
+- /api/v1/products/category/count
+
+It's given a list of all categories and the amount of products for each category.
