@@ -30,7 +30,7 @@ const menus = [
     subMenuOpen: false,
     submenuItems: [
       { title: "Products", link: "/products" },
-      { title: "Product Details", link: "/products-details" },
+      // { title: "Product Details", link: "/products-details" },
       { title: "Upload Product", link: "/upload-product" },
     ],
   },
