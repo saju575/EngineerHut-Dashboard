@@ -1,121 +1,122 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap");
 
-#product-details-dashboard {
+.proDetails-wrapper {
   background: #f6f7fb;
 }
 
-#product-details-dashboard .proDetails-inner {
+.proDetails-inner {
   background-color: #ffffff;
 }
 
-#product-details-dashboard .proDetails-inner--img img {
-  height: 140px;
-  padding-left: 15px;
+.proDetails-inner--img img {
+	height: 140px;
+	padding-left: 15px;
 }
 
-#product-details-dashboard .proDetails-details h3 {
-  font-family: "Montserrat";
-  font-size: 25px;
+.proDetails-details h3 {
+	font-family: "Montserrat";
+	font-size: 25px;
 }
 
-#product-details-dashboard .proDetails-details p {
-  font-family: "Montserrat";
+.proDetails-details p {
+	font-family: "Montserrat";
 }
 
-#product-details-dashboard .proDetails-details span {
-  text-decoration: line-through;
-  color: #232323;
+.proDetails-details span {
+	text-decoration: line-through;
+	color: #232323;
 }
 
-#product-details-dashboard .proDetails-details i {
-  color: #face3a;
+.proDetails-details i {
+	color: #FACE3A;
 }
 
-#product-details-dashboard .proDetails-details h4 {
-  color: #68cac0;
-  font-family: "Montserrat";
+.proDetails-details h4 {
+	color: #68cac0;
+	font-family: 'Montserrat';
 }
 
-#product-details-dashboard .proDetails-details h5 {
-  font-family: "Montserrat";
-  color: #232323;
+.proDetails-details h5 {
+	font-family: "Montserrat";
+	color: #232323;
 }
 
-#product-details-dashboard .quantity-control {
-  font-family: "Montserrat";
+.quantity-control {
+	font-family: 'Montserrat';
   align-items: center;
-  width: 120px;
-  border: thin solid #00000013;
-  background: #f5f4f4f6;
+	width: 120px;
+	border: thin solid #00000013;
+	background: #f5f4f4f6;
 }
 
-#product-details-dashboard .proDetails-counter i {
-  color: #232323;
-  font-size: 20px;
-  padding: 14px;
+.proDetails-counter i {
+	color: #232323;
+	font-size: 20px;
+	padding: 14px;
 }
 
-#product-details-dashboard .quantity-control a {
-  font-size: 20px;
+.quantity-control a {
+	font-size: 20px;
 }
 
-#product-details-dashboard .quantity-control > span {
+
+.quantity-control > span {
   font-size: 18px;
   /* font-weight: bold; */
   margin: 0 10px;
-  text-decoration: none;
+	text-decoration: none;
 }
 
-#product-details-dashboard .addToCard {
-  background: #6176fe;
-  color: #ffffff;
-  font-family: "Montserrat";
-  margin: 0 !important;
-  margin-right: 5px !important;
-  padding: 11px;
+.addToCard {
+	background: #6176FE;
+	color: #ffffff;
+	font-family: 'Montserrat';
+	margin: 0 !important;
+	margin-right: 5px !important;
+	padding: 11px;
+	
 }
 
-#product-details-dashboard .proDetails-models {
-  font-family: "Montserrat";
+.proDetails-models {
+	font-family: 'Montserrat';
 }
 
-#product-details-dashboard .proDetails-models span {
-  text-decoration: none !important;
-  color: #23232388;
+.proDetails-models span {
+	text-decoration: none !important;
+	color: #23232388;
 }
 
-#product-details-dashboard .proDetails-models .models-icons {
-  color: #7f66da;
-  font-size: 20px;
+.proDetails-models .models-icons {
+	color: #7f66da;
+	font-size: 20px;
 }
 
-#product-details-dashboard .proDetails-specif {
-  background: #ffffff;
+.proDetails-specif {
+	background: #FFFFFF;
 }
 
-#product-details-dashboard .proDetail-specifTabs {
-  background-color: #f3f4f7;
+.proDetail-specifTabs {
+	background-color: #F3F4F7;
 }
 
-#product-details-dashboard .proDetail-specifTabs h3 {
-  font-family: "Montserrat";
+.proDetail-specifTabs h3 {
+	font-family: "Montserrat";
 }
 
-#product-details-dashboard .proDetail-specifTabs h3:hover,
-.proDetail-specifTabs .selected {
-  background-color: #6176fe;
-  color: #ffffff;
+.proDetail-specifTabs h3:hover, .proDetail-specifTabs .selected {
+	background-color: #6176FE;
+	color: #ffffff;
 }
 
-#product-details-dashboard .proDetails-specif h3 {
-  font-family: "Montserrat";
-  color: #232323a4;
+.proDetails-specif h3 {
+	font-family: 'Montserrat';	
+	color: #232323a4;
 }
 
-#product-details-dashboard .proDetails-border {
-  font-family: "Montserrat";
+.proDetails-border {
+	font-family: "Montserrat";
 }
 
-#product-details-dashboard .proDetails-border i {
-  color: #face3a;
+.proDetails-border i {
+	color: #FACE3A;
 }

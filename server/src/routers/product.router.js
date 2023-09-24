@@ -9,6 +9,9 @@ const {
   getCategoryCount,
 } = require("../controllers/product/product.controller");
 const {
+  productUpdate,
+} = require("../controllers/product/productUpdate.controller");
+const {
   validateCreateProductRequestBody,
   validateGetProductsQueryBody,
 } = require("../validators/product.validator");

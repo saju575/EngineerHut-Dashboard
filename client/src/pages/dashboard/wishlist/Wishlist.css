@@ -4,68 +4,68 @@
   background-color: #ffffff;
 }
 
-#wishlist-dashboard .product-titles {
+.product-titles {
   font-family: "Montserrat";
   font-size: 26px;
 }
 
-#wishlist-dashboard .product-link {
+.product-link {
   font-family: "Montserrat";
   font-size: 16px;
   cursor: pointer;
 }
 
-#wishlist-dashboard .product-link span {
+.product-link span {
   color: #5e76fe;
 }
 
 /* Product Left Area Start */
 
-#wishlist-dashboard .product-inner--left h3 {
+.product-inner--left h3 {
   font-family: "Montserrat";
 }
 
-#wishlist-dashboard .product-categories {
+.product-categories {
   background-color: #ffffff;
 }
 
-#wishlist-dashboard .categories-inner--links {
+.categories-inner--links {
   font-family: "Montserrat";
   color: #333333b7;
   cursor: pointer;
 }
 
-#wishlist-dashboard .price-ranges {
+.price-ranges {
   background: #ffffff;
 }
 
-#wishlist-dashboard .price-ranges h3 {
+.price-ranges h3 {
   font-family: "Montserrat";
 }
 
-#wishlist-dashboard .price-ranges h5 {
+.price-ranges h5 {
   font-family: "Montserrat";
 }
 
-#wishlist-dashboard .MuiSlider-root {
+.MuiSlider-root {
   color: #333 !important;
 }
 
-#wishlist-dashboard .product-brands {
+.product-brands {
   background: #ffffff;
 }
 
-#wishlist-dashboard .product-brands--links {
+.product-brands--links {
   font-family: "Montserrat";
   color: #333333b7;
   cursor: pointer;
 }
 
-#wishlist-dashboard .product-size {
+.product-size {
   background: #ffffff;
 }
 
-#wishlist-dashboard .product-size--inner p {
+.product-size--inner p {
   font-family: "Montserrat";
   color: #333;
   text-align: center;
@@ -73,27 +73,27 @@
   cursor: pointer;
 }
 
-#wishlist-dashboard .product-size p {
+.product-size p {
   font-family: "Montserrat";
 }
 
 /* Product Left Area End */
 
 /* Product Right Area Start */
-#wishlist-dashboard .product-search input {
+.product-search input {
   width: 350px;
   outline: none;
   font-family: "Montserrat";
 }
 
-#wishlist-dashboard .product-search {
+.product-search {
   display: flex;
   align-items: center;
   width: 350px;
   position: relative;
 }
 
-#wishlist-dashboard .search-icon {
+.search-icon {
   position: absolute;
   right: 18px;
   top: 50%;
@@ -106,29 +106,29 @@
   -o-transform: translateY(-50%);
 }
 
-#wishlist-dashboard .showingResult {
+.showingResult {
   color: #797979;
   font-family: "Montserrat";
   letter-spacing: 0.4px;
 }
 
-#wishlist-dashboard .product-tabs {
+.product-tabs {
   width: 350px;
   background: #ffffff;
   position: relative;
 }
 
-#wishlist-dashboard .product-tabs ul li a {
+.product-tabs ul li a {
   color: #333333;
   font-family: "Montserrat";
 }
 
-#wishlist-dashboard .product-tabs ul li a:hover {
+.product-tabs ul li a:hover {
   text-decoration: underline;
   color: #5e76fe;
 }
 
-#wishlist-dashboard .border-right1 {
+.border-right1 {
   height: 20px;
   left: 136px;
   top: 50%;
@@ -142,7 +142,7 @@
   -o-transform: translateY(-50%);
 }
 
-#wishlist-dashboard .border-right2 {
+.border-right2 {
   height: 20px;
   right: 116px;
   top: 50%;
@@ -156,7 +156,7 @@
   -o-transform: translateY(-50%);
 }
 
-#wishlist-dashboard .product-tabs--btn a {
+.product-tabs--btn a {
   background-color: #6075fe;
   font-family: "Montserrat";
   color: #ffffff;
@@ -172,15 +172,15 @@
   width: 370px;
 } */
 
-#wishlist-dashboard .product-cardss--image {
+.product-cardss--image {
   position: relative;
 }
 
-#wishlist-dashboard .product-cardss--inside {
+.product-cardss--inside {
   background: #ffffff;
 }
 
-#wishlist-dashboard .product-imgs--ikons {
+.product-imgs--ikons {
   position: absolute;
   right: 15px;
   top: 50%;
@@ -191,7 +191,7 @@
   -o-transform: translateY(-50%);
 }
 
-#wishlist-dashboard .product-imgs--ikons p {
+.product-imgs--ikons p {
   cursor: pointer;
   font-size: 15px;
   background: #ffffff;
@@ -207,7 +207,7 @@
   -o-transition: 0.4s;
 }
 
-#wishlist-dashboard .product-imgs--ikons p:hover {
+.product-imgs--ikons p:hover {
   transform: scale(1.1);
   -webkit-transform: scale(1.1);
   -moz-transform: scale(1.1);
@@ -215,34 +215,34 @@
   -o-transform: scale(1.1);
 }
 
-#wishlist-dashboard .product-cardss--inside h3 {
+.product-cardss--inside h3 {
   font-family: "Montserrat";
   color: #444444;
 }
 
-#wishlist-dashboard .product-cardss--inside h4 {
+.product-cardss--inside h4 {
   color: #444444;
   font-family: "Montserrat";
 }
 
-#wishlist-dashboard .product-cardss--inside h4 span {
+.product-cardss--inside h4 span {
   text-decoration: line-through;
   color: #44444485;
 }
 
-#wishlist-dashboard .product-cardss--rating i {
+.product-cardss--rating i {
   color: #f3d154;
 }
 
-#wishlist-dashboard .product-cardss--rating p {
+.product-cardss--rating p {
   font-family: "Montserrat";
 }
 
-#wishlist-dashboard .product-cardss--rating a {
+.product-cardss--rating a {
   font-family: "Montserrat";
 }
 
-#wishlist-dashboard .pagination ul li button {
+.pagination ul li button {
   background: #ffffff !important;
 }
 /* Product Right Area End */

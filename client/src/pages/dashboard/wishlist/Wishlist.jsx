@@ -11,10 +11,7 @@ import { TfiReload } from "react-icons/tfi";
 const Wishlist = () => {
   return (
     <React.Fragment>
-      <div
-        id="wishlist-dashboard"
-        className="product-wrap h-full bg-white relative pl-4 sm:pl-8 pt-8 pb-10 sm:pb-12"
-      >
+      <div className="product-wrap h-full bg-white relative pl-4 sm:pl-8 pt-8 pb-10 sm:pb-12">
         <h3 className="font-semibold text-lg sm:text-xl product-titles">
           Products
         </h3>

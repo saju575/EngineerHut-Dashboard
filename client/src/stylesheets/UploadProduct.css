@@ -6,6 +6,7 @@
   background: #ffffff;
 }
 
+
 .uploadProduct-inner h3 {
   font-size: 20px;
   font-family: "Montserrat";
@@ -19,8 +20,7 @@
   border: 1px solid #ccccccce !important;
 }
 
-.upProduct-right--inner,
-.upProduct-left--inner {
+.upProduct-right--inner, .upProduct-left--inner {
   box-shadow: 0px 0px 5px 0px rgba(168, 168, 168, 0.438);
   padding: 10px;
 }
@@ -47,24 +47,19 @@
 .uploadProduct--spefic p {
   text-align: center;
   line-height: 40px;
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
 }
 
 .uploadProduct--spefic p:hover {
-  background: #beb3fc;
+  background: #BEB3FC;
 }
 
 .uploadProduct-inner--title {
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
 }
 
 .uploadProduct-bottom {
   box-shadow: 0px 0px 5px 0px rgba(168, 168, 168, 0.438);
-}
-
-.uploadProduct-bottom--inner {
-  width: 100%;
-  flex-wrap: wrap;
 }
 
 .uploadProduct-bottom img {
@@ -73,7 +68,7 @@
 }
 
 .uploadProduct-bottom--icon {
-  background-color: #fafafa;
+  background-color: #FaFaFa;
 }
 
 .uploadProduct-bottom--icon i {
@@ -82,13 +77,13 @@
 
 .uploadProduct-bottom--btn a {
   font-size: 16px;
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
 }
 
 .uploadProduct-bottom--btn .publish {
-  background: #5e76fb;
+  background: #5E76FB;
 }
 
 .uploadProduct-bottom--btn .cancel {
-  background-color: #fb6866;
+  background-color: #FB6866;
 }
