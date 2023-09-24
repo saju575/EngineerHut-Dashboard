@@ -43,7 +43,7 @@ export const fetchProducts = async (queryKey) => {
     const response = await axios.get(url);
     return response.data;
   } catch (error) {
-    throw new Error("Error fetching data");
+    throw new Error(error.response.data.message);
   }
 };
 
@@ -59,6 +59,6 @@ export const fetchProduct = async (id) => {
 
     return response.data;
   } catch (error) {
-    throw new Error("Product fetching error");
+    throw new Error(error.response.data.message);
   }
 };

@@ -11,6 +11,6 @@ export const fetchProductsBrand = async () => {
 
     return response.data;
   } catch (error) {
-    throw new Error("Products brand fetching error");
+    throw new Error(error.response.data.message);
   }
 };

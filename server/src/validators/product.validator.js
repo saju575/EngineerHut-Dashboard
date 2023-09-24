@@ -18,10 +18,10 @@ const productValidationSchema = Joi.object({
     "any.required": "Please Enter product Price",
     "number.max": "Price cannot exceed 8 characters",
   }),
-  mainPrice: Joi.number().required().max(99999999).messages({
-    "any.required": "Please Enter product main Price",
-    "number.max": "Price cannot exceed 8 characters",
-  }),
+  // mainPrice: Joi.number().required().max(99999999).messages({
+  //   "any.required": "Please Enter product main Price",
+  //   "number.max": "Price cannot exceed 8 characters",
+  // }),
   discountPrice: Joi.number().max(99999999).messages({
     "number.max": "Price cannot exceed 99,999,999",
   }),
@@ -46,7 +46,7 @@ const productValidationSchema = Joi.object({
   color: Joi.string(),
   weight: Joi.number(),
   size: Joi.string()
-    .valid("MM", "XL", "MX", "SM", "2XL", "3XL", "L")
+    .valid("M", "XL", "MX", "SM", "2XL", "3XL", "L")
     .required()
     .messages({
       "any.required": "Please Enter a valid Size (MM, XL, MX, SM, 2XL, 3XL, L)",

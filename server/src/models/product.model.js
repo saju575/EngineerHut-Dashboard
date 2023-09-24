@@ -48,11 +48,6 @@ const productSchema = new mongoose.Schema(
       required: [true, "Please Enter product Price"],
       maxLength: [8, "Price cannot exceed 8 characters"],
     },
-    mainPrice: {
-      type: Number,
-      required: [true, "Please Enter product main Price"],
-      maxLength: [8, "Price cannot exceed 8 characters"],
-    },
     discountPrice: {
       type: Number,
       default: 0,
@@ -98,7 +93,7 @@ const productSchema = new mongoose.Schema(
     },
     size: {
       type: String,
-      enum: ["MM", "XL", "MX", "SM", "2XL", "3XL", "L"], // Allowed values for size
+      enum: ["M", "XL", "MX", "SM", "2XL", "3XL", "L"], // Allowed values for size
       required: [
         true,
         "Please Enter a valid Size (MM, XL, MX, SM, 2XL, 3XL, L)",

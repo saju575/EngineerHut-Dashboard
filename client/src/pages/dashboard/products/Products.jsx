@@ -193,6 +193,7 @@ function Products() {
         {/* <p className="products-links">
           Home / <span>Shop</span>
         </p> */}
+
         <div className="product-inner mx-auto mt-6 flex">
           <div className="product-inner--left w-3/12 pr-4">
             {/* 
