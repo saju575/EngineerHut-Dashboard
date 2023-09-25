@@ -41,6 +41,7 @@ const customerSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  
 });
 
 // Create the Customer model
