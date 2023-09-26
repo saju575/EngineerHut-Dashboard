@@ -5,6 +5,7 @@ const createHttpError = require("http-errors");
 const { errorResponse } = require("./controllers/response/response.controller");
 const productRouter = require("./routers/product.router");
 const customerRouter = require("./routers/customer.router");
+const orderRouter = require("./routers/order.router");
 
 /* 
     making express app
@@ -28,6 +29,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api/v1/products", productRouter);
 
 app.use("/api/v1/customers", customerRouter);
+
+app.use("/api/v1/orders", orderRouter);
 
 /*
     Client error handler

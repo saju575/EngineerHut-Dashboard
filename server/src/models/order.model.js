@@ -1,7 +1,14 @@
 const mongoose = require("mongoose");
+const { v4: uuidv4 } = require("uuid");
 
 const orderSchema = new mongoose.Schema(
   {
+    orderId: {
+      type: String,
+      unique: true, // Ensure uniqueness of order IDs
+      default: uuidv4, // Use uuidv4() as the default value
+      required: true,
+    },
     customer: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Customer", // Reference to the Customer model
@@ -34,7 +41,7 @@ const orderSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    orderStatus: {
+    deliveryStatus: {
       type: Boolean,
       default: false,
     },
