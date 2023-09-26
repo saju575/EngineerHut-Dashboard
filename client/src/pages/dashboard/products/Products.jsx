@@ -29,6 +29,7 @@ function Products() {
   /* 
     search input state
   */
+  const [searchField, setSearchField] = useState("");
   const [search, setSearch] = useState("");
 
   /* 
@@ -50,6 +51,25 @@ function Products() {
     size state
   */
   const [size, setSize] = useState("");
+
+  /* 
+    handle input search field
+  */
+  const handleSearch = (e) => {
+    setSearchField(e.target.value);
+    if (e.target.value === "") {
+      setSearch(e.target.value);
+    }
+  };
+
+  /* 
+    handle input search field submit
+   */
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    setSearch(searchField);
+  };
+
   /* 
     fetch products 
   */
@@ -316,19 +336,24 @@ function Products() {
               {/* 
                 search bar for products
               */}
-              <div className="product-search">
-                <input
-                  className="p-4 font-medium"
-                  type="text"
-                  placeholder="Search"
-                  onChange={(e) => setSearch(e.target.value)}
-                  value={search}
-                />
+              <form onSubmit={handleSearchSubmit}>
+                <div className="product-search">
+                  <input
+                    className="p-4 font-medium"
+                    type="text"
+                    placeholder="Search"
+                    onChange={handleSearch}
+                    value={searchField}
+                    onBlur={(e) => setSearch(e.target.value)}
+                  />
 
-                <div className="search-icon">
-                  <GoSearch />
+                  <div className="search-icon">
+                    <button type="submit">
+                      <GoSearch />
+                    </button>
+                  </div>
                 </div>
-              </div>
+              </form>
 
               <h3 className="showingResult pl-4 font-medium">
                 Showing {products?.payload?.start} - {products?.payload?.end} of{" "}

@@ -1,0 +1,19 @@
+.search {
+  display: flex;
+  align-items: center;
+
+  position: relative;
+}
+
+.searchIcon {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  cursor: pointer;
+  color: #5e76fe;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+}
