@@ -31,3 +31,18 @@ export const fetchCustomers = async (queryKey) => {
     throw new Error(error.response.data.message);
   }
 };
+
+/* 
+  fetch single customer
+*/
+export const fetchCustomer = async (id) => {
+  try {
+    const url = `/customers/${id}`;
+
+    const response = await axios.get(url);
+
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+};

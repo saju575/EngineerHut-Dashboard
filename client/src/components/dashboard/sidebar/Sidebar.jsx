@@ -1,6 +1,10 @@
 import { Fragment, useState } from "react";
 import { AiFillGift } from "react-icons/ai";
-import { BsArrowLeftShort, BsChevronDown } from "react-icons/bs";
+import {
+  BsArrowLeftShort,
+  BsChevronDown,
+  BsFillClipboard2PlusFill,
+} from "react-icons/bs";
 import { FaBagShopping, FaBoxesStacked, FaHeart } from "react-icons/fa6";
 import { MdOutlineDashboard } from "react-icons/md";
 import { Link, Outlet } from "react-router-dom";
@@ -15,24 +19,16 @@ const menus = [
     title: "Customers",
     link: "/customers",
     icon: <AiFillGift />,
-    subMenu: true,
-    subMenuOpen: false,
-    submenuItems: [
-      { title: "Customer List", link: "/customers" },
-      { title: "Customers", link: "/customer" },
-    ],
   },
   {
     title: "Products",
     icon: <FaBoxesStacked />,
     link: "/products",
-    subMenu: true,
-    subMenuOpen: false,
-    submenuItems: [
-      { title: "Products", link: "/products" },
-      // { title: "Product Details", link: "/products-details" },
-      { title: "Upload Product", link: "/upload-product" },
-    ],
+  },
+  {
+    title: "Upload Product",
+    link: "/upload-product",
+    icon: <BsFillClipboard2PlusFill />,
   },
   { title: "Wishlist", link: "/wishlist", icon: <FaHeart /> },
   {

@@ -1,6 +1,8 @@
 import "./SingleCustomer.css";
 
-import jon from "../../../../assets/img/snow.jpeg";
+import { useQuery } from "react-query";
+import { useParams } from "react-router-dom";
+import { fetchCustomer } from "../../../../lib/getCustomers";
 import CustomerTableRow from "./CustomerTableRow";
 
 const dummyTableData = [
@@ -25,44 +27,116 @@ const dummyTableData = [
 ];
 
 const SingleCustomer = () => {
+  /*
+    get the id parameter 
+   */
+  const { customerId } = useParams();
+
+  /* 
+    get customer using react query
+  */
+  const {
+    data: customer,
+    isLoading: isCustomerLoadding,
+    isError: isCustomerError,
+    error: customerError,
+  } = useQuery({
+    queryFn: () => fetchCustomer(customerId),
+    queryKey: ["customer", { customerId }],
+    staleTime: Infinity,
+  });
+
+  /* 
+    render customer details
+  */
+  let accountDetails;
+  let customerProfile;
+
+  if (isCustomerLoadding) {
+    accountDetails = <p>Loadding...</p>;
+    customerProfile = <p>Loadding...</p>;
+  } else if (!isCustomerLoadding && isCustomerError) {
+    accountDetails = <p>{customerError.message}</p>;
+    customerProfile = <p>{customerError.message}</p>;
+  } else if (!isCustomerLoadding && !customer.payload) {
+    accountDetails = <p>No customer details fount</p>;
+    customerProfile = <p>No customer details fount</p>;
+  } else if (!isCustomerLoadding && customer.payload) {
+    const { firstName, lastName, image, phone, email, dateOfBirth, gender } =
+      customer.payload;
+
+    customerProfile = (
+      <>
+        <img className="avatar object-cover" src={image} alt={firstName} />
+
+        <div className="innerLeftTxt">
+          <h2>{`${firstName} ${lastName}`}</h2>
+          <p className="text-muted">{phone}</p>
+          <p className="text-blue">{email}</p>
+          <p className="button">
+            Balance <br /> $1200
+          </p>
+          <p>
+            {" "}
+            <span className="text-bold">Last Order:</span> <br />7 days ago :{" "}
+            <span className="text-blue">#654649</span>{" "}
+          </p>
+          <p className="text-bold">
+            Average Order Value:{" "}
+            <span className="text-muted">
+              {" "}
+              <br /> $454
+            </span>{" "}
+          </p>
+          <p>
+            {" "}
+            <span className="text-bold">Last Order:</span> <br />7 days ago :{" "}
+            <span className="text-blue">#654649</span>{" "}
+          </p>
+          <p className="text-bold">Email Marketing</p>
+          <p>Subscribed</p>
+        </div>
+      </>
+    );
+
+    accountDetails = (
+      <>
+        <div className="account-dContent">
+          <div className="flexx">
+            <h6 className="text-muted">First Name:</h6>
+            <h6 className="text-bold">{firstName}</h6>
+          </div>
+          <div className="flexx">
+            <h6 className="text-muted">Last Name:</h6>
+            <h6 className="text-bold">{lastName}</h6>
+          </div>
+          <div className="flexx">
+            <h6 className="text-muted">Date of Birth: </h6>
+            <h6 className="text-bold">{dateOfBirth}</h6>
+          </div>
+          <div className="flexx">
+            <h6 className="text-muted">Gender: </h6>
+            <h6 className="text-bold">{gender}</h6>
+          </div>
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
-      <div className="customer-wrapper ">
-        <h1 className="customer-title">Customers</h1>
-        <p className="customer-links">
+      <div className="customer-wrapper pt-4">
+        <h1 className="customer-title pb-8 ">Customer</h1>
+        {/* <p className="customer-links">
           Home / <span>Customer List</span>
-        </p>
+        </p> */}
         <div className="customer-inner flex lg:flex-row flex-col lg:space-x-2">
           {/* Left part*/}
           <div className="customer-innerLeft w-full lg:w-1/4 px-4 py-2">
-            <img className="avatar object-cover" src={jon} alt="avatar" />
-            <div className="innerLeftTxt">
-              <h2>Margaret Raw</h2>
-              <p className="text-muted">+88 0 19 6545 2329 (654) </p>
-              <p className="text-blue">jonsnow@gmail.com</p>
-              <p className="button">
-                Balance <br /> $1200
-              </p>
-              <p>
-                {" "}
-                <span className="text-bold">Last Order:</span> <br />7 days ago
-                : <span className="text-blue">#654649</span>{" "}
-              </p>
-              <p className="text-bold">
-                Average Order Value:{" "}
-                <span className="text-muted">
-                  {" "}
-                  <br /> $454
-                </span>{" "}
-              </p>
-              <p>
-                {" "}
-                <span className="text-bold">Last Order:</span> <br />7 days ago
-                : <span className="text-blue">#654649</span>{" "}
-              </p>
-              <p className="text-bold">Email Marketing</p>
-              <p>Subscribed</p>
-            </div>
+            {/* 
+              customer profile
+            */}
+            {customerProfile}
           </div>
 
           {/* 
@@ -121,24 +195,11 @@ const SingleCustomer = () => {
                 <p>🚀</p>
               </div>
               <hr />
-              <div className="account-dContent">
-                <div className="flexx">
-                  <h6 className="text-muted">First Name:</h6>
-                  <h6 className="text-bold">Margardt</h6>
-                </div>
-                <div className="flexx">
-                  <h6 className="text-muted">Last Name:</h6>
-                  <h6 className="text-bold">Raw</h6>
-                </div>
-                <div className="flexx">
-                  <h6 className="text-muted">Date of Birth: </h6>
-                  <h6 className="text-bold">15 July 1465</h6>
-                </div>
-                <div className="flexx">
-                  <h6 className="text-muted">Gender: </h6>
-                  <h6 className="text-bold">Male</h6>
-                </div>
-              </div>
+
+              {/* 
+                account details
+              */}
+              {accountDetails}
             </div>
           </div>
         </div>

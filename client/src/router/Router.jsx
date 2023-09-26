@@ -20,12 +20,10 @@ export const router = createBrowserRouter([
       {
         path: "/customers",
         element: <CustomerList />,
-        children: [],
       },
       {
-        path: "/customer",
+        path: "/customer/:customerId",
         element: <SingleCustomer />,
-        children: [],
       },
 
       {

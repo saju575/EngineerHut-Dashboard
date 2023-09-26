@@ -1,4 +1,5 @@
 const Customer = require("../../models/customer.model");
+const { findWithId } = require("../../services/findItem.service");
 const { successResponse } = require("../response/response.controller");
 
 exports.createCustomer = async (req, res, next) => {
@@ -38,7 +39,27 @@ exports.createCustomer = async (req, res, next) => {
   }
 };
 
+/* 
+  get single customer
+*/
 exports.getCustomers = async (req, res) => {
+  try {
+    const customerId = req.params.id;
+    const customer = await findWithId(Customer, customerId);
+
+    if (!customer) {
+      throw new Error("Customer not found");
+    }
+
+    // return product
+    return successResponse(res, {
+      message: "Customer found",
+      payload: customer,
+    });
+  } catch (error) {
+    next(error);
+  }
+
   const customer = await Customer.findById(req.params.id);
   res.status(200).json({
     success: true,
@@ -46,6 +67,9 @@ exports.getCustomers = async (req, res) => {
   });
 };
 
+/* 
+  get all customers
+*/
 exports.getAllCustomers = async (req, res, next) => {
   try {
     const searchQuery = req.query.search;
