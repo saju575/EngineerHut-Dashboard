@@ -6,8 +6,10 @@ import SingleCustomer from "../pages/dashboard/Customer/SingleCustomer/SingleCus
 import Wishlist from "../pages/dashboard/wishlist/Wishlist";
 
 import DashBoard from "../pages/dashboard/dashboard/DashBoard";
-import Orders from "../pages/dashboard/order/order";
-import OrderDetails from "../pages/dashboard/order/orderDetails";
+
+import Orders from "../pages/dashboard/order/Orders";
+
+import SingleOrder from "../pages/dashboard/order/SingleOrder";
 import Products from "../pages/dashboard/products/Products";
 import ProductsDetails from "../pages/dashboard/products/ProductsDetails";
 import UploadProduct from "../pages/dashboard/products/UploadProduct";
@@ -57,8 +59,8 @@ export const router = createBrowserRouter([
         element: <Orders />,
       },
       {
-        path: "/orderDetails",
-        element: <OrderDetails />,
+        path: "/orders/:orderId",
+        element: <SingleOrder />,
       },
     ],
   },

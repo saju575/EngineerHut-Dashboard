@@ -1,3 +1,4 @@
+import moment from "moment";
 import { FaTrash } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 
@@ -11,13 +12,12 @@ const CustomerRows = ({ customer, styles = "" }) => {
   //component
   return (
     <tr
-      className={`border-b cursor-pointer border-gray-200 text-lg hover:bg-gray-100 ${
+      className={`border-b  border-gray-200 text-lg hover:bg-gray-100 ${
         styles && styles
       }`}
-      onClick={handleClick}
     >
       {/* first column */}
-      <td className="py-3 px-6 text-left">
+      <td className="py-3 px-6 text-left cursor-pointer" onClick={handleClick}>
         <div className="flex items-center">
           <div className="mr-2">
             <img
@@ -52,7 +52,9 @@ const CustomerRows = ({ customer, styles = "" }) => {
         */}
       <td className="py-3 px-6 text-left whitespace-nowrap">
         <div className="flex items-center">
-          <span className="capitalize">{customer.joinDate}</span>
+          <span className="capitalize">
+            {moment(customer.joinDate).format("MMM DD, YYYY h:mm A")}
+          </span>
         </div>
       </td>
 

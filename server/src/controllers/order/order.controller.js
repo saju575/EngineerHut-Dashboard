@@ -65,46 +65,38 @@ exports.getAllOrders = async (req, res, next) => {
     // Define a regular expression for case-insensitive search
     const regex = new RegExp(searchQuery, "i");
 
-    // Query to retrieve orders with pagination
-    const query = Order.find({
-      $or: [
-        { orderId: regex }, // Search by order ID
-        {
-          $or: [
-            { "customer.firstName": regex }, // Search by customer's first name
-            { "customer.lastName": regex }, // Search by customer's last name
-          ],
-        },
-        { paymentMethod: regex }, // Search by payment method
-      ],
-    })
-      .sort({ createdAt: -1 }) // Sort by creation date in descending order
-      .skip((page - 1) * limit) // Skip records for pagination
-      .limit(limit) // Limit records per page
+    // Find orders based on order criteria (order ID, payment method, etc.)
+    const orderCriteriaQuery = Order.find({
+      $or: [{ orderId: regex }, { paymentMethod: regex }],
+    });
+    // Find orders based on customer name (first name or last name)
+    const customerNameQuery = Order.find({
+      customer: {
+        $in: await Customer.find({
+          $or: [{ firstName: regex }, { lastName: regex }],
+        }).distinct("_id"),
+      },
+    });
+
+    // Combine the two queries using $or
+    const combinedQuery = {
+      $or: [orderCriteriaQuery.getQuery(), customerNameQuery.getQuery()],
+    };
+
+    // Execute the combined query to retrieve orders
+    const orders = await Order.find(combinedQuery)
       .populate("customer") // Populate entire customer information
       .populate({
         path: "items.product_id",
         model: "Product", // Populate entire product information
-      });
+      })
+      .sort({ createdAt: -1 }) // Sort by creation date in descending order
+      .skip((page - 1) * limit) // Skip records for pagination
+      .limit(limit); // Limit records per page
 
-    // Execute the query
-    const orders = await query.exec();
+    // Count total matching records for pagination based on the search criteria
+    const totalRecords = await Order.countDocuments(combinedQuery);
 
-    // Count total matching records for pagination
-    const totalRecords = await Order.countDocuments({
-      $or: [
-        { orderId: regex },
-        {
-          $or: [
-            { "customer.firstName": regex },
-            { "customer.lastName": regex },
-          ],
-        },
-        { paymentMethod: regex },
-      ],
-    });
-
-    // return the success response
     return successResponse(res, {
       payload: {
         total: totalRecords,
@@ -129,7 +121,7 @@ exports.getSingleOrder = async (req, res, next) => {
     const orderId = req.params.orderId;
 
     // Find the order by order ID and populate customer and product information
-    const order = await Order.findOne({ orderId })
+    const order = await Order.findOne({ _id: orderId })
       .populate("customer") // Populate entire customer information
       .populate({
         path: "items.product_id",
@@ -143,6 +135,36 @@ exports.getSingleOrder = async (req, res, next) => {
     return successResponse(res, {
       message: "Order found successfully",
       payload: order,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Define a route to get all orders for a specific customer with product details (name, price, and discount price)
+exports.getSingleCustomerAllOrder = async (req, res, next) => {
+  try {
+    const customerId = req.params.customerId;
+
+    // Find the customer by their ID
+    const customer = await Customer.findById(customerId);
+
+    if (!customer) {
+      return res.status(404).json({ message: "Customer not found" });
+    }
+
+    // Find all orders associated with the customer's ID and populate the specific fields from the Product model
+    const orders = await Order.find({ customer: customerId })
+      .populate({
+        path: "items.product_id",
+        model: "Product",
+        select: "name price discountPrice", // Specify the fields you want to retrieve from the Product model
+      })
+      .sort({ createdAt: -1 })
+      .exec();
+
+    return successResponse(res, {
+      payload: orders,
     });
   } catch (error) {
     next(error);

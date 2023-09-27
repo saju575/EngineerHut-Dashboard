@@ -5,7 +5,7 @@ import {
   BsChevronDown,
   BsFillClipboard2PlusFill,
 } from "react-icons/bs";
-import { FaBagShopping, FaBoxesStacked, FaHeart } from "react-icons/fa6";
+import { FaBagShopping, FaBoxesStacked } from "react-icons/fa6";
 import { MdOutlineDashboard } from "react-icons/md";
 import { Link, Outlet } from "react-router-dom";
 import Navbar from "../navbar/Navbar";
@@ -30,17 +30,11 @@ const menus = [
     link: "/upload-product",
     icon: <BsFillClipboard2PlusFill />,
   },
-  { title: "Wishlist", link: "/wishlist", icon: <FaHeart /> },
+  // { title: "Wishlist", link: "/wishlist", icon: <FaHeart /> },
   {
     title: "Orders",
     icon: <FaBagShopping />,
     link: "/orders",
-    subMenu: true,
-    subMenuOpen: false,
-    submenuItems: [
-      { title: "Order List", link: "/orders" },
-      { title: "Order Details", link: "/orderDetails" },
-    ],
   },
 ];
 

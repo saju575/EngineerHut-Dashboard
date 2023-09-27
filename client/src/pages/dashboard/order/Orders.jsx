@@ -4,14 +4,13 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { GoSearch } from "react-icons/go";
 import { useQuery } from "react-query";
-import { fetchCustomers } from "../../../../lib/getCustomers";
-import CustomerRows from "./CustomersRow";
 
 import Pagination from "@mui/material/Pagination";
 import { useState } from "react";
-import styles from "./customer.module.css";
+import { fetchOrders } from "../../../lib/getOrders";
+import OrderRow from "./OrderRow";
 
-const CustomerList = () => {
+const Orders = () => {
   /* 
     show and search input field state
   */
@@ -43,58 +42,57 @@ const CustomerList = () => {
   };
 
   /* 
-    fetchProducts categories
+    fetch all Orders
   */
   const {
-    data: customers,
-    isLoading: isCustomersLoading,
-    isError: isCustomersError,
-    error: customersError,
+    data: orders,
+    isLoading: isOrdersLoading,
+    isError: isOrdersError,
+    error: ordersError,
   } = useQuery({
     queryFn: () =>
-      fetchCustomers({
+      fetchOrders({
         search,
         page,
         perPage: show,
       }),
-    queryKey: ["customers", { search, page, show }],
+    queryKey: ["orders", { search, page, show }],
     staleTime: Infinity,
   });
 
   /* 
-    customers Content;
+    order Content;
 
     */
-  let customersContent;
-  if (isCustomersLoading) {
-    customersContent = <p>Loading...</p>;
-  } else if (!isCustomersLoading && isCustomersError) {
-    customersContent = <p>{customersError.message}</p>;
-  } else if (!isCustomersLoading && customers.payload.data.length === 0) {
-    customersContent = <p>No customer found</p>;
-  } else if (!isCustomersLoading && customers.payload.data.length > 0) {
-    customersContent = (
+  let ordersContent;
+  if (isOrdersLoading) {
+    ordersContent = <p>Loading...</p>;
+  } else if (!isOrdersLoading && isOrdersError) {
+    ordersContent = <p>{ordersError.message}</p>;
+  } else if (!isOrdersLoading && orders.payload.data.length === 0) {
+    ordersContent = <p>No orders found</p>;
+  } else if (!isOrdersLoading && orders.payload.data.length > 0) {
+    ordersContent = (
       <table className="min-w-max w-full table-auto">
         <thead>
           <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+            <th className="py-3 px-6 text-left">OrderId</th>
             <th className="py-3 px-6 text-left">Name</th>
-            <th className="py-3 px-6 text-left">Email</th>
-            <th className="py-3 px-6 text-center">Country</th>
-            <th className="py-3 px-6 text-center">Join Date</th>
+            <th className="py-3 px-6 text-left">Time</th>
+            <th className="py-3 px-6 text-center">Payment</th>
+            <th className="py-3 px-6 text-center">Total Amount</th>
 
+            <th className="py-3 px-6 text-center">Payment Method</th>
+            <th className="py-3 px-6 text-center">Delivery</th>
             <th className="py-3 px-6 text-center">Action</th>
           </tr>
         </thead>
         <tbody className="text-gray-600 text-sm font-light">
-          {customers?.payload.data.map((customer, index) => {
+          {orders?.payload.data.map((order, index) => {
             return index % 2 === 0 ? (
-              <CustomerRows
-                key={customer._id}
-                customer={customer}
-                styles={"bg-gray-50"}
-              />
+              <OrderRow key={order._id} order={order} styles={"bg-gray-50"} />
             ) : (
-              <CustomerRows key={customer._id} customer={customer} />
+              <OrderRow key={order._id} order={order} />
             );
           })}
         </tbody>
@@ -106,7 +104,7 @@ const CustomerList = () => {
     <div className="bg-[#f5f7fa] min-h-screen">
       <div className="p-7">
         <div className=" py-3">
-          <h1 className="font-semibold text-2xl">Customers</h1>
+          <h1 className="font-semibold text-2xl">Orders</h1>
           {/* <p className="customer-links">
             Home / <span>Customers</span>
           </p> */}
@@ -114,7 +112,7 @@ const CustomerList = () => {
 
         <div className="flex gap-4 sm:flex-row flex-col sm:justify-between sm:items-center">
           <form onSubmit={handleSearchSubmit}>
-            <div className={`${styles.search} bg-white w-56 sm:w-72`}>
+            <div className={`flex items-center bg-white w-56 sm:w-72`}>
               <input
                 className="p-4 font-medium outline-none w-48 sm:w-64"
                 type="text"
@@ -125,10 +123,7 @@ const CustomerList = () => {
               />
 
               <div className={`text-blue-500`}>
-                <button
-                  type="submit"
-                  disabled={isCustomersLoading ? true : false}
-                >
+                <button type="submit" disabled={isOrdersLoading ? true : false}>
                   <GoSearch />
                 </button>
               </div>
@@ -168,14 +163,14 @@ const CustomerList = () => {
                 {/* 
                   customer table
                 */}
-                {customersContent}
+                {ordersContent}
               </div>
             </div>
           </div>
         </div>
         <Pagination
           className="flex justify-end mr-4 pagination mt-7"
-          count={customers?.payload?.totalPages}
+          count={orders?.payload?.totalPages}
           variant="outlined"
           shape="rounded"
           onChange={(_, val) => setPage(val)}
@@ -185,4 +180,4 @@ const CustomerList = () => {
   );
 };
 
-export default CustomerList;
+export default Orders;
