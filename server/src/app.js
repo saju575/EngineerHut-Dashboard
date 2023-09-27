@@ -6,6 +6,7 @@ const { errorResponse } = require("./controllers/response/response.controller");
 const productRouter = require("./routers/product.router");
 const customerRouter = require("./routers/customer.router");
 const orderRouter = require("./routers/order.router");
+const statisticRouter = require("./routers/statistic.router");
 
 /* 
     making express app
@@ -31,6 +32,8 @@ app.use("/api/v1/products", productRouter);
 app.use("/api/v1/customers", customerRouter);
 
 app.use("/api/v1/orders", orderRouter);
+
+app.use("/api/v1/statistics", statisticRouter);
 
 /*
     Client error handler

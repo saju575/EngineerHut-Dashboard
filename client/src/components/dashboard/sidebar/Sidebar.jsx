@@ -7,7 +7,7 @@ import {
 } from "react-icons/bs";
 import { FaBagShopping, FaBoxesStacked } from "react-icons/fa6";
 import { MdOutlineDashboard } from "react-icons/md";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import Navbar from "../navbar/Navbar";
 import styles from "./Sidebar.module.css";
 
@@ -41,6 +41,8 @@ const menus = [
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
   const [menuState, setMenuState] = useState(menus);
+
+  const location = useLocation();
 
   //   toggle function for sub menu
   const toggleSubMenu = (projectTitle) => {
@@ -93,8 +95,12 @@ const Sidebar = () => {
             return (
               <Fragment key={index}>
                 {/* show main menu */}
-                <Link to={menu.link} className="hover:bg-[#dff9fb]">
-                  <li className="text-slate-700 text-sm flex items-center gap-x-4 cursor-pointer p-2  rounded-md mt-2 hover:bg-[#dff9fb]">
+                <Link to={menu.link} className={` hover:bg-[#dff9fb]`}>
+                  <li
+                    className={`text-slate-700 text-sm flex items-center gap-x-4 cursor-pointer p-2  rounded-md mt-2 hover:bg-[#dff9fb] ${
+                      location.pathname === menu.link ? "bg-[#dff9fb]" : ""
+                    }`}
+                  >
                     <span className="text-2xl block float-left">
                       {menu?.icon}
                     </span>
@@ -140,8 +146,12 @@ const Sidebar = () => {
           {menuState.map((menu, index) => {
             return (
               <Fragment key={index}>
-                <Link to={menu.link} className="hover:bg-[#dff9fb]">
-                  <li className="text-slate-700 text-sm flex items-center gap-x-4 cursor-pointer p-2  rounded-md mt-2 hover:bg-[#dff9fb] justify-center">
+                <Link to={menu.link} className={` hover:bg-[#dff9fb]`}>
+                  <li
+                    className={`text-slate-700 text-sm flex items-center gap-x-4 cursor-pointer p-2  rounded-md mt-2 hover:bg-[#dff9fb] justify-center ${
+                      location.pathname === menu.link ? "bg-[#dff9fb]" : ""
+                    }`}
+                  >
                     <span className="text-xl block float-left">
                       {menu?.icon}
                     </span>

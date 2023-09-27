@@ -4,7 +4,7 @@ import Summery from "./summery/Summery";
 
 const DashBoard = () => {
   return (
-    <div className="bg-gray-100 m-4 p-2 ">
+    <div className="bg-gray-100  p-8 ">
       <Summery />
       <BestSellingProduct />
       <RecentOrder />

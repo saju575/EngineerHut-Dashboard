@@ -1,13 +1,18 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { FaBell, FaMoon } from "react-icons/fa6";
 import avater from "../../../assets/img/avater.png";
 import styles from "./Navbar.module.css";
 
 const Navbar = () => {
-  // handle search bar
-  const handleSearchBar = (e) => {
-    e.preventDefault();
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!isDropdownOpen);
   };
+  // handle search bar
+  // const handleSearchBar = (e) => {
+  //   e.preventDefault();
+  // };
   return (
     <Fragment>
       <nav className="bg-white py-3 shadow-sm">
@@ -15,7 +20,7 @@ const Navbar = () => {
           {/* <!-- Left elements --> */}
           {/* <!-- search bar --> */}
           <div>
-            <form onSubmit={handleSearchBar}>
+            {/* <form onSubmit={handleSearchBar}>
               <div className="">
                 <input
                   type="text"
@@ -29,7 +34,7 @@ const Navbar = () => {
                   🚀
                 </button>
               </div>
-            </form>
+            </form> */}
           </div>
 
           {/* <!-- Right elements --> */}
@@ -58,7 +63,30 @@ const Navbar = () => {
                 className="object-cover w-8 h-8 md:w-6 md:h-6"
                 style={{ borderRadius: "50%" }}
                 alt="avater"
+                onClick={toggleDropdown}
               />
+
+              {isDropdownOpen && (
+                <div className="absolute right-0 mt-2 py-2 w-48 bg-white border border-gray-300 rounded-lg shadow-lg z-20">
+                  <ul className="space-y-1">
+                    <li>
+                      <a href="#" className="block px-4 py-2 hover:bg-gray-100">
+                        Profile
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" className="block px-4 py-2 hover:bg-gray-100">
+                        Profile Settings
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" className="block px-4 py-2 hover:bg-gray-100">
+                        Logout
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
         </div>

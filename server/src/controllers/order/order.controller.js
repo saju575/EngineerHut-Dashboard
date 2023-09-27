@@ -170,3 +170,37 @@ exports.getSingleCustomerAllOrder = async (req, res, next) => {
     next(error);
   }
 };
+
+/* 
+
+get order list based on days
+ */
+exports.getLetestOrders = async (req, res, next) => {
+  try {
+    const days = req.query.days || 1;
+
+    const dateFilter = new Date();
+    dateFilter.setDate(dateFilter.getDate() - parseInt(days));
+    const latestOrders = await Order.find({
+      order_date: { $gte: dateFilter },
+    })
+      .sort({ order_date: -1 })
+      .populate({
+        path: "items.product_id",
+        model: Product,
+        select: "name images", // Select the fields you want to retrieve for products
+      })
+      .populate({
+        path: "customer",
+        model: Customer,
+        select: "image firstName lastName", // Select the fields you want to retrieve for customers
+      })
+      .exec();
+
+    return successResponse(res, {
+      payload: latestOrders,
+    });
+  } catch (err) {
+    next(err);
+  }
+};

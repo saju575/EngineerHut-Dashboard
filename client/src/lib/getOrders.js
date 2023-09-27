@@ -61,3 +61,19 @@ export const fetchAllOrdersOfACustomer = async (customerId) => {
     throw new Error(error.response.data.message);
   }
 };
+
+/* 
+  fetch recent orders
+*/
+
+export const fetchAllRecentOrders = async (days) => {
+  try {
+    const url = `/orders/recent/all?days=${days}`;
+
+    const response = await axios.get(url);
+
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+};
