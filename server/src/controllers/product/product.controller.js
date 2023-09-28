@@ -4,6 +4,7 @@ const { findWithId } = require("../../services/findItem.service");
 const {
   imageDeleteFromFirebase,
 } = require("../../services/imgDeleteFromFirebase.service");
+const Order = require("../../models/order.model");
 
 exports.productCreate = async (req, res, next) => {
   try {
@@ -254,6 +255,89 @@ exports.getBrandCount = async (req, res, next) => {
 
     // return the result
     return successResponse(res, { payload: brandCountMap });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/* 
+  get best selling products
+*/
+
+exports.getBestSellingProducts = async (req, res, next) => {
+  try {
+    const daysAgo = parseInt(req.query.daysAgo) || 3; // Default to 3 days ago
+    const minProductsSold = parseInt(req.query.minProductsSold) || 3; // Default to 3 minimum products sold
+    const page = parseInt(req.query.page) || 1; // Default to page 1
+    const perPage = parseInt(req.query.perPage) || 10; // Default to 10 products per page
+
+    const skip = (page - 1) * perPage;
+
+    const results = await Order.aggregate([
+      {
+        $match: {
+          order_date: {
+            $gte: new Date(new Date() - daysAgo * 24 * 60 * 60 * 1000),
+          },
+          paymentStatus: true, // Filter by paymentStatus=true
+        },
+      },
+      {
+        $unwind: "$items",
+      },
+      {
+        $group: {
+          _id: "$items.product_id",
+          totalQuantity: { $sum: "$items.quantity" },
+        },
+      },
+      {
+        $match: {
+          totalQuantity: { $gte: minProductsSold },
+        },
+      },
+      {
+        $sort: { totalQuantity: -1 },
+      },
+      {
+        $skip: skip,
+      },
+      {
+        $limit: perPage,
+      },
+      {
+        $lookup: {
+          from: "products", // Your product model name
+          localField: "_id",
+          foreignField: "_id",
+          as: "product",
+        },
+      },
+      {
+        $unwind: "$product",
+      },
+      {
+        $project: {
+          _id: 0,
+          product: 1,
+          totalQuantity: 1,
+        },
+      },
+    ]);
+
+    const totalRecords = results.length;
+
+    return successResponse(res, {
+      payload: {
+        total: totalRecords,
+        perPage,
+        currentPage: page,
+        totalPages: Math.ceil(totalRecords / perPage),
+        start: skip + 1,
+        end: perPage > totalRecords ? totalRecords : perPage,
+        data: results,
+      },
+    });
   } catch (error) {
     next(error);
   }

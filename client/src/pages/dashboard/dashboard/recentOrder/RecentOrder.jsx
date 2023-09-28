@@ -72,7 +72,7 @@ const RecentOrder = () => {
         </p>
         <div className="w-28">
           <FormControl sx={{ minWidth: 120 }} size="small">
-            <InputLabel id="showing-label">Showing Leatest</InputLabel>
+            <InputLabel id="showing-label">Showing Latest</InputLabel>
             <Select
               labelId="showing"
               id="showing"

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import "../../../stylesheets/Responsive.css";
 import "../../../stylesheets/UploadProduct.css";
 
@@ -78,6 +78,11 @@ const UploadProduct = () => {
   };
 
   /* 
+    client query
+  */
+  const queryClient = new useQueryClient();
+
+  /* 
     react query
   */
 
@@ -85,6 +90,7 @@ const UploadProduct = () => {
     mutationFn: (data) => createProduct(data),
     onSuccess: async () => {
       clearFromData();
+      queryClient.invalidateQueries(["products"]);
     },
   });
 
@@ -198,6 +204,7 @@ const UploadProduct = () => {
                         type="number"
                         required
                         inputProps={{
+                          inputMode: "numeric",
                           min: 0,
                         }}
                         name="price"
