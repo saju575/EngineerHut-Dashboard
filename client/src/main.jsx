@@ -5,6 +5,7 @@ import { RouterProvider } from "react-router-dom"; // Import RouterProvider for 
 import { QueryClient, QueryClientProvider } from "react-query"; //import reacct query
 
 import "./index.css"; // Import global CSS styles
+import AuthProvider from "./providers/AuthProvider";
 import { router } from "./router/Router.jsx"; // Import the router configuration
 
 const queryClient = new QueryClient();
@@ -14,7 +15,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     {/* Use the RouterProvider to provide the routing configuration */}
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
     </QueryClientProvider>
   </React.StrictMode>
 );

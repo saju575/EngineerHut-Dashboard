@@ -253,22 +253,27 @@ exports.handleLogin = async (req, res, next) => {
       throw createHttpError(401, "Email/password mismatch");
     }
 
+    const data = { ...user._doc, password: undefined };
     // token, cookie
 
-    const accessToken = createJWTToken(user, JWT_ACCESS_KEY, "24h");
-    //set cookie
+    const accessToken = createJWTToken(data, JWT_ACCESS_KEY, "24h");
+
+    // set cookies
     res.cookie("accessToken", accessToken, {
-      maxAge: 24 * 60 * 60 * 1000,
-      httpOnly: true,
-      // secure: true,
-      sameSite: "none",
+      maxAge: 60 * 60 * 24 * 1 * 1000,
+      // httpOnly: true,
+      // sameSite: "none",
+      path: "/",
     });
 
     // successful response
     return successResponse(res, {
       statusCode: 200,
       message: "User were logged in successfully",
-      payload: { ...user._doc, password: undefined },
+      payload: {
+        user: { ...user._doc, password: undefined },
+        accessToken: accessToken,
+      },
     });
   } catch (error) {
     next(error);
@@ -285,6 +290,20 @@ exports.handleLogout = async (req, res, next) => {
     return successResponse(res, {
       statusCode: 200,
       message: "User logged out successfully",
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.userProfile = async (req, res, next) => {
+  try {
+    const userId = req.user._id;
+
+    const user = await findWithId(Customer, userId);
+
+    return successResponse(res, {
+      payload: user,
     });
   } catch (error) {
     next(error);

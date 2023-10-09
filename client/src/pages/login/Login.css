@@ -1,0 +1,47 @@
+#loginChiceElegance {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  justify-content: center;
+}
+
+#loginChiceElegance .login-form-container {
+  color: #444444;
+  padding: 20px;
+  font-family: "Open Sans", sans-serif;
+  width: 500px;
+    margin: 0 auto;
+}
+
+
+#loginChiceElegance .login-form-label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#loginChiceElegance .login-form-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  background-color: #94999e;
+  color: #fff;
+  font-family: "Open Sans", sans-serif;
+}
+
+#loginChiceElegance .login-form-button {
+  padding: 10px 40px;
+  background-color: #777;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-family: "Open Sans", sans-serif;
+}
+
+#loginChiceElegance .login-form-error {
+  color: red;
+  margin-top: 40px;
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+}

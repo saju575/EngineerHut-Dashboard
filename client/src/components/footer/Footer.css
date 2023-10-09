@@ -1,0 +1,436 @@
+#footer-wrapper {
+  position: relative;
+}
+
+#footer-top {
+  position: absolute;
+  top: -80px;
+  left: 0;
+  box-shadow: 0px 0px 45px -11px rgba(51, 51, 51, 0.28);
+}
+
+#footer-top h3 {
+  font-family: "Rajdhani";
+}
+
+#footer-top p {
+  font-family: "Open Sans";
+}
+
+.footer-topInner {
+  position: relative;
+}
+
+.footer-topInner {
+  border-right: thin solid #a3a3a3bd;
+  margin: 20px 0;
+}
+
+#footer-wrapper .borderRight {
+  border: none;
+}
+
+.footer-main i {
+  color: #1221239a;
+}
+
+.footer-main .social i {
+  color: black;
+}
+
+.footer-main {
+  font-family: "Open Sans";
+}
+
+.footer-main img {
+  width: 60%;
+}
+
+.footer-main .paymentResPadding img {
+  width: 100% !important;
+}
+
+.footer-main .footer-title {
+  font-family: "Rajdhani";
+}
+
+.footer-main .link {
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -ms-transition: 0.4s;
+  -o-transition: 0.4s;
+  cursor: pointer;
+}
+
+.footer-main .link:hover {
+  color: #AFBACA;
+}
+
+.footer-main .link span {
+  display: none;
+  color: #AFBACA;
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -ms-transition: 0.4s;
+  -o-transition: 0.4s;
+}
+
+.footer-main .link:hover span {
+  display: block;
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -ms-transition: 0.4s;
+  -o-transition: 0.4s;
+}
+
+.footer-main .send {
+  background-color: #AFBACA;
+  color: #ffffff;
+  cursor: pointer;
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -ms-transition: 0.4s;
+  -o-transition: 0.4s;
+}
+
+.footer-main .send:hover {
+  background-color: #071c1f;
+}
+
+.footer-bottom a {
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -ms-transition: 0.4s;
+  -o-transition: 0.4s;
+  font-family: "Rajdhani";
+}
+
+.footer-bottom a:hover {
+  color: #80b500;
+}
+
+/*  */
+
+.scrollToTop {
+  position: fixed;
+  bottom: 87px;
+  right: 50px;
+  color: #071c1f;
+  font-size: 20px;
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -ms-transition: 0.4s;
+  -o-transition: 0.4s;
+  background-color: #f7f5eb;
+  z-index: 1;
+  box-shadow: 0px 0px 9px 0px rgba(156, 156, 156, 0.75);
+
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+}
+
+.scrollToTop:hover {
+  background-color: #AFBACA;
+  color: #ffffff !important;
+}
+
+.scrollToTop:hover i {
+  color: #ffffff !important;
+}
+
+/* Responsive Area */
+
+
+@media (min-width: 1451px) and (max-width: 2120px) {
+  .footer-mainResponsive2 {
+    width: 60% !important;
+  }
+
+  .footer-mainResponsive1 {
+    justify-content: space-between;
+  }
+}
+
+
+@media (min-width: 1200px) and (max-width: 1450px) {
+
+  .borderRight1 {
+    border: none;
+  }
+
+  .custom-slick-next {
+    right: 20px !important;
+  }
+
+  .custom-slick-prev {
+    left: 20px !important;
+  }
+
+  .footer-main {
+    display: block;
+  }
+
+  .footer-main img {
+    width: 40%;
+  }
+
+  .paymentResPadding {
+    padding-bottom: 20px;
+  }
+
+  .newsLPaddingTopRes {
+    padding-top: 30px;
+  }
+
+  .footer-bottom {
+    margin: 0 40px;
+  }
+
+  .newsLPaddingTopRes {
+    width: 80%;
+  }
+}
+
+
+@media (min-width: 991px) and (max-width: 1199px) {
+  #footer-top {
+    display: block;
+    margin: 0 40px;
+  }
+
+  .footer-main img {
+    width: 40%;
+  }
+
+  .borderRight1 {
+    border: none;
+  }
+
+  .custom-slick-next {
+    right: 20px !important;
+  }
+
+  .custom-slick-prev {
+    left: 20px !important;
+  }
+
+  .footer-main {
+    display: block;
+    padding-top: 250px;
+  }
+
+  
+  .paymentResPadding {
+    padding-bottom: 20px;
+  }
+
+  .newsLPaddingTopRes {
+    padding-top: 30px;
+  }
+
+  .footer-bottom {
+    margin: 0 40px;
+  }
+
+  .newsLPaddingTopRes {
+    width: 90%;
+  }
+
+  .newsLPaddingTopRes {
+    width: 90%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  #footer-top {
+    display: block;
+    margin: 0 40px;
+    top: -130px;
+  }
+
+  .footer-main {
+    padding-top: 240px;
+  }
+
+  .footer-main img {
+    width: 45%;
+  }
+
+  .borderRight1 {
+    border: none;
+  }
+
+  .custom-slick-next {
+    right: 20px !important;
+  }
+
+  .custom-slick-prev {
+    left: 20px !important;
+  }
+
+  .footer-main {
+    display: block;
+  }
+
+  .paymentResPadding {
+    padding-bottom: 20px;
+  }
+
+  .newsLPaddingTopRes {
+    padding-top: 30px;
+  }
+
+  .footer-bottom {
+    margin: 0 40px;
+  }
+
+  .newsLPaddingTopRes {
+    width: 90%;
+  }
+}
+
+@media (min-width: 550px) and (max-width: 767px) {
+  #footer-top {
+    display: block;
+    margin: 0 40px;
+    top: -181px;
+  }
+
+  .footer-topResponsive {
+    display: block;
+  }
+
+  .footer-topResponsive .footer-topInner {
+    width: 100%;
+    border-right: transparent;
+    padding: 10px 20px;
+
+  }
+
+  .footer-main {
+    padding-top: 440px;
+  }
+
+  .borderRight1 {
+    border: none;
+  }
+
+  .custom-slick-next {
+    right: 20px !important;
+  }
+
+  .custom-slick-prev {
+    left: 20px !important;
+  }
+
+  .footer-main {
+    display: block;
+  }
+
+  .paymentResPadding {
+    padding-bottom: 20px;
+  }
+
+  .newsLPaddingTopRes {
+    padding-top: 30px;
+  }
+
+  .footer-bottom {
+    margin: 0 40px;
+  }
+
+  .footer-bottom h2 {
+    font-size: 14px;
+  }
+
+  .footer-bottom a {
+    font-size: 13px;
+  }
+  .newsLPaddingTopRes {
+    width: 90%;
+  }
+}
+
+
+@media (min-width: 320px) and (max-width: 549px) {
+  #footer-top {
+    display: block;
+    margin: 0 40px;
+    top: -181px;
+  }
+
+  .footer-topResponsive {
+    display: block;
+  }
+
+  .footer-topResponsive .footer-topInner {
+    width: 100%;
+    border-right: transparent;
+    padding: 10px 20px;
+
+  }
+
+  .footer-main {
+    padding-top: 490px;
+  }
+
+  .borderRight1 {
+    border: none;
+  }
+
+  .custom-slick-next {
+    right: 20px !important;
+  }
+
+  .custom-slick-prev {
+    left: 20px !important;
+  }
+
+  .footer-main {
+    display: block;
+  }
+
+  .paymentResPadding {
+    padding-bottom: 20px;
+  }
+
+  .newsLPaddingTopRes {
+    padding-top: 30px;
+  }
+
+  .footer-bottom {
+    margin: 0 40px;
+    display: block;
+  }
+
+  .footer-bottom h2 {
+    font-size: 16px;
+  }
+
+  .footer-bottom a {
+    font-size: 15px;
+    padding-top: 20px;
+  }
+
+  .footer-bottom a:nth-child(1) {
+    padding: 0;
+  }
+
+  .paymentResPadding {
+    height: 50px;
+    width: 500px !important;
+  }
+
+  .newsLPaddingTopRes {
+    width: 90%;
+  }
+}

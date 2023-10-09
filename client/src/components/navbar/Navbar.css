@@ -1,0 +1,111 @@
+.navbar-inner {
+  font-family: "Rajdhani";
+  color: #2d3538;
+}
+
+.navbar-wrapper .navbar-inner img {
+  height: 48px;
+}
+
+.navbar-inner ul li a {
+  transition: 0.4s;
+}
+
+.navbar-inner ul li a:hover {
+  color: #afbaca;
+}
+
+.navbar-innerRight i {
+  font-size: 22px;
+  color: #232323;
+  cursor: pointer;
+}
+
+.navbar-innerRight a {
+  font-size: 15px;
+  background: #afbaca;
+  color: #ffffff;
+  font-family: "Rajdhani";
+  transition: 0.5s;
+}
+
+@media (max-width: 1100px) {
+  .navbar ul {
+    display: none;
+    width: 320px;
+  }
+
+  .bar {
+    background-color: rgb(0, 0, 0);
+    height: 2px;
+    width: 25px;
+    margin: 5px 0;
+    transition: 0.4s;
+    margin-left: 15px;
+  }
+
+  .navbar.sidebar-open ul {
+    display: flex;
+    flex-direction: column;
+
+    background-color: #ffffff;
+    transition: 0.4s;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .navbar-inner .close-button {
+    font-size: 30px;
+  }
+
+  .navbar-innerRight a {
+    display: none;
+  }
+
+  .sidebar-input input {
+    border: thin solid #edf4fc;
+    font-family: "Open Sans";
+    margin: 40px 0;
+    padding: 0 8px;
+    height: 60px;
+    width: 283px;
+  }
+
+  .navbar-inner li {
+    color: #232323;
+    font-size: 20px;
+    font-family: "Rajdhani";
+    padding-right: 0;
+    padding-bottom: 25px;
+    padding-left: 25px;
+    text-align: start;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  .sidebar-icons {
+    font-size: 22px;
+    font-family: "Open Sans";
+  }
+
+  .sidebar-icons p {
+    font-style: normal !important;
+    padding-left: 12px;
+    font-size: 16px;
+    font-family: "Open Sans" !important;
+  }
+
+  .sidebar-social i {
+    font-size: 20px;
+    background: #f7f5eb;
+  }
+}
+
+@media (min-width: 1100px) {
+  .sidebar-logo,
+  .close-button,
+  .sidebar-icons {
+    display: none;
+  }
+}

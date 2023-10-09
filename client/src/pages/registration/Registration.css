@@ -1,0 +1,58 @@
+#registrationChiceElegance {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  justify-content: center;
+}
+
+#registrationChiceElegance .login-form-container {
+  color: #444444;
+  padding: 20px;
+  font-family: "Open Sans", sans-serif;
+  width: 500px;
+    margin: 0 auto;
+}
+
+
+#registrationChiceElegance .login-form-label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#registrationChiceElegance .login-form-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  background-color: #b9c5cc;
+  color: #000000a8;
+  font-family: "Open Sans", sans-serif;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  outline: none;
+}
+
+#registrationChiceElegance .login-form-button {
+  padding: 10px 40px;
+  background-color: #777;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-family: "Open Sans", sans-serif;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+}
+
+#registrationChiceElegance .login-form-error {
+  color: red;
+  margin-top: 40px;
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+}

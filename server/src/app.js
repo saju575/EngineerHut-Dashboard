@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const createHttpError = require("http-errors");
-
+const cookieParser = require("cookie-parser");
 const { errorResponse } = require("./controllers/response/response.controller");
 const productRouter = require("./routers/product.router");
 const customerRouter = require("./routers/customer.router");
@@ -17,7 +17,13 @@ const app = express();
 /* 
     default middlewares
 */
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 

@@ -1,0 +1,260 @@
+.carousel-item1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.carousel-item1 h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.carousel-item1 p {
+  font-size: 16px;
+  color: #2d3538;
+}
+
+.carousel-item1 img {
+  height: auto;
+}
+
+.banner-wrapper .text-content {
+  font-family: "Open Sans";
+}
+
+.banner-wrapper .text-content h1,
+.banner-wrapper .text-content h5,
+.banner-wrapper .text-content p {
+  font-family: "Rajdhani";
+}
+
+.banner-wrapper .text-content h1 {
+  margin-bottom: 70px;
+  color: #2d3538;
+}
+
+.banner-wrapper .text-content i {
+  color: #AFBACA;
+  font-size: 26px;
+}
+
+.banner-wrapper .text-content a {
+  font-family: "Rajdhani";
+  padding: 20px 35px;
+  background-color: #AFBACA;
+  color: #2d3538;
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -ms-transition: 0.4s;
+  -o-transition: 0.4s;
+}
+
+.banner-wrapper .text-content a:hover {
+  background: #ffffff;
+}
+
+.banner-wrapper .text-content .bgWhite {
+  background: #ffffff;
+  color: #071c1f;
+  box-shadow: 0px 0 7px 0 rgb(35 33 33 / 10%);
+  margin-left: 10px;
+}
+
+.banner-wrapper .text-content .bgWhite:hover {
+  color: #AFBACA !important;
+}
+
+/* ---------- */
+.banner-wrapper .slick-track {
+  height: 450px;
+}
+
+.slick-dots li button:before {
+  font-family: "slick";
+  font-size: 15px;
+  line-height: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  content: "•";
+  text-align: center;
+  opacity: 0.25;
+  color: #c5c5c4;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-dots .slick-active button::before {
+  color: #AFBACA !important;
+}
+
+.custom-slick-arrow {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  z-index: 1;
+  cursor: pointer;
+  padding: 16px;
+  border: thin solid #e4e4e0b9;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -ms-transition: 0.4s;
+  -o-transition: 0.4s;
+}
+
+.custom-slick-arrow:hover {
+  background-color: #AFBACA;
+  color: #ffffff;
+  border: thin solid transparent;
+}
+
+.custom-slick-arrow:hover svg {
+  color: #ffffff;
+}
+
+.custom-slick-prev {
+  left: -100px;
+}
+
+.custom-slick-next {
+  right: -100px;
+}
+
+.custom-slick-arrow svg {
+  width: 20px;
+  height: 20px;
+  color: #000;
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -ms-transition: 0.4s;
+  -o-transition: 0.4s;
+}
+
+/* ---------- */
+
+/* Responsive Area */
+
+@media (max-width: 1450px) {
+  .custom-slick-arrow {
+    display: none;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .banner-wrapper .slick-list {
+    height: 575px;
+  }
+
+  .banner-wrapper .slick-list:nth-child(1) {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .bannerHeightResponsive {
+    display: block;
+    height: 100px;
+  }
+
+  .banner-wrapper .carousel-item1 .text-content h1 {
+    margin: 45px 0;
+    font-size: 50px;
+  }
+
+  .banner-wrapper .carousel-item1 .text-content {
+    margin-bottom: 60px;
+  }
+
+  .banner-wrapper .carousel-item2 h1 {
+    padding-left: 10px;
+  }
+
+  .banner-wrapper .carousel-item2 .text-content h1 {
+    margin-bottom: 30px;
+    font-size: 38px;
+  }
+
+  .banner-wrapper .custom-slick-arrow {
+    display: none;
+  }
+
+  .banner-wrapper .text-content p {
+    padding: 0 18px 18px 25px;
+  }
+
+  .banner-wrapper .text-content .bgWhite {
+    display: block;
+    margin-top: 40px;
+    text-align: center;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .banner-wrapper .slick-list {
+    height: 705px;
+  }
+
+  .bannerHeightResponsive {
+    display: block;
+    height: 100px;
+  }
+
+  .banner-wrapper .carousel-item2 h1 {
+    padding-left: 40px;
+  }
+
+  .banner-wrapper .text-content h1 {
+    margin-bottom: 30px;
+  }
+
+  .banner-wrapper .custom-slick-arrow {
+    display: none;
+  }
+
+  .banner-wrapper .text-content p {
+    padding: 0 18px 32px 140px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .banner-wrapper .slick-list {
+    height: 705px;
+  }
+
+  .bannerHeightResponsive {
+    display: block;
+    height: 100px;
+  }
+
+  .banner-wrapper .carousel-item2 h1 {
+    padding-left: 40px;
+  }
+
+  .banner-wrapper .text-content h1 {
+    margin-bottom: 30px;
+  }
+
+  .banner-wrapper .custom-slick-arrow {
+    display: none;
+  }
+
+  .banner-wrapper .text-content p {
+    padding: 0 18px 32px 140px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+}
+
+@media (min-width: 1200px) and (max-width: 1199.98px) {
+}

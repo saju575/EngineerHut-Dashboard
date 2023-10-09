@@ -1,0 +1,139 @@
+.featProducts-card {
+  position: relative;
+  transition: 0.6s;
+  -webkit-transition: 0.6s;
+  -moz-transition: 0.6s;
+  -ms-transition: 0.6s;
+  -o-transition: 0.6s;
+  border: thin solid #3a575c11;
+}
+
+.featProducts-card img {
+  height: 290px;
+  width: 100%;
+}
+
+.new-arrival {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 4px 20px;
+  background-color: #afbaca;
+  color: #ffffff;
+  -webkit-border-radius: 10px 0 10px 0;
+  border-radius: 10px 0 10px 0;
+  -moz-border-radius: 10px 0 10px 0;
+  -ms-border-radius: 10px 0 10px 0;
+  -o-border-radius: 10px 0 10px 0;
+}
+
+.featProducts-desc h4 {
+  font-family: "Rajdhani";
+  cursor: pointer;
+}
+
+.featProducts-desc h3 span {
+  text-decoration: line-through;
+}
+
+.featProducts-desc i {
+  color: #ffbf21;
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -ms-transition: 0.4s;
+  -o-transition: 0.4s;
+}
+
+.featProducts-desc i:hover,
+.featProducts-desc h4:hover,
+.featProducts-desc h3 {
+  color: #afbaca;
+}
+
+.featured-hoverIcons {
+  display: none;
+}
+
+.featProducts-card:hover {
+  box-shadow: 0px 10px 48px 10px rgba(185, 185, 185, 0.4);
+}
+
+.featProducts-card:hover .featured-hoverIcons {
+  display: block;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+}
+
+.featured-hoverIcons li {
+  background-color: #ffffff;
+  color: #071c1f;
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -ms-transition: 0.4s;
+  -o-transition: 0.4s;
+}
+
+.featured-hoverIcons li:hover {
+  color: #ffffff;
+  background-color: #afbaca;
+}
+
+/* Responsive Area */
+
+@media (min-width: 1200px) and (max-width: 1400px) {
+  #featProducts h1 {
+    font-size: 40px;
+  }
+}
+
+@media (min-width: 991px) and (max-width: 1199px) {
+  #featProducts h1 {
+    font-size: 35px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 990px) {
+  #featProducts h1 {
+    font-size: 30px;
+  }
+
+  .featProducts-inner {
+    display: block;
+  }
+}
+
+@media (min-width: 550px) and (max-width: 767px) {
+  #featProducts h1 {
+    font-size: 25px;
+  }
+
+  .featProducts-inner {
+    display: block;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 549px) {
+  #featProducts h1 {
+    font-size: 22px;
+  }
+
+  .featProducts-inner {
+    display: block;
+  }
+
+  .featProducts-inner .featProductResponsive {
+    display: block;
+  }
+
+  .featProducts-inner .featProductResponsive .featProdResInner {
+    width: 100%;
+  }
+}

@@ -12,58 +12,8 @@ import Products from "../pages/dashboard/products/Products";
 import ProductsDetails from "../pages/dashboard/products/ProductsDetails";
 import UploadProduct from "../pages/dashboard/products/UploadProduct";
 import Home from "../pages/home/home/Home";
-
-// export const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <Main />,
-//     children: [
-//       {
-//         path: "/customers",
-//         element: <CustomerList />,
-//       },
-//       {
-//         path: "/customer/:customerId",
-//         element: <SingleCustomer />,
-//       },
-
-//       {
-//         path: "/",
-//         element: <DashBoard />,
-//       },
-
-//       {
-//         path: "/products",
-//         element: <Products />,
-//       },
-//       {
-//         path: "/products/:productId",
-//         element: <ProductsDetails />,
-//       },
-//       {
-//         path: "/products-details",
-//         element: <ProductsDetails />,
-//       },
-//       {
-//         path: "/upload-product",
-//         element: <UploadProduct />,
-//       },
-
-//       {
-//         path: "/wishlist",
-//         element: <Wishlist />,
-//       },
-//       {
-//         path: "/orders",
-//         element: <Orders />,
-//       },
-//       {
-//         path: "/orders/:orderId",
-//         element: <SingleOrder />,
-//       },
-//     ],
-//   },
-// ]);
+import Login from "../pages/login/Login";
+import Registraion from "../pages/registration/Registration";
 
 export const router = createBrowserRouter([
   {
@@ -119,5 +69,13 @@ export const router = createBrowserRouter([
         ],
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Registraion />,
   },
 ]);

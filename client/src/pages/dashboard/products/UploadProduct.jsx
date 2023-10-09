@@ -90,7 +90,12 @@ const UploadProduct = () => {
     mutationFn: (data) => createProduct(data),
     onSuccess: async () => {
       clearFromData();
-      queryClient.invalidateQueries(["products"]);
+      queryClient.invalidateQueries([
+        "products",
+        "categories",
+        "hProducts",
+        "pCategories",
+      ]);
     },
   });
 
