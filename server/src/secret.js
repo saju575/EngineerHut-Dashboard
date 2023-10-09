@@ -29,3 +29,13 @@ exports.FIREBASE_MESSAGING_SENDER_ID =
 
 exports.FIREBASE_APP_ID =
   process.env.FIREBASE_APP_ID || "1:278404608426:web:5121874fc2a89416bd7bd3";
+
+exports.JWT_ACTIVATION_KEY = process.env.JWT_ACTIVATION_KEY || "jdkekkw^^555%7";
+
+exports.JWT_ACCESS_KEY = process.env.JWT_ACCESS_KEY || "jdkekkw";
+
+exports.CLIENT_URL = process.env.CLIENT_URL || "http://localhost:3000";
+
+exports.SMTP_EMAIL = process.env.SMTP_EMAIL;
+
+exports.SMTP_EMAIL_PASS = process.env.SMTP_EMAIL_PASS;

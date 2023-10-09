@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 
 // Define the Customer schema
 const customerSchema = new mongoose.Schema({
@@ -18,16 +19,17 @@ const customerSchema = new mongoose.Schema({
   },
   dateOfBirth: {
     type: String,
-    required: true,
+    // required: true,
   },
   gender: {
     type: String,
     enum: ["Male", "Female", "Other"],
-    required: true,
+    // required: true,
+    default: "Male",
   },
   phone: {
     type: String,
-    required: true,
+    // required: true,
   },
   email: {
     type: String,
@@ -37,11 +39,23 @@ const customerSchema = new mongoose.Schema({
   },
   country: {
     type: String,
-    required: true,
+    // required: true,
   },
   joinDate: {
     type: Date,
     default: Date.now,
+  },
+  password: {
+    type: String,
+    require: [true, "User password is required"],
+    minlength: [3, "User password length must be greater than 3 characters"],
+    set: (v) => bcrypt.hashSync(v, bcrypt.genSaltSync(10)),
+    select: false,
+  },
+  role: {
+    type: String,
+    enum: ["admin", "user"],
+    default: "user",
   },
 });
 
