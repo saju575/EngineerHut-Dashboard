@@ -21,7 +21,7 @@ const OrderRow = ({ order, styles = "" }) => {
 
   //onClick handler for each customer
   const handleClick = () => {
-    navigate(`/orders/${order._id}`);
+    navigate(`/dashboard/orders/${order._id}`);
   };
   //component
   return (

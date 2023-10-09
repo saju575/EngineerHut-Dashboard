@@ -385,7 +385,10 @@ function Products() {
                 Go to upload product page
               */}
               <div className="product-tabs--btn mt-5 ml-5">
-                <Link to="/upload-product" className="p-5 px-12 font-semibold">
+                <Link
+                  to="/dashboard/upload-product"
+                  className="p-5 px-12 font-semibold"
+                >
                   Upload Product
                 </Link>
               </div>

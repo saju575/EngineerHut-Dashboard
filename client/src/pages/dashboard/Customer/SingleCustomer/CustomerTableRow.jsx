@@ -28,7 +28,7 @@ const CustomerTableRow = ({ data, styles }) => {
   const navigate = useNavigate();
 
   const handleToNavigate = () => {
-    navigate(`/orders/${data._id}`);
+    navigate(`/dashboard/orders/${data._id}`);
   };
   return (
     <tr

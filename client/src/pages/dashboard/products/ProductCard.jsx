@@ -13,7 +13,7 @@ const ProductCard = ({ product }) => {
 
   //onClick handler for each product
   const handleClick = () => {
-    navigate(`/products/${_id}`);
+    navigate(`/dashboard/products/${_id}`);
   };
 
   return (
@@ -28,7 +28,7 @@ const ProductCard = ({ product }) => {
           <p className="my-4 p-4">
             <AiOutlineHeart />
           </p>
-          <Link to={`/products/${_id}`}>
+          <Link to={`/dashboard/products/${_id}`}>
             <p className="my-4 p-4">
               <HiArrowsExpand />
             </p>

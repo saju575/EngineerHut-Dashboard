@@ -8,33 +8,32 @@ import {
 import { FaBagShopping, FaBoxesStacked } from "react-icons/fa6";
 import { MdOutlineDashboard } from "react-icons/md";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import Navbar from "../navbar/Navbar";
 import styles from "./Sidebar.module.css";
 
 // menu items
 const menus = [
-  { title: "Dashboard", link: "/", icon: <MdOutlineDashboard /> },
+  { title: "Dashboard", link: "/dashboard", icon: <MdOutlineDashboard /> },
 
   {
     title: "Customers",
-    link: "/customers",
+    link: "/dashboard/customers",
     icon: <AiFillGift />,
   },
   {
     title: "Products",
     icon: <FaBoxesStacked />,
-    link: "/products",
+    link: "/dashboard/products",
   },
   {
     title: "Upload Product",
-    link: "/upload-product",
+    link: "/dashboard/upload-product",
     icon: <BsFillClipboard2PlusFill />,
   },
   // { title: "Wishlist", link: "/wishlist", icon: <FaHeart /> },
   {
     title: "Orders",
     icon: <FaBagShopping />,
-    link: "/orders",
+    link: "/dashboard/orders",
   },
 ];
 
@@ -79,7 +78,7 @@ const Sidebar = () => {
         />
 
         {/* for logo section */}
-        <div className="inline-flex">
+        {/* <div className="inline-flex">
           <h2
             className={`${
               !open && "scale-0"
@@ -87,7 +86,7 @@ const Sidebar = () => {
           >
             EnginnerHut
           </h2>
-        </div>
+        </div> */}
 
         {/* show all menu */}
         <ul className="pt-4">
@@ -170,13 +169,13 @@ const Sidebar = () => {
         } bg-[#FFFFFF] `}
       >
         {/* <div className=" bg-[#dff9fb]"> */}
-        <Navbar />
+        {/* <Navbar /> */}
         {/* here all the component will display */}
         <Outlet />
       </div>
-      <div className={`block md:hidden ${styles.width3}  `}>
+      <div className={`block md:hidden ${styles.width3}`}>
         {/* <div className=" bg-[#dff9fb]"> */}
-        <Navbar />
+        {/* <Navbar /> */}
         {/* here all the component will display */}
         <Outlet />
       </div>

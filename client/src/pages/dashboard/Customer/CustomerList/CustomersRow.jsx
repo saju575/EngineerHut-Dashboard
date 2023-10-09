@@ -7,7 +7,7 @@ const CustomerRows = ({ customer, styles = "" }) => {
 
   //onClick handler for each customer
   const handleClick = () => {
-    navigate(`/customer/${customer._id}`);
+    navigate(`/dashboard/customer/${customer._id}`);
   };
   //component
   return (

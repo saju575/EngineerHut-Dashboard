@@ -1,12 +1,12 @@
-import Sidebar from "../components/dashboard/sidebar/Sidebar";
 // import CustomerList from "../components/Customer/CustomerList/CustomerList";
+
+import { Outlet } from "react-router-dom";
 
 const Main = () => {
   return (
     <>
-      <div>
-        <Sidebar />
-      </div>
+      <div>Nav bar layout</div>
+      <Outlet />
     </>
   );
 };
