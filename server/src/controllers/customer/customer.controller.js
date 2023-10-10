@@ -1,6 +1,7 @@
 const createHttpError = require("http-errors");
 const bcrypt = require("bcryptjs");
-
+const crypto = require("crypto");
+const jwt = require("jsonwebtoken");
 const Customer = require("../../models/customer.model");
 const {
   JWT_ACTIVATION_KEY,
@@ -11,6 +12,7 @@ const { findWithId } = require("../../services/findItem.service");
 const { createJWTToken } = require("../../utils/jwt.util");
 const { emailWithNodeMailer } = require("../../utils/nodeMailer.util");
 const { successResponse } = require("../response/response.controller");
+const Token = require("../../models/token.model");
 
 exports.createCustomer = async (req, res, next) => {
   try {
@@ -149,7 +151,7 @@ exports.procesRegister = async (req, res, next) => {
       );
     }
 
-    // create jwt token
+    // // create jwt token
     const jwtToken = createJWTToken(
       {
         firstName,
@@ -158,8 +160,13 @@ exports.procesRegister = async (req, res, next) => {
         password,
       },
       JWT_ACTIVATION_KEY,
-      "10m"
+      "59m"
     );
+
+    const token = await new Token({
+      token: crypto.randomBytes(32).toString("hex"),
+      jwtToken,
+    }).save();
 
     // prepare email
     const emailData = {
@@ -168,7 +175,7 @@ exports.procesRegister = async (req, res, next) => {
       html: `
       <h2>Hello ${firstName} ${lastName}</h2>
       <p>Please click here to 
-      <a href="${CLIENT_URL}/user-activate/${jwtToken}" target="_blank">activate your account</a>
+      <a href="${CLIENT_URL}/users/${token._id}/verify/${token.token}" target="_blank">activate your account</a>
       </p>
       `,
     };
@@ -185,8 +192,7 @@ exports.procesRegister = async (req, res, next) => {
 
     return successResponse(res, {
       statusCode: 200,
-      message: `Please got to your ${email} for completing your registration process`,
-      payload: { token: jwtToken },
+      message: `An Email sent to your account please verify`,
     });
   } catch (error) {
     next(error);
@@ -196,40 +202,34 @@ exports.procesRegister = async (req, res, next) => {
 // activate user registration data store into database
 exports.activateUserAccount = async (req, res, next) => {
   try {
-    const token = req.body.token;
-    // if token is not provided
-    if (!token) throw createHttpError(404, "Token missing");
-    try {
-      // decode token data
-      const decoded = jwt.verify(token, JWT_ACTIVATION_KEY);
+    // const user = await Customer.findOne({ _id: req.params.id });
+    // if (!user) {
+    //   throw new Error("Invalid link");
+    // }
 
-      if (!decoded) throw createHttpError(401, "User is not veryfied");
-
-      //check user already exist or not
-
-      const userExists = await Customer.exists({ email: decoded.email });
-      if (userExists) {
-        throw createHttpError(
-          409,
-          "User with this email already exists. Please sign in."
-        );
-      }
-
-      // create new user and add to db
-      await Customer.create(decoded);
-      // return success response
-
-      return successResponse(res, {
-        statusCode: 201,
-        message: `User was registered successfully`,
-      });
-    } catch (err) {
-      if (err.name === "TokenExpiredError")
-        throw createHttpError(401, "Token has expired");
-      else if (err.name === "JsonWebTokenError")
-        throw createHttpError(401, "Invalid Token");
-      else throw err;
+    const token = await Token.findOne({
+      _id: req.params.id,
+      token: req.params.token,
+    });
+    if (!token) {
+      throw new Error("Invalid link");
     }
+
+    const decodedInfo = jwt.verify(token.jwtToken, JWT_ACTIVATION_KEY);
+
+    if (!decodedInfo) {
+      throw new Error("Invalid link");
+    }
+
+    await Customer.create(decodedInfo);
+
+    await Token.deleteOne({ userId: req.params.id, token: req.params.token });
+    // return success response
+
+    return successResponse(res, {
+      statusCode: 201,
+      message: `Email verified successfully`,
+    });
   } catch (error) {
     next(error);
   }

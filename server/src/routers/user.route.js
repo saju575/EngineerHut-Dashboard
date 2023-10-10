@@ -11,7 +11,7 @@ const userRouter = express.Router();
 
 userRouter.post("/users/process-register", procesRegister);
 
-userRouter.post("/users/activate-user", activateUserAccount);
+userRouter.get("/users/:id/verify/:token", activateUserAccount);
 
 userRouter.post("/users/login", handleLogin);
 

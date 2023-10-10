@@ -168,7 +168,7 @@ const Navbar = () => {
                   />
 
                   {isOpen && (
-                    <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10">
+                    <div className="origin-top-right absolute right-0 mt-2 min-w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10">
                       <div className="py-2">
                         <div className="px-4 py-3">
                           <h2 className="text-lg font-semibold">

@@ -6,6 +6,7 @@ import SingleCustomer from "../pages/dashboard/Customer/SingleCustomer/SingleCus
 import DashBoard from "../pages/dashboard/dashboard/DashBoard";
 
 import DashboardLayout from "../layout/DashboardLayout";
+import UserActivate from "../pages/activate/UserActivate";
 import Orders from "../pages/dashboard/order/Orders";
 import SingleOrder from "../pages/dashboard/order/SingleOrder";
 import Products from "../pages/dashboard/products/Products";
@@ -14,6 +15,7 @@ import UploadProduct from "../pages/dashboard/products/UploadProduct";
 import Home from "../pages/home/home/Home";
 import Login from "../pages/login/Login";
 import Registraion from "../pages/registration/Registration";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -26,45 +28,85 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard",
-        element: <DashboardLayout />,
+        element: (
+          <PrivateRoute>
+            <DashboardLayout />
+          </PrivateRoute>
+        ),
         children: [
           {
             path: "/dashboard/customers",
-            element: <CustomerList />,
+            element: (
+              <PrivateRoute>
+                <CustomerList />
+              </PrivateRoute>
+            ),
           },
           {
             path: "/dashboard/customer/:customerId",
-            element: <SingleCustomer />,
+            element: (
+              <PrivateRoute>
+                <SingleCustomer />
+              </PrivateRoute>
+            ),
           },
 
           {
             path: "/dashboard",
-            element: <DashBoard />,
+            element: (
+              <PrivateRoute>
+                <DashBoard />
+              </PrivateRoute>
+            ),
           },
 
           {
             path: "/dashboard/products",
-            element: <Products />,
+            element: (
+              <PrivateRoute>
+                <Products />
+              </PrivateRoute>
+            ),
           },
           {
             path: "/dashboard/products/:productId",
-            element: <ProductsDetails />,
+            element: (
+              <PrivateRoute>
+                <ProductsDetails />
+              </PrivateRoute>
+            ),
           },
           {
             path: "/dashboard/products-details",
-            element: <ProductsDetails />,
+            element: (
+              <PrivateRoute>
+                <ProductsDetails />
+              </PrivateRoute>
+            ),
           },
           {
             path: "/dashboard/upload-product",
-            element: <UploadProduct />,
+            element: (
+              <PrivateRoute>
+                <UploadProduct />
+              </PrivateRoute>
+            ),
           },
           {
             path: "/dashboard/orders",
-            element: <Orders />,
+            element: (
+              <PrivateRoute>
+                <Orders />
+              </PrivateRoute>
+            ),
           },
           {
             path: "/dashboard/orders/:orderId",
-            element: <SingleOrder />,
+            element: (
+              <PrivateRoute>
+                <SingleOrder />
+              </PrivateRoute>
+            ),
           },
         ],
       },
@@ -77,5 +119,9 @@ export const router = createBrowserRouter([
   {
     path: "/register",
     element: <Registraion />,
+  },
+  {
+    path: "/users/:id/verify/:token",
+    element: <UserActivate />,
   },
 ]);

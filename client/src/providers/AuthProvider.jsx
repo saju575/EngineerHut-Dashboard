@@ -1,45 +1,39 @@
 import Cookies from "js-cookie";
 import { createContext, useEffect, useState } from "react";
-// import { useQuery } from "react-query";
-// import { fetchUserProfile } from "../lib/getUserProfile";
 import axios from "../lib/axiosInstance";
 
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // const [isFetch, setIsFetch] = useState(false);
+  const fetchUserData = async () => {
+    try {
+      const accessToken = Cookies.get("accessToken");
 
-  //get user data
-  // const { data: userInfo } = useQuery(["user", isFetch], fetchUserProfile, {
-  //   // The query will not execute until the userId exists
-  //   enabled: !!isFetch,
-  // });
+      if (accessToken) {
+        const response = await axios.get("/users/user-profile", {
+          withCredentials: true,
+        });
 
-  const f = async () => {
-    const user = await axios.get("/users/user-profile", {
-      withCredentials: true,
-    });
-
-    setUser(user.data.payload);
+        setUser(response.data.payload);
+        setIsLoading(false); // Set isLoading to false when user data is fetched
+      } else {
+        setIsLoading(false); // Set isLoading to false if there is no accessToken
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      setIsLoading(false); // Set isLoading to false in case of an error
+    }
   };
 
-  // Load user data from storage on app initialization
   useEffect(() => {
-    const accessToken = Cookies.get("accessToken");
-
-    if (accessToken) {
-      f();
-    }
+    fetchUserData();
   }, []);
 
-  // if (userInfo) {
-  //   setUser(userInfo);
-  // }
-
   return (
-    <AuthContext.Provider value={{ user, setUser }}>
+    <AuthContext.Provider value={{ user, setUser, isLoading, setIsLoading }}>
       {children}
     </AuthContext.Provider>
   );

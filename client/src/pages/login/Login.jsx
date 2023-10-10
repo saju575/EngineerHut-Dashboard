@@ -1,14 +1,21 @@
 import { useFormik } from "formik";
 import { useContext } from "react";
 import { useMutation } from "react-query";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { userLogin } from "../../lib/loginRequest";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { setUser } = useContext(AuthContext);
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
+  const {
+    setUser,
+
+    setIsLoading,
+  } = useContext(AuthContext);
   const validationSchema = Yup.object().shape({
     email: Yup.string()
       .email("Invalid email address")
@@ -25,9 +32,9 @@ const Login = () => {
   const { mutateAsync, isLoading, isError, error } = useMutation({
     mutationFn: (data) => userLogin(data),
     onSuccess: async (data) => {
-      console.log(data);
       setUser(data.payload.user);
-      navigate("/");
+      setIsLoading(false);
+      navigate(from, { replace: true });
     },
   });
 
