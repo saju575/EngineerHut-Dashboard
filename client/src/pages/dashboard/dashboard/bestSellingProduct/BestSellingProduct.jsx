@@ -45,9 +45,9 @@ const BestSellingProduct = () => {
     productsContent = <p>Loading...</p>;
   } else if (!isProductsLoadding && isProductError) {
     productsContent = <p>{productError.message}</p>;
-  } else if (!isProductsLoadding && products.payload.data.length === 0) {
+  } else if (!isProductsLoadding && products?.payload?.data.length === 0) {
     productsContent = <p>No product found</p>;
-  } else if (!isProductsLoadding && products.payload.data.length > 0) {
+  } else if (!isProductsLoadding && products?.payload?.data.length > 0) {
     productsContent = (
       <table className="min-w-max w-full table-auto">
         <tbody className="text-gray-600 text-sm font-light">

@@ -50,13 +50,14 @@ const ProductCard = ({ product }) => {
           {name}
         </h3>
 
-        <h4 className="font-medium">
-          {" "}
+        <h3 className="font-bold text-lg">
           {discountPrice !== 0 && (
-            <span className="pr-2">${discountPrice}</span>
+            <>
+              <span className="line-through">${price}</span> ${discountPrice}
+            </>
           )}
-          ${price}
-        </h4>
+          {discountPrice === 0 && <>${price}</>}
+        </h3>
 
         {/* 
         showing the star

@@ -19,11 +19,7 @@ const FeaturedProductCard = ({ product }) => {
                           </div> */}
           <div className="products-desc">
             <div className="flex items-center pt-8 pl-5 pb-2">
-              {/* {product.rating.map((star, index) => (
-                                    <i key={index}>
-                                    <AiFillStar />
-                                    </i>
-                                ))} */}
+              {/* rating */}
               {[...Array(5).keys()].map((index) => {
                 if (index < product.rating) {
                   return (
@@ -42,11 +38,14 @@ const FeaturedProductCard = ({ product }) => {
                 }
               })}
             </div>
+
             <h4 className="font-semibold text-lg pl-5 py-1">{product.name}</h4>
+
             <h3 className="font-bold text-2xl pl-5">
               {product.discountPrice !== 0 && (
                 <>
-                  <span>${product.price}</span> ${product.discountPrice}
+                  <span className="line-through">${product.price}</span> $
+                  {product.discountPrice}
                 </>
               )}
               {product.discountPrice === 0 && <>${product.price}</>}

@@ -36,12 +36,8 @@ const UpdateProductModal = ({ isOpen, setIsOpen, product, refetch }) => {
   } = useMutation({
     mutationFn: (data) => updateProduct(data),
     onSuccess: async () => {
-      queryClient.invalidateQueries([
-        "products",
-        "categories",
-        "hProducts",
-        "pCategories",
-      ]);
+      queryClient.invalidateQueries();
+
       refetch();
       setIsOpen(false);
     },
@@ -60,12 +56,12 @@ const UpdateProductModal = ({ isOpen, setIsOpen, product, refetch }) => {
       name: product.name || "",
       description: product.description || "",
       price: product.price || 0,
-      discountPrice: product.discountPrice || 1,
+      discountPrice: product.discountPrice || 0,
       shippingFee: product.shippingFee || 0,
       taxRate: product.taxRate || 0,
       category: product.category || "",
       brand: product.brand || "",
-      stock: product.stock || 1,
+      stock: product.stock || 0,
       color: product.color || "",
       weight: product.weight || 0,
       size: product.size || "",
@@ -75,13 +71,31 @@ const UpdateProductModal = ({ isOpen, setIsOpen, product, refetch }) => {
     validationSchema: Yup.object({
       name: Yup.string().required("Product Name is required*"),
       description: Yup.string().required("required*"),
-      price: Yup.number().required("required*").positive(),
-      discountPrice: Yup.number().positive(),
-      shippingFee: Yup.number().required("required*").positive(),
-      taxRate: Yup.number().required("Tax Rate is required").positive(),
+      price: Yup.number().required("required*").min(0),
+      discountPrice: Yup.number()
+        .required("At lest 0 required")
+        .test(
+          "is-valid-discount-price",
+          "Discount Price must be less than Price and greater than or equal to 0",
+          function (value) {
+            const price = this.parent.price; // Get the value of the "price" field
+            if (
+              value === undefined ||
+              value === null ||
+              price === undefined ||
+              price === null
+            ) {
+              // If either value is not defined, return true to skip validation
+              return true;
+            }
+            return value >= 0 && value < price; // Validation passes if discountPrice is valid
+          }
+        ),
+      shippingFee: Yup.number().required("required*").min(0),
+      taxRate: Yup.number().required("Tax Rate is required").min(0),
       category: Yup.string().required("Product Category is required"),
       brand: Yup.string().required("Product Brand is required"),
-      stock: Yup.number().required("Product Stock is required").positive(),
+      stock: Yup.number().required("Product Stock is required").min(0),
       //color: Yup.string(),
       weight: Yup.number(),
       //   size: Yup.string()

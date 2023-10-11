@@ -90,7 +90,7 @@ function Products() {
         size,
       }),
     queryKey: [
-      "products",
+      "adminProducts",
       { search, category, brand, priceValueRange, page, size },
     ],
     staleTime: Infinity,

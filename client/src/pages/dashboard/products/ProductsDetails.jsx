@@ -127,13 +127,16 @@ const ProductsDetails = () => {
         <div className="w-6/12 pt-8 proDetails-details">
           <h3 className="pl-8 font-semibold uppercase">{name}</h3>
           {/* <p className="pl-8 pt-6">Sold 21 Products in last 10 hours</p> */}
-          <div className="flex items-center pt-2">
-            <p className="pl-8 font-medium pr-3">
+          <div className="flex items-center pt-2 pl-8">
+            <h3 className="font-bold text-lg mr-2">
               {discountPrice !== 0 && (
-                <span className="pr-2">${discountPrice}</span>
-              )}{" "}
-              ${price}
-            </p>
+                <>
+                  <span className="line-through">${price}</span> $
+                  {discountPrice}
+                </>
+              )}
+              {discountPrice === 0 && <>${price}</>}
+            </h3>
 
             {/* 
               showing rating star
