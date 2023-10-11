@@ -11,6 +11,7 @@ const Login = () => {
   const location = useLocation();
 
   const from = location.state?.from?.pathname || "/";
+  console.log(from);
   const {
     setUser,
 
@@ -34,7 +35,14 @@ const Login = () => {
     onSuccess: async (data) => {
       setUser(data.payload.user);
       setIsLoading(false);
-      navigate(from, { replace: true });
+      if (
+        data?.payload?.user?.role !== "admin" &&
+        from.startsWith("/dashboard")
+      ) {
+        navigate("/", { replace: true });
+      } else {
+        navigate(from, { replace: true });
+      }
     },
   });
 
