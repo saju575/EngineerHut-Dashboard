@@ -9,6 +9,12 @@
   width: 6px; /* Set the width of the scrollbar */
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 ::-webkit-scrollbar-thumb {
   background-color: rgba(
     0,

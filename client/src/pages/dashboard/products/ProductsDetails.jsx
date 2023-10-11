@@ -9,6 +9,7 @@ import "../../../stylesheets/Responsive.css";
 import { BsStar } from "react-icons/bs";
 import { GiRoundStar } from "react-icons/gi";
 // import { PiArrowCounterClockwiseFill } from "react-icons/pi";
+import UpdateProductModal from "../../../components/updateProductModal/UpdateProducModal";
 import { fetchProduct } from "../../../lib/getProducts";
 
 const ProductsDetails = () => {
@@ -31,6 +32,11 @@ const ProductsDetails = () => {
   // };
   const [imgUrl, setImgUrl] = useState("");
 
+  /* 
+    modal open state
+  */
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   /*
     get the id parameter 
    */
@@ -44,6 +50,8 @@ const ProductsDetails = () => {
     isLoading: isProductLoadding,
     isError: isProductError,
     error: productError,
+    isSuccess: isProductSuccess,
+    refetch: productRefetch,
   } = useQuery({
     queryFn: () => fetchProduct(productId),
     queryKey: ["product", { productId }],
@@ -174,7 +182,17 @@ const ProductsDetails = () => {
             </i>
           </div> */}
 
-          <hr className="mt-10 mb-20 ml-8 mr-20" />
+          <hr className="mt-10 mb-6 ml-8 mr-20" />
+
+          <div className="pl-8 mb-6">
+            <button
+              className="bg-slate-600 text-white rounded-sm px-2 py-1 cursor-pointer"
+              onClick={() => setIsModalOpen(!isModalOpen)}
+            >
+              Update Product Info
+            </button>
+          </div>
+
           <div className="proDetails-models">
             <h2 className="pl-8 pb-2 font-semibold">
               SKU: <span className="pl-10">{sku}</span>
@@ -341,6 +359,15 @@ const ProductsDetails = () => {
           </div>
         </div> */}
       </div>
+
+      {isProductSuccess && (
+        <UpdateProductModal
+          isOpen={isModalOpen}
+          setIsOpen={setIsModalOpen}
+          product={product.payload}
+          refetch={productRefetch}
+        />
+      )}
     </React.Fragment>
   );
 };

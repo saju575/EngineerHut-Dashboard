@@ -342,3 +342,34 @@ exports.getBestSellingProducts = async (req, res, next) => {
     next(error);
   }
 };
+
+/* 
+  update a single product without images
+*/
+exports.updateProduct = async (req, res, next) => {
+  try {
+    const productId = req.params.id;
+    const updateData = req.body; // The data you want to update, excluding the image
+
+    // Remove the image property from the updateData object
+    delete updateData.images;
+
+    // Update the product using findByIdAndUpdate
+    const updatedProduct = await Product.findByIdAndUpdate(
+      productId,
+      updateData,
+      { new: true }
+    );
+
+    if (!updatedProduct) {
+      throw new Error(`Product ${productId} not found`);
+    }
+
+    return successResponse(res, {
+      message: "Product updated successfully",
+      payload: updatedProduct,
+    });
+  } catch (error) {
+    next(error);
+  }
+};

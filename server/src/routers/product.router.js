@@ -8,6 +8,7 @@ const {
   getSingleProduct,
   getCategoryCount,
   getBrandCount,
+  updateProduct,
 } = require("../controllers/product/product.controller");
 const {
   validateCreateProductRequestBody,
@@ -56,6 +57,11 @@ productRouter.get("/category/count", getCategoryCount);
   Route to get the count of available products for each brnad
 */
 productRouter.get("/brand/count", getBrandCount);
+
+/* 
+  update a single product
+*/
+productRouter.patch("/product/:id", updateProduct);
 
 /* 
     exporting the product router
