@@ -5,45 +5,6 @@ import { useQuery } from "react-query";
 import { fetchProducts } from "../../lib/getProducts";
 import FeaturedProductCard from "./FeaturedProductCard";
 
-const featuredProduct = [
-  {
-    id: 1,
-    imageSrc: "/assets/FeaturedProducts-5.png",
-    isNew: true,
-    rating: [1, 2, 3, 4, 5],
-    title: "Winter Snow Boots",
-    price: "$32.00",
-    originalPrice: "$46.00",
-  },
-  {
-    id: 2,
-    imageSrc: "/assets/FeaturedProducts-4.png",
-    isNew: true,
-    rating: [1, 2, 3, 4, 5],
-    title: "Winter Snow Boots",
-    price: "$32.00",
-    originalPrice: "$46.00",
-  },
-  {
-    id: 3,
-    imageSrc: "/assets/FeaturedProducts-3.png",
-    isNew: true,
-    rating: [1, 2, 3, 4, 5],
-    title: "Winter Snow Boots",
-    price: "$32.00",
-    originalPrice: "$46.00",
-  },
-  {
-    id: 4,
-    imageSrc: "/assets/FeaturedProducts-2.png",
-    isNew: true,
-    rating: [1, 2, 3, 4, 5],
-    title: "Winter Snow Boots",
-    price: "$32.00",
-    originalPrice: "$46.00",
-  },
-];
-
 const FeaturedProducts = () => {
   /* 
       fetch products 

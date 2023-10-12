@@ -96,17 +96,17 @@ const Navbar = () => {
                 <Link to={"/"}>Home</Link>
               </li>
               <li className="pr-8 font-bold">
-                <a href="##">About</a>
+                <Link to={"/"}>About</Link>
               </li>
               <li className="pr-8 font-bold">
-                <a href="##">Shop</a>
+                <Link to={"/"}>Shop</Link>
               </li>
               <li className="pr-8 font-bold">
-                <a href="##">News</a>
+                <Link to={"/"}>News</Link>
               </li>
 
               <li className="pr-8 font-bold">
-                <a href="##">Contact</a>
+                <Link to={"/"}>Contact</Link>
               </li>
               {user && user.role === "admin" && (
                 <li className=" font-bold">

@@ -41,15 +41,6 @@ const UpdateProductModal = ({ isOpen, setIsOpen, product, refetch }) => {
       refetch();
       setIsOpen(false);
     },
-    // onMutate: (newData) => {
-    //   // Optimistically update the cache with the new data
-    //   queryClient.setQueryData("product", (oldData) => {
-    //     // Modify the data in the cache optimistically
-    //     return { ...oldData, ...newData };
-    //   });
-
-    //   return newData;
-    // },
   });
   const formik = useFormik({
     initialValues: {

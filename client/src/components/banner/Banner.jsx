@@ -121,9 +121,9 @@ const Banner = () => {
                     exit={{ opacity: 0, y: 40 }}
                     transition={{ duration: 1 }}
                   >
-                    <h1 className="text-6xl my-4 font-bold">
+                    <p className="text-6xl my-4 font-bold">
                       Luxury Fashion and Lifestyle
-                    </h1>
+                    </p>
                   </motion.h1>
 
                   <motion.h1

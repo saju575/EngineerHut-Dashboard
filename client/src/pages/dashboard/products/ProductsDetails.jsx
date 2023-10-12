@@ -9,6 +9,7 @@ import "../../../stylesheets/Responsive.css";
 import { BsStar } from "react-icons/bs";
 import { GiRoundStar } from "react-icons/gi";
 // import { PiArrowCounterClockwiseFill } from "react-icons/pi";
+import UpdateProductImgModal from "../../../components/updateProductImgModal/UpdateProductImgModal";
 import UpdateProductModal from "../../../components/updateProductModal/UpdateProducModal";
 import { fetchProduct } from "../../../lib/getProducts";
 
@@ -36,6 +37,8 @@ const ProductsDetails = () => {
     modal open state
   */
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [isPImgOpen, setIsPImgOpen] = useState(false); // product image update modal open state
 
   /*
     get the id parameter 
@@ -76,9 +79,9 @@ const ProductsDetails = () => {
     productContent = <p>Loading...</p>;
   } else if (!isProductLoadding && isProductError) {
     productContent = <p>{productError.message}</p>;
-  } else if (!isProductLoadding && !product.payload) {
+  } else if (!isProductLoadding && !product?.payload) {
     productContent = <p>No product found</p>;
-  } else if (!isProductLoadding && product.payload) {
+  } else if (!isProductLoadding && product?.payload) {
     //destructing the product
     const {
       name,
@@ -187,12 +190,19 @@ const ProductsDetails = () => {
 
           <hr className="mt-10 mb-6 ml-8 mr-20" />
 
-          <div className="pl-8 mb-6">
+          <div className="pl-8 mb-6 flex gap-2">
             <button
               className="bg-slate-600 text-white rounded-sm px-2 py-1 cursor-pointer"
               onClick={() => setIsModalOpen(!isModalOpen)}
             >
               Update Product Info
+            </button>
+
+            <button
+              className="bg-slate-600 text-white rounded-sm px-2 py-1 cursor-pointer"
+              onClick={() => setIsPImgOpen(!isPImgOpen)}
+            >
+              Update Product img
             </button>
           </div>
 
@@ -368,6 +378,15 @@ const ProductsDetails = () => {
           isOpen={isModalOpen}
           setIsOpen={setIsModalOpen}
           product={product.payload}
+          refetch={productRefetch}
+        />
+      )}
+
+      {isProductSuccess && (
+        <UpdateProductImgModal
+          isOpen={isPImgOpen}
+          setIsOpen={setIsPImgOpen}
+          productId={product.payload._id}
           refetch={productRefetch}
         />
       )}

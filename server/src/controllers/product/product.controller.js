@@ -12,6 +12,7 @@ const {
   getDownloadURL,
 } = require("firebase/storage");
 const { firebaseApp } = require("../../config/firebase.config");
+const { uploadImages } = require("../../services/imgUploadToFirebase.service");
 
 exports.productCreate = async (req, res, next) => {
   try {
@@ -395,7 +396,7 @@ exports.updateProductImage = async (req, res, next) => {
     const product = await Product.findById(productId);
 
     if (!product) {
-      return res.status(404).json({ message: "Product not found" });
+      throw new Error("Product not found");
     }
 
     // Create an instance of Firebase Storage
@@ -430,6 +431,36 @@ exports.updateProductImage = async (req, res, next) => {
 
     return successResponse(res, {
       message: "Product image updated successfully",
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.addImagesToProduct = async (req, res, next) => {
+  try {
+    const productId = req.params.productId;
+    // Find the product by its _id
+    const product = await Product.findById(productId);
+
+    if (!product) {
+      throw new Error("Product not found");
+    }
+
+    // Get the uploaded images
+    const newImages = req.files; // The uploaded files
+
+    // Create an array to store the URLs of the new images
+    const newImageUrls = await uploadImages(newImages);
+
+    // Add the new image URLs to the product's image array
+    product.images = [...product.images, ...newImageUrls];
+
+    // Save the updated product
+    await product.save();
+
+    return successResponse(res, {
+      message: "Product image uploaded successfully",
     });
   } catch (error) {
     next(error);

@@ -13,6 +13,7 @@ const {
   getBrandCount,
   updateProduct,
   updateProductImage,
+  addImagesToProduct,
 } = require("../controllers/product/product.controller");
 const {
   validateCreateProductRequestBody,
@@ -74,6 +75,15 @@ productRouter.patch(
   "/updateProductImage/:productId",
   uploadSingleImage.single("image"),
   updateProductImage
+);
+
+/* 
+  add more images to product
+*/
+productRouter.post(
+  "/addProductImages/:productId",
+  uploadMultiple,
+  addImagesToProduct
 );
 
 /* 

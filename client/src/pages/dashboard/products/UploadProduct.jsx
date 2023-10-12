@@ -80,7 +80,7 @@ const UploadProduct = () => {
   /* 
     client query
   */
-  const queryClient = new useQueryClient();
+  const queryClient = useQueryClient();
 
   /* 
     react query

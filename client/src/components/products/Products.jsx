@@ -7,41 +7,6 @@ import { fetchProductsCategories } from "../../lib/getProductsCategory";
 import ProductCard from "./ProductCard";
 import "./Products.css";
 
-const products = [
-  {
-    imageSrc: "/assets/FeaturedProducts-5.png",
-    discount: "-19%",
-    rating: [1, 2, 3, 4, 5],
-    title: "High-Top Canvas Sneakers",
-    price: "$32.00",
-    originalPrice: "$46.00",
-  },
-  {
-    imageSrc: "/assets/FeaturedProducts-4.png",
-    discount: "-25%",
-    rating: [1, 2, 3, 4, 5],
-    title: "Black Leather Loafers",
-    price: "$32.00",
-    originalPrice: "$46.00",
-  },
-  {
-    imageSrc: "/assets/FeaturedProducts-2.png",
-    discount: "-45%",
-    rating: [1, 2, 3, 4, 5],
-    title: "Black Leather Loafers",
-    price: "$24.00",
-    originalPrice: "$46.00",
-  },
-  {
-    imageSrc: "/assets/FeaturedProducts-1.png",
-    discount: "-45%",
-    rating: [1, 2, 3, 4, 5],
-    title: "Black Leather Loafers",
-    price: "$24.00",
-    originalPrice: "$46.00",
-  },
-];
-
 const Products = () => {
   /* 
     category search state
