@@ -1,5 +1,8 @@
 const express = require("express");
-const { uploadMultiple } = require("../middlewares/multer.middleware");
+const {
+  uploadMultiple,
+  uploadSingleImage,
+} = require("../middlewares/multer.middleware");
 const { uploadImage } = require("../middlewares/uploadImage.middleware");
 const {
   productCreate,
@@ -9,6 +12,7 @@ const {
   getCategoryCount,
   getBrandCount,
   updateProduct,
+  updateProductImage,
 } = require("../controllers/product/product.controller");
 const {
   validateCreateProductRequestBody,
@@ -62,6 +66,15 @@ productRouter.get("/brand/count", getBrandCount);
   update a single product
 */
 productRouter.patch("/product/:id", updateProduct);
+
+/* 
+  product image update
+*/
+productRouter.patch(
+  "/updateProductImage/:productId",
+  uploadSingleImage.single("image"),
+  updateProductImage
+);
 
 /* 
     exporting the product router

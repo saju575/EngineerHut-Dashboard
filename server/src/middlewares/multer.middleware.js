@@ -6,7 +6,7 @@ const path = require("path");
 */
 function checkFileType(file, cb) {
   // Allowed ext
-  const fileTypes = /jpeg|jpg|png|gif/;
+  const fileTypes = /jpeg|jpg|png/;
   // Check ext
   const extName = fileTypes.test(path.extname(file.originalname).toLowerCase());
   // Check mime
@@ -15,7 +15,7 @@ function checkFileType(file, cb) {
   if (mimeType && extName) {
     return cb(null, true);
   } else {
-    cb("Only 'jpeg','jpg','png','gif' images accepted !!!");
+    cb("Only 'jpeg','jpg','png' images accepted !!!");
   }
 }
 
@@ -30,3 +30,12 @@ exports.uploadMultiple = multer({
     checkFileType(file, cb);
   },
 }).array("image", 12);
+
+exports.uploadSingleImage = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 1000000 },
+  fileFilter: function (req, file, cb) {
+    //check the file type
+    checkFileType(file, cb);
+  },
+});

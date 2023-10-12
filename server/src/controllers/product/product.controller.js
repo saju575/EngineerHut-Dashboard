@@ -5,6 +5,13 @@ const {
   imageDeleteFromFirebase,
 } = require("../../services/imgDeleteFromFirebase.service");
 const Order = require("../../models/order.model");
+const {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} = require("firebase/storage");
+const { firebaseApp } = require("../../config/firebase.config");
 
 exports.productCreate = async (req, res, next) => {
   try {
@@ -368,6 +375,61 @@ exports.updateProduct = async (req, res, next) => {
     return successResponse(res, {
       message: "Product updated successfully",
       payload: updatedProduct,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/* 
+  update product image -> only one image is allowed
+*/
+
+exports.updateProductImage = async (req, res, next) => {
+  try {
+    const productId = req.params.productId;
+    const imageId = req.body.imageId; // Object ID of the image to be replaced
+    const newImage = req.file; // The uploaded file
+
+    // Find the product by its _id
+    const product = await Product.findById(productId);
+
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    // Create an instance of Firebase Storage
+    const storage = getStorage(firebaseApp);
+
+    const dateTime = Date.now();
+
+    const fileName = `images/${dateTime}`;
+    const storageRef = ref(storage, fileName);
+
+    const metadata = {
+      contentType: newImage.mimetype,
+    };
+    // Upload the image
+    await uploadBytesResumable(storageRef, newImage.buffer, metadata);
+
+    // Get the download URL
+    const newImageUrl = await getDownloadURL(storageRef);
+
+    // Update the images array
+    product.images = product.images.map((image) => {
+      if (image._id.toString() === imageId) {
+        // Delete the old image from Firebase Storage
+        imageDeleteFromFirebase(image.url);
+        return { _id: image._id, url: newImageUrl };
+      }
+      return image;
+    });
+
+    // Save the updated product
+    await product.save();
+
+    return successResponse(res, {
+      message: "Product image updated successfully",
     });
   } catch (error) {
     next(error);
